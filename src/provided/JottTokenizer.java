@@ -245,6 +245,10 @@ public class JottTokenizer {
                     System.err.println("Error: unexpected character " + curChar + " in line " + lineNum);
                     return null;
                   }
+                  if (i == curChars.length - 1 && curChar != '"') {
+                    System.err.println("Error: missing closing quote for string starting at line " + lineNum);
+                    return null;
+                 } 
                   break;
                 case relOp:
                   curChar = curChars[i];
@@ -265,8 +269,12 @@ public class JottTokenizer {
                   break;
               }
           }
+          lineNum++;    
       }
+      lineNum--;
       switch (state) {
+        case START:
+          break;
         case ASSIGN:
           tokens.add(new Token(curTokenString, filename, lineNum, TokenType.ASSIGN));
           break;
