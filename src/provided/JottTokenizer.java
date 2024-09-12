@@ -16,129 +16,129 @@ import helpers.State;
 
 public class JottTokenizer {
 
-	/**
-     * Takes in a filename and tokenizes that file into Tokens
-     * based on the rules of the Jott Language
-     * @param filename the name of the file to tokenize; can be relative or absolute path
-     * @return an ArrayList of Jott Tokens
-     */
-    public static ArrayList<Token> tokenize(String filename){
-		File file = new File(filename);
-    try (Scanner scanner = new Scanner(file)) {
-      int lineNum = 1;
-      State state = State.START;
-      String curTokenString = "";
-      ArrayList<Token> tokens = new ArrayList<Token>();
-      while (scanner.hasNextLine())
-      {
-          String line = scanner.nextLine();
-          char[] curChars = line.toCharArray();
+  /**
+   * Takes in a filename and tokenizes that file into Tokens
+   * based on the rules of the Jott Language
+   * @param filename the name of the file to tokenize; can be relative or absolute path
+   * @return an ArrayList of Jott Tokens
+   */
+  public static ArrayList<Token> tokenize(String filename){
+  File file = new File(filename);
+  try (Scanner scanner = new Scanner(file)) {
+    int lineNum = 1;
+    State state = State.START;
+    String curTokenString = "";
+    ArrayList<Token> tokens = new ArrayList<Token>();
+    while (scanner.hasNextLine())
+    {
+        String line = scanner.nextLine();
+        char[] curChars = line.toCharArray();
 
-          for (int i = 0; i < curChars.length; i++)
-          {
-              switch (state)
-              {
-                  case START:
-                    char curChar = curChars[i];
-                    curTokenString = "";
-                    switch (curChar)
-                    {
-                      case ',':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.COMMA));
-                        break;
-                      case '#':
-                        state = State.COMMENT;
-                        break;
-                      case ']':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.R_BRACKET));
-                        break;
-                      case '[':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.L_BRACKET));
-                        break;
-                      case '}':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.R_BRACE));
-                        break;
-                      case '{':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.L_BRACE));
-                        break;
-                      case '=':
-                        state = State.ASSIGN;
-                        curTokenString+= curChar;
-                        break;
-                      case '>':
-                      case '<':
-                          state = State.relOp;
-                          curTokenString+= curChar;
-                          break;
-                      case '/':
-                      case '+':
-                      case '-':
-                      case '*':
-                        curTokenString += curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.MATH_OP));
-                        break;
-                      case ';':
-                        curTokenString+= curChar;
-                        tokens.add(new Token(curTokenString, filename, lineNum, TokenType.SEMICOLON));
-                        break;
-                      case '.':
-                        state = State.DOT;
-                        curTokenString+= curChar;
-                        break;
-                      case ':':
-                        state = State.COLON;
-                        curTokenString+= curChar;
-                        break;
-                      case '!':
-                        state = State.EXPLIMATION;
-                        curTokenString+= curChar;
-                        break;
-                      case '"':
-                        state = State.QUOTE;
-                        curTokenString+= curChar;
-                        break;
-                      default:
-                        if (Character.isLetter(curChar))
-                        {
-                          state = State.LETTER;
-                          curTokenString+= curChar;
-                        }
-                        else if (Character.isDigit(curChar))
-                        {
-                          state = State.NUM;
-                          curTokenString+= curChar;
-                        }
-                        break;
-                    }
-                      break;
-                  case COMMENT:
-                    curChar = curChars[i];
-                    while (i != curChars.length && curChar != '\n')
-                    {
-                      i++;
-                    }
-                    state = State.START;
-                    break;
-                  case ASSIGN:
-                    curChar = curChars[i];
-                    if (curChar == '=')
-                    {
+        for (int i = 0; i < curChars.length; i++)
+        {
+            switch (state)
+            {
+                case START:
+                  char curChar = curChars[i];
+                  curTokenString = "";
+                  switch (curChar)
+                  {
+                    case ',':
                       curTokenString+= curChar;
-                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.REL_OP));
-                      state = State.START;
-                    }
-                    else
-                    {
-                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.ASSIGN));
-                      state = State.START;
-                      i--;
-                    }
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.COMMA));
+                      break;
+                    case '#':
+                      state = State.COMMENT;
+                      break;
+                    case ']':
+                      curTokenString+= curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.R_BRACKET));
+                      break;
+                    case '[':
+                      curTokenString+= curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.L_BRACKET));
+                      break;
+                    case '}':
+                      curTokenString+= curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.R_BRACE));
+                      break;
+                    case '{':
+                      curTokenString+= curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.L_BRACE));
+                      break;
+                    case '=':
+                      state = State.ASSIGN;
+                      curTokenString+= curChar;
+                      break;
+                    case '>':
+                    case '<':
+                        state = State.relOp;
+                        curTokenString+= curChar;
+                        break;
+                    case '/':
+                    case '+':
+                    case '-':
+                    case '*':
+                      curTokenString += curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.MATH_OP));
+                      break;
+                    case ';':
+                      curTokenString+= curChar;
+                      tokens.add(new Token(curTokenString, filename, lineNum, TokenType.SEMICOLON));
+                      break;
+                    case '.':
+                      state = State.DOT;
+                      curTokenString+= curChar;
+                      break;
+                    case ':':
+                      state = State.COLON;
+                      curTokenString+= curChar;
+                      break;
+                    case '!':
+                      state = State.EXPLIMATION;
+                      curTokenString+= curChar;
+                      break;
+                    case '"':
+                      state = State.QUOTE;
+                      curTokenString+= curChar;
+                      break;
+                    default:
+                      if (Character.isLetter(curChar))
+                      {
+                        state = State.LETTER;
+                        curTokenString+= curChar;
+                      }
+                      else if (Character.isDigit(curChar))
+                      {
+                        state = State.NUM;
+                        curTokenString+= curChar;
+                      }
+                      break;
+                  }
                     break;
+                case COMMENT:
+                  curChar = curChars[i];
+                  while (i != curChars.length && curChar != '\n')
+                  {
+                    i++;
+                  }
+                  state = State.START;
+                  break;
+                case ASSIGN:
+                  curChar = curChars[i];
+                  if (curChar == '=')
+                  {
+                    curTokenString+= curChar;
+                    tokens.add(new Token(curTokenString, filename, lineNum, TokenType.REL_OP));
+                    state = State.START;
+                  }
+                  else
+                  {
+                    tokens.add(new Token(curTokenString, filename, lineNum, TokenType.ASSIGN));
+                    state = State.START;
+                    i--;
+                  }
+                  break;
                 case COLON:
                   curChar = curChars[i];
                   if (curChar == ':')
@@ -248,10 +248,10 @@ public class JottTokenizer {
                   if (i == curChars.length - 1 && curChar != '"') {
                     System.err.println("Error: missing closing quote for string starting at line " + lineNum);
                     return null;
-                 } 
+                  } 
                   break;
                 case relOp:
-                  curChar = curChars[i];
+                    curChar = curChars[i];
                     if (curChar == '=')
                     {
                       curTokenString+= curChar;
@@ -267,38 +267,48 @@ public class JottTokenizer {
                   break;
                 default:
                   break;
-              }
-          }
-          lineNum++;    
-      }
-      lineNum--;
-      switch (state) {
-        case START:
-          break;
-        case ASSIGN:
-          tokens.add(new Token(curTokenString, filename, lineNum, TokenType.ASSIGN));
-          break;
-        case relOp:
-          tokens.add(new Token(curTokenString, filename, lineNum, TokenType.REL_OP));
-          break;
-        case LETTER:
-          tokens.add(new Token(curTokenString, filename, lineNum, TokenType.ID_KEYWORD));
-          break;
-        case NUM:
-        case DIGIT:
-          tokens.add(new Token(curTokenString, filename, lineNum, TokenType.NUMBER));
-          break;
-        case COLON:
-          tokens.add(new Token(curTokenString, filename, lineNum, TokenType.COLON)); 
-          break;
-        default:
-          return null;
-      }
-      scanner.close();
-      return tokens;
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-      return null;
+            }
+        }
+        lineNum++;    
     }
+    lineNum--;
+    
+    // Given a state, returns a token of similar type.
+    TokenType bracer = null;
+    switch (state) {
+      case START:
+        break;
+      case ASSIGN:
+        bracer = TokenType.ASSIGN;
+        break;
+      case relOp:
+        bracer = TokenType.REL_OP;
+        break;
+      case LETTER:
+        bracer = TokenType.ID_KEYWORD;
+        break;
+      case NUM:
+      case DIGIT:
+        bracer = TokenType.NUMBER;
+        break;
+      case COLON:
+        bracer = TokenType.COLON; 
+        break;
+      default:
+        return null;
+    }
+    
+    // summarizes what was done in the prior switch statement.
+    // default returns null.
+    if (bracer != null) {
+      tokens.add(new Token(curTokenString, filename,lineNum, bracer));
+    }
+    
+    scanner.close();
+    return tokens;
+  } catch (FileNotFoundException e) {
+    e.printStackTrace();
+    return null;
   }
+}
 }
