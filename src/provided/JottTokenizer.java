@@ -42,26 +42,26 @@ public class JottTokenizer {
                   char curChar = curChars[i];
                   String curString = "" + curChar;
                   curTokenString = "";
-                  Token bracer = null;
+                  TokenType bracer = null;
                   switch (curChar)
                   {
                     case ',':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.COMMA));
+                      bracer = TokenType.COMMA;
                       break;
                     case '#':
                       state = State.COMMENT;
                       break;
                     case ']':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.R_BRACKET));
+                      bracer = TokenType.R_BRACKET;
                       break;
                     case '[':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.L_BRACKET));
+                      bracer = TokenType.L_BRACKET;
                       break;
                     case '}':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.R_BRACE));
+                      bracer = TokenType.R_BRACE;
                       break;
                     case '{':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.L_BRACE));
+                      bracer = TokenType.L_BRACE;
                       break;
                     case '=':
                       state = State.ASSIGN;
@@ -76,10 +76,10 @@ public class JottTokenizer {
                     case '+':
                     case '-':
                     case '*':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.MATH_OP));
+                      bracer = TokenType.MATH_OP;
                       break;
                     case ';':
-                      tokens.add(new Token(curString, filename, lineNum, TokenType.SEMICOLON));
+                      bracer = TokenType.SEMICOLON;
                       break;
                     case '.':
                       state = State.DOT;
@@ -110,8 +110,11 @@ public class JottTokenizer {
                       }
                       break;
                   }
+                  if (bracer != null) {
+                    tokens.add(new Token(curString, filename, lineNum, bracer));
+                  }
                   break;
-                case COMMENT:
+                  case COMMENT:
                   curChar = curChars[i];
                   while (i != curChars.length && curChar != '\n')
                   {
