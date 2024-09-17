@@ -114,7 +114,7 @@ public class JottTokenizer {
                     tokens.add(new Token(curString, filename, lineNum, bracer));
                   }
                   break;
-                  case COMMENT:
+                case COMMENT:
                   curChar = curChars[i];
                   while (i != curChars.length && curChar != '\n')
                   {
@@ -143,14 +143,13 @@ public class JottTokenizer {
                   {
                     curTokenString+= curChar;
                     tokens.add(new Token(curTokenString, filename, lineNum, TokenType.FC_HEADER));
-                    state = State.START;
                   }
                   else
                   {
                     tokens.add(new Token(curTokenString, filename, lineNum, TokenType.COLON));
-                    state = State.START;
                     i--;
                   }
+                  state = State.START;
                   break;
                 case NUM:
                   curChar = curChars[i];
@@ -184,17 +183,17 @@ public class JottTokenizer {
                   }
                   break;
                 case DOT:
-                    curChar = curChars[i];
-                    if (Character.isDigit(curChar))
-                    {
-                      curTokenString+= curChar;
-                      state = State.DIGIT;
-                    }
-                    else
-                    {
-                      System.err.println("Error: unexpected character " + curChar + " in line " + lineNum);
-                      return null;
-                    }                    
+                  curChar = curChars[i];
+                  if (Character.isDigit(curChar))
+                  {
+                    curTokenString+= curChar;
+                    state = State.DIGIT;
+                  }
+                  else
+                  {
+                    System.err.println("Error: unexpected character " + curChar + " in line " + lineNum);
+                    return null;
+                  }                    
                   break;
                 case EXPLIMATION:
                   curChar = curChars[i];
