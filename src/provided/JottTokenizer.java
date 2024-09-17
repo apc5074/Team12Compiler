@@ -194,7 +194,7 @@ public class JottTokenizer {
                     }
                     else
                     {
-                      System.err.println("Error: unexpected character " + curChar + " in line " + lineNum);
+                      System.err.println("Syntax Error: \nInvalid token \"" + curChar + "\". \"" + curChar + "\" expects following \"digit\" \n" + filename + ".jott:" + lineNum);
                       return null;
                     }                    
                   break;
