@@ -194,7 +194,7 @@ public class JottTokenizer {
                     }
                     else
                     {
-                      System.err.println("Syntax Error: \nInvalid token \"" + curChar + "\". \"" + curChar + "\" expects following \"digit\" \n" + filename + ".jott:" + lineNum);
+                      System.err.println("Syntax Error\nInvalid token \"" + curChar + "\". \"" + curChar + "\" expects following \"digit\" \n" + filename + ":" + lineNum);
                       return null;
                     }                    
                   break;
@@ -209,7 +209,7 @@ public class JottTokenizer {
                   }
                   else
                   {
-                    System.err.println(curTokenString + " is not an operator in line " + lineNum);
+                    System.err.println("Syntax Erorr\n" + curTokenString + " is not an operator\n" + filename + ":" + lineNum);
                     return null;
                   }
                   break;
@@ -242,11 +242,11 @@ public class JottTokenizer {
                   }
                   else
                   {
-                    System.err.println("Error: unexpected character " + curChar + " in line " + lineNum);
+                    System.err.println("Syntax Error\nUnexpected character " + curChar + "\n" + filename + ":" + lineNum);
                     return null;
                   }
                   if (i == curChars.length - 1 && curChar != '"') {
-                    System.err.println("Error: missing closing quote for string starting at line " + lineNum);
+                    System.err.println("Syntax Error\nString was never closed.\n" + filename + ":" + lineNum);
                     return null;
                  } 
                   break;
