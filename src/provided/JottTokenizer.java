@@ -292,6 +292,7 @@ public class JottTokenizer {
           tokens.add(new Token(curTokenString, filename, lineNum, TokenType.COLON)); 
           break;
         default:
+          System.err.println("Unexpected character\n" + filename + ":" + lineNum);            
           return null;
       }
       scanner.close();
