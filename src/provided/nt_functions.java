@@ -2,8 +2,8 @@ package provided;
 
 import java.util.ArrayList;
 
-public class functions {
-    public functions(ArrayList<Token> tokens) {
+public class nt_functions {
+    public nt_functions(ArrayList<Token> tokens) {
         
     }
 }
