@@ -8,6 +8,7 @@ package provided;
  */
 
 import java.util.ArrayList;
+import helpers.TreeState;
 
 public class JottParser {
 
@@ -18,6 +19,12 @@ public class JottParser {
      *         or null upon an error in parsing.
      */
     public static JottTree parse(ArrayList<Token> tokens){
-		return null;
+      TreeState state = TreeState.PROGRAM;
+      switch (state) {
+        default:
+          break;
+      }
+      return null;
     }
+
 }
