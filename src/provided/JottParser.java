@@ -8,7 +8,6 @@ package provided;
  */
 
 import java.util.ArrayList;
-import helpers.TreeState;
 
 public class JottParser {
 
