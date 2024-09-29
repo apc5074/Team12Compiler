@@ -1,16 +1,16 @@
 package parserNodes;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import provided.JottTree;
 import provided.Token;
 
-public class FuncDefNode {
+public class FuncDefNode implements JottTree {
 
     private static final Exception Exception = null;
     private IdNode funcName;
-    private Object params;
+    private ArrayList<FuncDefParams> params;
     private TypeNode returnType;
     private FuncBodyNode body;
 
@@ -26,7 +26,6 @@ public class FuncDefNode {
         if(!tokens.get(0).getToken().equals("Def"))
             throw Exception;
         tokens.pop();
-        ArrayList<FuncDefParams> params = FuncDefParams.parse(tokens);
 
         IdNode name = IdNode.parse(tokens);
 
@@ -56,6 +55,29 @@ public class FuncDefNode {
         tokens.pop();
 
         return new FuncDefNode(name, params, returnType, body);
+    }
+
+    @Override
+    public String convertToJott() {
+        String jottString = "Def" + funcName.convertToJott() + "[";
+        for (FuncDefParams param: params)
+        {
+            jottString+= param.convertToJott();
+        }
+        jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
+        return jottString;
+    }
+
+    @Override
+    public boolean validateTree() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+    }
+
+    @Override
+    public void execute() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
 
 }
