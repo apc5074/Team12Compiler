@@ -1,16 +1,10 @@
 package parserNodes;
 
-import java.util.Stack;
-
 import provided.JottTree;
-import provided.Token;
 
-public class TypeNode implements JottTree{
+public class ReturnStmtNode implements JottTree{
 
-    public static TypeNode parse(Stack<Token> tokens) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'parse'");
-    }
+    
 
     @Override
     public String convertToJott() {
@@ -29,5 +23,6 @@ public class TypeNode implements JottTree{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+    
 
 }

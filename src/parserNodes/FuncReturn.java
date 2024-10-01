@@ -1,21 +1,23 @@
 package parserNodes;
-
+import provided.*;
 import java.util.Stack;
 
-import provided.JottTree;
-import provided.Token;
+public class FuncReturn implements JottTree {
 
-public class TypeNode implements JottTree{
+    TypeNode type;
+    boolean voided;
 
-    public static TypeNode parse(Stack<Token> tokens) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'parse'");
+    public FuncReturn(Stack<Token> tokens) {
+        
     }
 
     @Override
     public String convertToJott() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJott'");
+        if (voided) {
+            return ("Void");
+        } else {
+            return type.convertToJott();
+        }
     }
 
     @Override
@@ -29,5 +31,4 @@ public class TypeNode implements JottTree{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
-
 }
