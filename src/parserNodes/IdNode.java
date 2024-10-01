@@ -8,23 +8,26 @@ import provided.Token;
 public class IdNode implements JottTree{
 
     private static final Exception Exception = null;
-    private String name;
 
-    public IdNode(String name)
+    private Token idToken;
+
+    public IdNode(Token idToken)
     {
-        this.name = name;
+        this.idToken = idToken;
     }
 
-    public static IdNode parse(Stack<Token> tokens) throws Exception {        
-        if (!Character.isAlphabetic(tokens.get(0).getToken().indexOf(0)))
+    public static IdNode parse(Stack<Token> tokens) throws Exception {    
+        if (tokens.empty())
+        {
             throw Exception;
-        String id = tokens.pop().getToken();
-        return new IdNode(id);
+        }    
+        Token idToken = tokens.pop();
+        return new IdNode(idToken);
     }
 
     @Override
     public String convertToJott() {
-        return this.name;
+        return this.idToken.getToken();
     }
 
     @Override
