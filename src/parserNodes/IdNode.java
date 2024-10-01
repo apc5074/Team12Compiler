@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import provided.JottTree;
 import provided.Token;
+import provided.TokenType;
 
 public class IdNode implements JottTree{
 
@@ -21,8 +22,17 @@ public class IdNode implements JottTree{
         {
             throw Exception;
         }    
-        Token idToken = tokens.pop();
-        return new IdNode(idToken);
+        Token idToken = tokens.get(0);
+        if (idToken.getTokenType() != TokenType.ID_KEYWORD)
+        {
+            throw Exception;
+        }
+        if (Character.isLowerCase(idToken.getToken().toCharArray()[0]))
+        {
+            throw Exception;
+        }
+    
+        return new IdNode(tokens.pop());
     }
 
     @Override
