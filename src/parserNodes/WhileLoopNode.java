@@ -12,6 +12,9 @@ public class WhileLoopNode implements JottTree {
     }
 
     public static WhileLoopNode ParseWhileLoopNode(Stack<Token> tokens) {
+        if (tokens.size() == 0) {
+            return null;
+        }
         Token well = tokens.peek();
         if (well.getToken() != "while" || well.getTokenType() != TokenType.ID_KEYWORD) {
             return null;

@@ -14,6 +14,9 @@ public class ParamNode implements JottTree {
     }
 
     public static ParamNode parseParameterNode(Stack<Token> tokens) {
+        if (tokens.size() == 0){
+            return null;
+        }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
             return new ParamNode();
         }
