@@ -26,8 +26,9 @@ public class TypeNode implements JottTree{
                                  + currentToken.getLineNum() + " in " + currentToken.getFilename());
         }
 
+        TypeNode returnNode = new TypeNode(currentToken);
         tokens.pop();
-        return new TypeNode(currentToken);
+        return returnNode;
     }
 
     @Override
