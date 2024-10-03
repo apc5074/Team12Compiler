@@ -9,7 +9,7 @@ public class ParamNodeT implements JottTree {
         exprNode = expression;
     }
 
-    public static ParamNodeT parseParameterNodeT(Stack<Token> tokens) {
+    public static ParamNodeT parseParamNodeT(Stack<Token> tokens) {
         if (tokens.size() == 0) {
             return null;
         }
