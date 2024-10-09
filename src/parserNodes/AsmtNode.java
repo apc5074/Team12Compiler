@@ -1,40 +1,46 @@
 package parserNodes;
 import provided.*;
+import java.util.Stack;
+
 
 public class AsmtNode implements JottTree {
-    private String type;        
-    private String id;         
-    private JottTree expr;      
+    private static final Exception Exception = null;
 
-    public AsmtNode(String type, String id, JottTree expr) {
-        this.type = type;       
-        this.id = id;         
-        this.expr = expr;       
+    private Token idToken;
+    private ExprNode expr;
+
+
+    public AsmtNode (Token idToken, ExprNode expr)
+    {
+        this.idToken = idToken;
+        this.expr = expr;
     }
 
-    public AsmtNode(String id, JottTree expr) {
-        this(null, id, expr);   // No type, just the id and the expression
+    private static AsmtNode parse(Stack<Token> tokens) throws Exception
+    {
+        if (tokens.empty())
+        {
+            throw Exception;
+        }
+        Token iToken = tokens.get(0);
+        if (iToken.getTokenType() != TokenType.ID_KEYWORD)
+        {
+            throw Exception;
+        }
+        tokens.pop();
+        if (tokens.peek().getTokenType() != TokenType.ASSIGN)
+        {
+            throw Exception;
+        }
+        tokens.pop();
+        ExprNode expr = ExprNode.parse(tokens.get(0));
+
+        return new AsmtNode(iToken, expr);
     }
 
     @Override
     public String convertToJott() {
-        if (type != null) {
-            return type + " " + id + " = " + expr.convertToJott() + ";";
-        } else {
-            return id + " = " + expr.convertToJott() + ";";
-        }
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public JottTree getExpr() {
-        return expr;
+        return idToken + " = " + expr;
     }
 
     @Override
@@ -48,5 +54,6 @@ public class AsmtNode implements JottTree {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+    
 }
 
