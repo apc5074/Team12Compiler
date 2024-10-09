@@ -26,12 +26,7 @@ public class IdNode implements JottTree{
         if (idToken.getTokenType() != TokenType.ID_KEYWORD)
         {
             throw Exception;
-        }
-        if (Character.isLowerCase(idToken.getToken().toCharArray()[0]))
-        {
-            throw Exception;
-        }
-    
+        }    
         return new IdNode(tokens.pop());
     }
 
