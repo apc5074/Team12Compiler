@@ -9,13 +9,11 @@ public class ReturnStmtNode implements JottTree{
 
     private static final Exception Exception = null;
 
-    private Token returnToken;
-    private ExprNode expressionNode;
+    private ExprNodeInterface expressionNode;
 
-    public ReturnStmtNode(Token rToken, ExprNode expr)
+    public ReturnStmtNode(ExprNodeInterface exrpessionNode)
     {
-        this.returnToken = rToken;
-        this.expressionNode = expr;
+        this.expressionNode = exrpessionNode;
     }
 
     public static ReturnStmtNode parse(Stack<Token> tokens) throws Exception {
@@ -24,19 +22,31 @@ public class ReturnStmtNode implements JottTree{
             throw Exception;
         }
         Token curToken = tokens.get(0);
-        if (curToken.getToken() == "return")
+        if (curToken.getToken() == "Return")
         {
             tokens.pop();
-            ExprNode expr = ExprNode.parse(tokens);
-            return new ReturnStmtNode(curToken, expr);
         }
+        else
+        {
+            return null;
+        }
+        ExprNodeInterface expression = ExprNodeInterface.parse(tokens);
+        if (tokens.peek().getToken() == ";")
+        {
+            tokens.pop();
+        }
+        else
+        {
+            throw Exception;
+        }
+        return new ReturnStmtNode(expression);
 
     }
 
 
     @Override
     public String convertToJott() {
-        return this.returnToken.getToken() + this.expressionNode.convertToJott();
+        return "Return " + this.expressionNode.convertToJott() + ";";
     }
 
     @Override
