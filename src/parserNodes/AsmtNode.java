@@ -22,7 +22,7 @@ public class AsmtNode implements JottTree {
         {
             throw Exception;
         }
-        Token iToken = tokens.get(0);
+        Token iToken = tokens.peek();
         if (iToken.getTokenType() != TokenType.ID_KEYWORD)
         {
             throw Exception;
