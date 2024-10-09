@@ -23,34 +23,39 @@ public class FuncDefNode implements JottTree {
     }
 
     public static FuncDefNode parse(Stack<Token> tokens) throws Exception {
-        if(!tokens.get(0).getToken().equals("Def"))
+        if (tokens.empty())
+        {
+            throw Exception;
+        }
+
+        if(!tokens.peek().getToken().equals("Def"))
             throw Exception;
         tokens.pop();
 
         IdNode name = IdNode.parse(tokens);
 
-        if(!(tokens.get(0).getToken().equals("[")))
+        if(!(tokens.peek().getToken().equals("[")))
             throw Exception;
         tokens.pop();
         ArrayList<FuncDefParams> params = FuncDefParams.parse(tokens);
 
-        if(!tokens.get(0).getToken().equals("]"))
+        if(!tokens.peek().getToken().equals("]"))
             throw Exception;
         tokens.pop();
         
-        if(!tokens.get(0).getToken().equals(":"))
+        if(!tokens.peek().getToken().equals(":"))
             throw Exception;
         tokens.pop();
 
         TypeNode returnType = TypeNode.parse(tokens);
 
-        if(!tokens.get(0).getToken().equals("{"))
+        if(!tokens.peek().getToken().equals("{"))
             throw Exception;
         tokens.pop();
 
         FuncBodyNode body = FuncBodyNode.parse(tokens);
         
-        if (!tokens.get(0).getToken().equals("}"))
+        if (!tokens.peek().getToken().equals("}"))
             throw Exception;
         tokens.pop();
 

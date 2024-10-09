@@ -22,7 +22,7 @@ public class IdNode implements JottTree{
         {
             throw Exception;
         }    
-        Token idToken = tokens.get(0);
+        Token idToken = tokens.peek();
         if (idToken.getTokenType() != TokenType.ID_KEYWORD)
         {
             throw Exception;

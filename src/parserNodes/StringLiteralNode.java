@@ -14,7 +14,7 @@ public class StringLiteralNode implements ExprNodeInterface{
         this.stringToken = str;
     }
 
-    public StringLiteralNode parse(Stack<Token> tokens) throws Exception{
+    public static StringLiteralNode parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
             throw Exception;

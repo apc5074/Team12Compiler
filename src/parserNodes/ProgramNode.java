@@ -18,27 +18,31 @@ public class ProgramNode implements JottTree {
         this.functionDefNodes = funcDefNodes;
     }
 
-    public static ProgramNode parse(Stack<Token> tokens) throws java.lang.Exception{
-        if (tokens.isEmpty())
-        {
-            throw Exception;
+    public static ProgramNode parse(ArrayList<Token> tokens) throws Exception {
+        if (tokens.isEmpty()) {
+            throw new Exception("Token list is empty.");
         }
+        Stack<Token> tokenStack = new Stack<>();
+        tokenStack.addAll(tokens.reversed());
         ArrayList<FuncDefNode> functionDefNodes = new ArrayList<>();
-        Token curToken = tokens.get(0);
-        while (curToken.getTokenType() == TokenType.ID_KEYWORD)
-        {
-            functionDefNodes.add(FuncDefNode.parse(tokens));
+        
+        Token curToken = tokenStack.peek();
+        while (curToken.getTokenType() == TokenType.ID_KEYWORD) {
+            functionDefNodes.add(FuncDefNode.parse(tokenStack));
+            if (!tokenStack.isEmpty()) {
+                curToken = tokenStack.peek();
+            } else {
+                break;
+            }
         }
-        if (tokens.isEmpty())
-        {
+        
+        if (tokenStack.isEmpty()) {
             return new ProgramNode(functionDefNodes);
+        } else {
+            throw new Exception("Tokens remaining after parsing functions.");
         }
-        else
-        {
-            throw Exception;
-        }
-
     }
+    
 
     @Override
     public String convertToJott() {
