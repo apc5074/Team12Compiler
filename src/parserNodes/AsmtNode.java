@@ -33,7 +33,7 @@ public class AsmtNode implements JottTree {
             throw Exception;
         }
         tokens.pop();
-        ExprNode expr = ExprNode.parse(tokens.get(0));
+        ExprNode expr = ExprNode.parse(tokens);
 
         return new AsmtNode(iToken, expr);
     }
