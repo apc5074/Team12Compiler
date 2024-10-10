@@ -4,54 +4,54 @@ import provided.*;
 
 public class FunctionCallNode implements JottTree{
 
+    private static final Exception Exception = null;
 
-    private Token callNode;
+    private IdNode id;
     private ParamNode args;
 
-    public FunctionCallNode(Token toke, ParamNode params) {
-        callNode = toke;
+    public FunctionCallNode(IdNode idNode, ParamNode params){
+        id = idNode;
         args = params;
     }
 
-    public static FunctionCallNode parse(Stack<Token> tokens) {
-        if (tokens.size() < 3) {
+    public static FunctionCallNode parseFunctionCallNode(Stack<Token> tokens) throws Exception {
+        if (tokens.isEmpty()) {
             System.err.println("Expected function call, got EOF.");
-            return null;
+            throw Exception;
         }
-        Token toke = tokens.pop();
-        if (toke.getTokenType() != TokenType.COLON) {
+        Token toke = tokens.peek();
+        if (toke.getTokenType() != TokenType.FC_HEADER) {
             System.err.println("Expected colon, got " + toke.getTokenType());
-            return null;
+            throw Exception;
         }
-        toke = tokens.pop();
-        if (toke.getTokenType() != TokenType.COLON) {
-            System.err.println("Expected colon, got " + toke.getTokenType());
-            return null;
-        }
-        toke = tokens.pop();
-        if (toke.getTokenType() != TokenType.ID_KEYWORD) {
-            System.err.println("Expected func name, got " + toke.getTokenType());
-        }
-        toke = tokens.pop();
+        tokens.pop();
+
+        IdNode id = IdNode.parse(tokens);
+
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
             System.err.println("Expected left bracket, got " + toke.getTokenType());
+            throw Exception;
         }
+        tokens.pop();
 
         ParamNode args = ParamNode.parseParamNode(tokens);
 
-        toke = tokens.pop();
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
             System.err.println("Expected right bracket, got " + toke.getTokenType());
+            throw Exception;
         }
+        tokens.pop();
 
-        return new FunctionCallNode(toke, args);
+        return new FunctionCallNode(id, args);
     }
 
     @Override
     public String convertToJott() {
-        return ("::" + callNode.getToken() +"[" + args + "]");
+        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]");
     }
-
+    
     @Override
     public boolean validateTree() {
         // TODO Auto-generated method stub

@@ -2,7 +2,7 @@ package parserNodes;
 import provided.*;
 import java.util.Stack;
 
-public class BoolNode implements JottTree {
+public class BoolNode implements ExprNodeInterface {
     private static final Exception Exception = null;
     
     private Token boolToken;
@@ -11,7 +11,7 @@ public class BoolNode implements JottTree {
         this.boolToken = boolToken;
     }
 
-    private static BoolNode parse (Stack<Token> tokens) throws Exception
+    public static BoolNode parse (Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
         {
