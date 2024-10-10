@@ -3,12 +3,34 @@ import provided.*;
 import java.util.Stack;
 
 public class FuncReturn implements JottTree {
-
-    TypeNode type;
+    private static final Exception Exception = null;
+    Token toke;
     boolean voided;
 
-    public FuncReturn(Stack<Token> tokens) {
-        
+    public FuncReturn() {
+        voided = true;
+    }
+
+    public FuncReturn(Token t) {
+        toke = t;
+    }
+
+    public FuncReturn parse(Stack<Token> tokens) throws Exception {
+        Token next = tokens.peek();
+        if (tokens.size() == 0 && next.getTokenType() == TokenType.ID_KEYWORD) {
+            String t = next.getToken();
+            if (t == "Double" || t == "Integer" || t == "String" || t == "Boolean") {
+                return new FuncReturn(tokens.pop());
+            } else {
+                throw Exception;
+            }
+        } else {
+            if (tokens.size() == 0 && tokens.peek().getTokenType() != TokenType.L_BRACE) {
+                return new FuncReturn();
+            } else {
+                throw Exception;
+            }
+        }
     }
 
     @Override

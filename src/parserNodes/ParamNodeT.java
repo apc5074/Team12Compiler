@@ -9,7 +9,7 @@ public class ParamNodeT implements JottTree {
         exprNode = expression;
     }
 
-    public static ParamNodeT parseParamNodeT(Stack<Token> tokens) {
+    public static ParamNodeT parse(Stack<Token> tokens) {
         if (tokens.size() == 0) {
             return null;
         }
@@ -23,7 +23,7 @@ public class ParamNodeT implements JottTree {
 
         // removes the comma from the list.
         tokens.pop();
-        ExprNode toke = ExprNode.parseExprNode(tokens);
+        ExprNode toke = ExprNode.parse(tokens);
         if (toke == null) {
             return null;
         }
