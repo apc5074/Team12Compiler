@@ -24,24 +24,24 @@ public class ElseIfNode implements JottTree {
         tokens.pop();
         next = tokens.pop();
         if (next.getTokenType() != TokenType.L_BRACKET) {
-            // if else is called without {
+            // if elseif is called without [
             throw new Exception ("Syntax Error\nExpected \"[\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         ExprNode e = ExprNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACKET) {
-            // if else is called without }
+            // if elseif is called without ]
             throw new Exception ("Syntax Error\nExpected \"]\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         next = tokens.pop();
         if (next.getTokenType() != TokenType.L_BRACE) {
-            // if else is called without {
+            // if elseif is called without {
             throw new Exception ("Syntax Error\nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         BodyNode e = BodyNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACE) {
-            // if else is called without }
+            // if elseif is called without }
             throw new Exception ("Syntax Error\nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         return new ElseIfNode(b, e);
