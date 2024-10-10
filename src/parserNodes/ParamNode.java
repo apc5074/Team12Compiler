@@ -4,6 +4,7 @@ import java.util.Stack;
 import java.util.ArrayList;
 
 public class ParamNode implements JottTree {
+    private final static Exception e = null;
     private ExprNode exprNode;
     private ArrayList<ParamNodeT> parameters;
     
@@ -17,16 +18,16 @@ public class ParamNode implements JottTree {
         parameters = null;
     }
 
-    public static ParamNode parse(Stack<Token> tokens) {
+    public static ParamNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.size() == 0){
-            return null;
+            throw e;
         }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
             return new ParamNode();
         }
         ExprNode toke = ExprNode.parse(tokens);
         if (toke == null) {
-            return null;
+            throw e;
         }
         
         ArrayList<ParamNodeT> pramters = new ArrayList<ParamNodeT>();
