@@ -13,7 +13,7 @@ public class FunctionCallNode implements JottTree{
         args = params;
     }
 
-    public static FunctionCallNode parseFunctionCallNode(Stack<Token> tokens) {
+    public static FunctionCallNode parse(Stack<Token> tokens) {
         if (tokens.size() < 3) {
             System.err.println("Expected function call, got EOF.");
             return null;
