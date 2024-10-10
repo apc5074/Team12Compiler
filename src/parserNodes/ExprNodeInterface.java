@@ -16,23 +16,30 @@ public interface ExprNodeInterface extends JottTree{
             throw Exception;
         }
 
-        Token curToken = tokens.get(0);
+        Token curToken = tokens.peek();
         TokenType curTokenType = curToken.getTokenType();
-        switch (curTokenType) {
-            case TokenType.STRING:
-                StringLiteralNode SLN = StringLiteralNode.parse(tokens);
-                return SLN;
-            case TokenType.ID_KEYWORD:
-            case TokenType.FC_HEADER:
-            case TokenType.NUMBER:
-            case TokenType.MATH_OP:
-                
-
-
-        
-            default:
-                throw Exception;
+        if (curTokenType == TokenType.STRING)
+        {
+            StringLiteralNode SLN = StringLiteralNode.parse(tokens);
+            return SLN;
+        }
+        if (curTokenType == TokenType.ID_KEYWORD)
+        {
+            if (curToken.getToken() == "True" || curToken.getToken() == "False")
+            {
+                BoolNode BN = BoolNode.parse(tokens);
+                return BN;
             }
+        }
+        OperandNode left = OperandNode.parse(tokens);
+        curToken = tokens.peek();
+        if (curToken.getTokenType() != TokenType.REL_OP && curToken.getTokenType() != TokenType.MATH_OP)
+        {
+            return left;
+        }
+        OpNode op = new OpNode(curToken);
+        OperandNode right = OperandNode.parse(tokens);
+        return new ExprNode(left, op, right);
     };
 
     public String convertToJott();
