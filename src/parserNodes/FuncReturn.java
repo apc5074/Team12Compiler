@@ -3,7 +3,7 @@ import provided.*;
 import java.util.Stack;
 
 public class FuncReturn implements JottTree {
-
+    private static final Exception Exception = null;
     Token toke;
     boolean voided;
 
@@ -15,20 +15,20 @@ public class FuncReturn implements JottTree {
         toke = t;
     }
 
-    public FuncReturn parse(Stack<Token> tokens) {
+    public FuncReturn parse(Stack<Token> tokens) throws Exception {
         Token next = tokens.peek();
         if (tokens.size() == 0 && next.getTokenType() == TokenType.ID_KEYWORD) {
             String t = next.getToken();
             if (t == "Double" || t == "Integer" || t == "String" || t == "Boolean") {
                 return new FuncReturn(tokens.pop());
             } else {
-                return null;
+                throw Exception;
             }
         } else {
             if (tokens.size() == 0 && tokens.peek().getTokenType() != TokenType.L_BRACE) {
                 return new FuncReturn();
             } else {
-                return null;
+                throw Exception;
             }
         }
     }
