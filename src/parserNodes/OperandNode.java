@@ -1,10 +1,32 @@
 package parserNodes;
-import provided.JottTree;
+import provided.*;
+import java.util.Stack;
 
 public class OperandNode implements JottTree {
+    private static final Exception Exception = null;
 
-    public static OperandNode parseOperandNode() {
-        return null;
+    private Token opToken;
+
+    public OperandNode(Token opToken)
+    {
+        this.opToken = opToken;
+    }
+
+    public static OperandNode parse(Stack<Token> tokens) throws Exception
+    {
+        if (tokens.empty())
+        {
+            throw Exception;
+        }
+        Token iToken = tokens.peek();
+
+        if(!(iToken.getTokenType().equals("NUMBER") || iToken.getTokenType().equals("ID_KEYWORD") ||
+        iToken.getToken().equals("-") || iToken.getTokenType().equals("FC_HEADER")))
+        {
+            throw Exception;
+        }
+
+        return new OperandNode(iToken);
     }
 
     @Override

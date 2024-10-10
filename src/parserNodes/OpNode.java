@@ -10,7 +10,7 @@ public class OpNode implements JottTree {
         this.opToken = opToken;
     }
 
-    private static OpNode parse(Stack<Token> tokens) throws Exception
+    public static OpNode parse(Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
         {
@@ -18,10 +18,7 @@ public class OpNode implements JottTree {
         }
         Token iToken = tokens.peek();
 
-        if(!(iToken.getToken().equals("+") || iToken.getToken().equals("-") || 
-        iToken.getToken().equals("*") || iToken.getToken().equals("/") || iToken.getToken().equals(">") ||
-        iToken.getToken().equals(">=") || iToken.getToken().equals("<") || iToken.getToken().equals("<=") ||
-        iToken.getToken().equals("==") || iToken.getToken().equals("!=")))
+        if(!(iToken.getTokenType().equals("MATH_OP") || iToken.getTokenType().equals("REL_OP")))
         {
             throw Exception;
         }
