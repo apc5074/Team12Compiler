@@ -4,11 +4,33 @@ import java.util.Stack;
 
 public class FuncReturn implements JottTree {
 
-    TypeNode type;
+    Token toke;
     boolean voided;
 
-    public FuncReturn(Stack<Token> tokens) {
-        
+    public FuncReturn() {
+        voided = true;
+    }
+
+    public FuncReturn(Token t) {
+        toke = t;
+    }
+
+    public FuncReturn parse(Stack<Token> tokens) {
+        Token next = tokens.peek();
+        if (tokens.size() == 0 && next.getTokenType() == TokenType.ID_KEYWORD) {
+            String t = next.getToken();
+            if (t == "Double" || t == "Integer" || t == "String" || t == "Boolean") {
+                return new FuncReturn(tokens.pop());
+            } else {
+                return null;
+            }
+        } else {
+            if (tokens.size() == 0 && tokens.peek().getTokenType() != TokenType.L_BRACE) {
+                return new FuncReturn();
+            } else {
+                return null;
+            }
+        }
     }
 
     @Override
