@@ -23,7 +23,7 @@ public class FuncDefParams implements JottTree{
         while (!tokens.get(0).getToken().equals("]")) {
             TypeNode type = TypeNode.parse(tokens);  // Parse the type of the parameter
             IdNode identifier = IdNode.parse(tokens);  // Parse the identifier of the parameter
-
+            
             params.add(new FuncDefParams(type, identifier));
 
             // If there's a comma, continue parsing more parameters

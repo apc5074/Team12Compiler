@@ -17,21 +17,21 @@ public class ParamNode implements JottTree {
         parameters = null;
     }
 
-    public static ParamNode parseParamNode(Stack<Token> tokens) {
+    public static ParamNode parse(Stack<Token> tokens) {
         if (tokens.size() == 0){
             return null;
         }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
             return new ParamNode();
         }
-        ExprNode toke = ExprNode.parseExprNode(tokens);
+        ExprNode toke = ExprNode.parse(tokens);
         if (toke == null) {
             return null;
         }
         
         ArrayList<ParamNodeT> pramters = new ArrayList<ParamNodeT>();
         while (tokens.peek().getTokenType() == TokenType.COMMA) {
-            pramters.add(ParamNodeT.parseParamNodeT(tokens));
+            pramters.add(ParamNodeT.parse(tokens));
         }
         return new ParamNode(toke, pramters);
     }
