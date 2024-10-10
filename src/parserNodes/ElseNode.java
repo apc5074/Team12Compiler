@@ -18,7 +18,7 @@ public class ElseNode implements JottTree {
     }
 
     public static ElseNode parse(Stack<Token> tokens) throws Exception {
-        Token next = tokens.peek()
+        Token next = tokens.peek();
         if (next.getTokenType() != TokenType.ID_KEYWORD | next.getToken() != "Else") {
             return new ElseNode();
         }
@@ -31,7 +31,7 @@ public class ElseNode implements JottTree {
         }
         BodyNode b = BodyNode.parse(tokens);
         next = tokens.pop();
-        if (next.getTokenType() != TokenType.L_BRACE) {
+        if (next.getTokenType() != TokenType.R_BRACE) {
             // if else is called without }
             throw new Exception ("Syntax Error\nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
         }
