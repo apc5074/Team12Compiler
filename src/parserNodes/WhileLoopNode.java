@@ -2,7 +2,7 @@ package parserNodes;
 import provided.*;
 import java.util.Stack;
 
-public class WhileLoopNode implements JottTree {
+public class WhileLoopNode implements BodyStatementNodeInterface {
     private ExprNode expression;
     private BodyNode body;
 
@@ -11,7 +11,7 @@ public class WhileLoopNode implements JottTree {
         this.body = body;
     }
 
-    public static WhileLoopNode ParseWhileLoopNode(Stack<Token> tokens) {
+    public static WhileLoopNode parse(Stack<Token> tokens) {
         if (tokens.size() == 0) {
             return null;
         }
