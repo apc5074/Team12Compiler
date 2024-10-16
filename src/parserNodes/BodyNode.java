@@ -10,18 +10,18 @@ public class BodyNode implements JottTree{
 
     private static final BodyNode Exception = null;
 
-    ArrayList<BodyStatementNode> bodyStatements;
+    ArrayList<BodyStatementNodeInterface> bodyStatements;
     ReturnStmtNode returnStmt;
 
 
 
-    public BodyNode(ArrayList<BodyStatementNode> bodyStatementNodes, ReturnStmtNode returnStmtNode)
+    public BodyNode(ArrayList<BodyStatementNodeInterface> bodyStatementNodes, ReturnStmtNode returnStmtNode)
     {
         this.bodyStatements = bodyStatementNodes;
         this.returnStmt = returnStmtNode;
     }
 
-    public BodyNode(ArrayList<BodyStatementNode> bodyStatementNodes)
+    public BodyNode(ArrayList<BodyStatementNodeInterface> bodyStatementNodes)
     {
         this.bodyStatements = bodyStatementNodes;
     }
@@ -32,11 +32,11 @@ public class BodyNode implements JottTree{
         {
             return Exception;
         }
-        ArrayList<BodyStatementNode> bodyStatements = new ArrayList<BodyStatementNode>();
+        ArrayList<BodyStatementNodeInterface> bodyStatements = new ArrayList<BodyStatementNodeInterface>();
         Token curToken = tokens.peek();
         while (curToken.getTokenType() != TokenType.R_BRACE && curToken.getToken() != "Return")
         {
-            BodyStatementNode BSN = BodyStatementNode.parse(tokens);
+            BodyStatementNodeInterface BSN = BodyStatementNodeInterface.parse(tokens);
             bodyStatements.add(BSN);
         }
         if (curToken.getTokenType() == TokenType.R_BRACE)
@@ -55,7 +55,7 @@ public class BodyNode implements JottTree{
     @Override
     public String convertToJott() {
         String body = "";
-        for (BodyStatementNode BSN: bodyStatements)
+        for (BodyStatementNodeInterface BSN: bodyStatements)
         {
             body += BSN.convertToJott();
         }
