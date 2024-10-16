@@ -8,39 +8,58 @@ import provided.Token;
 public class FuncDefParams implements JottTree{
 
     private TypeNode type;
-    private IdNode identifier;
+    private IdNode id;
+    private static ArrayList<FuncDefParams_t> funcDefParams_t;
 
     // Constructor to initialize a FuncDefParam with type and identifier
-    public FuncDefParams(TypeNode type, IdNode identifier) {
+    public FuncDefParams(IdNode id, TypeNode type, ArrayList<FuncDefParams_t> funcDefParams_t) {
+        this.id = id;
         this.type = type;
-        this.identifier = identifier;
+        this.funcDefParams_t = funcDefParams_t; 
     }
 
-     public static ArrayList<FuncDefParams> parse(Stack<Token> tokens) throws Exception {
-        ArrayList<FuncDefParams> params = new ArrayList<>();
-
-        // Continue parsing parameters until we hit the closing bracket ']'
-        while (!tokens.get(0).getToken().equals("]")) {
-            TypeNode type = TypeNode.parse(tokens);  // Parse the type of the parameter
-            IdNode identifier = IdNode.parse(tokens);  // Parse the identifier of the parameter
-            
-            params.add(new FuncDefParams(type, identifier));
-
-            // If there's a comma, continue parsing more parameters
-            if (tokens.get(0).getToken().equals(",")) {
-                tokens.pop();  // Pop the comma
-            } else if (!tokens.get(0).getToken().equals("]")) {
-                throw new Exception("Expected ',' or ']' after function parameter");
-            }
+     public static FuncDefParams parse(Stack<Token> tokens) throws Exception {
+        if (tokens.isEmpty() || tokens.peek().getToken().equals("]")) {
+            // No parameters
+            return null;
         }
+    
+        // Parse <id>
+        IdNode idNode = IdNode.parse(tokens);
+    
+        // Expect ':'
+        if (!tokens.peek().getToken().equals(":")) {
+            throw new Exception("Syntax Error: Expected ':' after parameter identifier");
+        }
+        tokens.pop(); // Remove ':'
+    
+        // Parse <type>
+        TypeNode typeNode = TypeNode.parse(tokens);
+    
+        Token curToken = tokens.peek();
+        if (curToken.getToken().equals(",")) {
+            ArrayList<FuncDefParams_t > arrayfuncDefParams_t = new ArrayList<FuncDefParams_t>();
+            while (curToken.getToken() == ",")
+            {
+                arrayfuncDefParams_t.add(FuncDefParams_t.parse(tokens));
+                curToken = tokens.peek();
+            }
+            return new FuncDefParams(idNode, typeNode, funcDefParams_t);
 
-        return params;
+        }
+    
+        return new FuncDefParams(idNode, typeNode, funcDefParams_t);
     }
 
     @Override
     public String convertToJott() {
-        // TODO Auto-generated method stub
-        return type.convertToJott() + " " + identifier.convertToJott();
+        //TODO
+        String convertedToJott = id.convertToJott() + ":" + type.convertToJott();
+        for (FuncDefParams_t params: funcDefParams_t)
+        {
+            convertedToJott += params.convertToJott();
+        }
+        return convertedToJott;
     }
 
     @Override
