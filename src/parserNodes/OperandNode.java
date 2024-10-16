@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class OperandNode implements ExprNodeInterface {
     private static final Exception Exception = null;
@@ -20,7 +20,7 @@ public class OperandNode implements ExprNodeInterface {
         }
         Token iToken = tokens.peek();
 
-        if (token.getTokenType() == TokenType.ID_KEYWORD) {
+        if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
             throw Exception;
         }
         if(!(iToken.getToken().equals("NUMBER") || iToken.getToken().equals("ID_KEYWORD") ||
@@ -35,7 +35,7 @@ public class OperandNode implements ExprNodeInterface {
     @Override
     public String convertToJott() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJott'");
+        return opToken.getToken();
     }
 
     @Override
