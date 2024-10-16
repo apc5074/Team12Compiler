@@ -35,7 +35,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         }
         tokens.pop();
 
-        ParamNode args = ParamNode.parseParamNode(tokens);
+        ParamNode args = ParamNode.parse(tokens);
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
