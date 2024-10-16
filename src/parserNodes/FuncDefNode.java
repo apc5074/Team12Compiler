@@ -10,11 +10,11 @@ public class FuncDefNode implements JottTree {
 
     private static final Exception Exception = null;
     private IdNode funcName;
-    private ArrayList<FuncDefParams> params;
+    private FuncDefParams params;
     private TypeNode returnType;
     private FuncBodyNode body;
 
-    public FuncDefNode(IdNode name, ArrayList<FuncDefParams> params, TypeNode returnType, FuncBodyNode body)
+    public FuncDefNode(IdNode name, FuncDefParams params, TypeNode returnType, FuncBodyNode body)
     {
         this.funcName = name;
         this.params = params;
@@ -37,7 +37,7 @@ public class FuncDefNode implements JottTree {
         if(!(tokens.peek().getToken().equals("[")))
             throw Exception;
         tokens.pop();
-        ArrayList<FuncDefParams> params = FuncDefParams.parse(tokens);
+        FuncDefParams params = FuncDefParams.parse(tokens);
 
         if(!tokens.peek().getToken().equals("]"))
             throw Exception;
@@ -65,10 +65,7 @@ public class FuncDefNode implements JottTree {
     @Override
     public String convertToJott() {
         String jottString = "Def" + funcName.convertToJott() + "[";
-        for (FuncDefParams param: params)
-        {
-            jottString+= param.convertToJott();
-        }
+        jottString+= this.params.convertToJott();
         jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
         return jottString;
     }

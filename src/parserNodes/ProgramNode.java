@@ -25,7 +25,7 @@ public class ProgramNode implements JottTree {
         Stack<Token> tokenStack = new Stack<>();
         // TODO: Figure out if this is supposed to be reversed or not.
         // I don't think it should be, but it was already reversed here. - Gabe
-        tokenStack.addAll(tokens);
+        tokenStack.addAll(tokens.reversed());
         ArrayList<FuncDefNode> functionDefNodes = new ArrayList<>();
         
         Token curToken = tokenStack.peek();
