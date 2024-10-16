@@ -25,24 +25,19 @@ public interface BodyStatementNodeInterface extends JottTree{
                 IfNode IN = IfNode.parse(tokens);
                 return IN;
             }
-        }
-        if (curTokenType == TokenType.ID_KEYWORD)
-        {
-            if (curToken.getToken().equals("while"))
+            else if (curToken.getToken().equals("while"))
             {
                 WhileLoopNode WN = WhileLoopNode.ParseWhileLoopNode(tokens);
                 return WN;
             }
+            else {
+
+            }
         }
-        OperandNode left = OperandNode.parse(tokens);
-        curToken = tokens.peek();
-        if (curToken.getTokenType() != TokenType.REL_OP && curToken.getTokenType() != TokenType.MATH_OP)
-        {
-            return left;
+        else  {
+            FuncCallNode FN = FuncCallNode.parseFunctionCallNode(tokens);
+            return FN
         }
-        OpNode op = new OpNode(curToken);
-        OperandNode right = OperandNode.parse(tokens);
-        return new ExprNode(left, op, right);
     };
 
     public String convertToJott();
