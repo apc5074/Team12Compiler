@@ -11,7 +11,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
         this.body = body;
     }
 
-    public static WhileLoopNode ParseWhileLoopNode(Stack<Token> tokens) {
+    public static WhileLoopNode parse(Stack<Token> tokens) {
         if (tokens.size() == 0) {
             return null;
         }
