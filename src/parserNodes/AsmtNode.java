@@ -3,7 +3,7 @@ import provided.*;
 import java.util.Stack;
 
 
-public class AsmtNode implements JottTree {
+public class AsmtNode implements BodyStatementNodeInterface {
     private static final Exception Exception = null;
 
     private Token idToken;

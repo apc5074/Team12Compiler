@@ -31,7 +31,8 @@ public interface BodyStatementNodeInterface extends JottTree{
                 return WN;
             }
             else {
-
+                AsmtNode AN = AsmtNode.parse(tokens);
+                return AN;
             }
         }
         else  {
