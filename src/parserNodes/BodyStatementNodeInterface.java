@@ -36,7 +36,7 @@ public interface BodyStatementNodeInterface extends JottTree{
         }
         else  {
             FuncCallNode FN = FuncCallNode.parse(tokens);
-            return FN
+            return FN;
         }
     };
 

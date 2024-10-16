@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 import provided.*;
 
-public class IfNode implements JottTree {
+public class IfNode implements BodyStatementNodeInterface {
     ExprNodeInterface condition;
     BodyNode content;
     ArrayList<ElseIfNode> elifList;
