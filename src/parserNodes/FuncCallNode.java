@@ -2,7 +2,7 @@ package parserNodes;
 import java.util.Stack;
 import provided.*;
 
-public class FuncCallNode implements JottTree{
+public class FuncCallNode implements BodyStatementNodeInterface {
 
     private static final Exception Exception = null;
 
@@ -14,7 +14,7 @@ public class FuncCallNode implements JottTree{
         args = params;
     }
 
-    public static FuncCallNode parseFunctionCallNode(Stack<Token> tokens) throws Exception {
+    public static FuncCallNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
             System.err.println("Expected function call, got EOF.");
             throw Exception;
