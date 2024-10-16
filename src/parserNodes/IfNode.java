@@ -1,15 +1,15 @@
 package parserNodes;
 import java.util.ArrayList;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class IfNode implements JottTree {
-    ExprNode condition;
+    ExprNodeInterface condition;
     BodyNode content;
     ArrayList<ElseIfNode> elifList;
     ElseNode elseNode;
 
-    public IfNode(ExprNode e, BodyNode c, ArrayList<ElseIfNode> el, ElseNode els) {
+    public IfNode(ExprNodeInterface e, BodyNode c, ArrayList<ElseIfNode> el, ElseNode els) {
         condition = e;
         content = c;
         elifList = el;
@@ -17,38 +17,56 @@ public class IfNode implements JottTree {
     }
 
     public static IfNode parse(Stack<Token> tokens) throws Exception {
-        Token toke = tokens.pop();
+        Token toke = tokens.peek();
         if (toke.getTokenType() != TokenType.ID_KEYWORD || !toke.getToken().equals("If")) {
             throw new Exception("Syntax error\nIf expected at line " + toke.getLineNum());
         }
-        toke = tokens.pop();
+        tokens.pop();
+
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
             throw new Exception("Syntax error\n\"[\" expected at line " + toke.getLineNum());
         }
-        ExprNode e = ExprNode.parse(tokens);
-        toke = tokens.pop();
+        tokens.pop();
+        
+        ExprNodeInterface e = ExprNodeInterface.parse(tokens);
+        
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
             throw new Exception("Syntax error\n\"]\" expected at line " + toke.getLineNum());
         }
-        toke = tokens.pop();
+        tokens.pop();
+
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACE) {
             throw new Exception("Syntax error\n\"{\" expected at line " + toke.getLineNum());
         }
+        tokens.pop();
+        
         BodyNode b = BodyNode.parse(tokens);
-        toke = tokens.pop();
+
+        toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACE) {
             throw new Exception("Syntax error\n\"}\" expected at line " + toke.getLineNum());
         }
-        ArrayList<ElseIfNode> el = new ArrayList<ElseIfNode>();
+        tokens.pop();
+        
+        ArrayList<ElseIfNode> el = new ArrayList<>();
+        
         // a list of 0-n elif conditions.
-        while (tokens.peek().getTokenType() == TokenType.ID_KEYWORD && tokens.peek().getToken() == "Elseif") {
+        toke = tokens.peek();
+        while (toke.getTokenType() == TokenType.ID_KEYWORD && toke.getToken().equals( "Elseif")) {
             el.add(ElseIfNode.parse(tokens));
         }
-        ElseNode els;
+
+        ElseNode els = null;
         // a single else condition.
-        if (tokens.peek().getTokenType() == TokenType.ID_KEYWORD && tokens.peek().getToken() == "Else") {
+        toke = tokens.peek();
+        if (toke.getTokenType() == TokenType.ID_KEYWORD && toke.getToken().equals("Else")) {
             els = ElseNode.parse(tokens);
         }
+
+        return new IfNode(e, b, el, els);
     }
 
     @Override
