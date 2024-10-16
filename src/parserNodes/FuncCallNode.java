@@ -43,13 +43,18 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             throw Exception;
         }
         tokens.pop();
-
+        toke = tokens.peek();
+        if (!toke.getToken().equals(";"))
+        {
+            throw Exception;
+        }
+        tokens.pop();
         return new FuncCallNode(id, args);
     }
 
     @Override
     public String convertToJott() {
-        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]");
+        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]" + ";");
     }
     
     @Override

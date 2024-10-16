@@ -36,8 +36,10 @@ public class BodyNode implements JottTree{
         Token curToken = tokens.peek();
         while (curToken.getTokenType() != TokenType.R_BRACE && curToken.getToken() != "Return")
         {
+            System.out.println(curToken.getTokenType());
             BodyStatementNodeInterface BSN = BodyStatementNodeInterface.parse(tokens);
             bodyStatements.add(BSN);
+            curToken = tokens.peek();
         }
         if (curToken.getTokenType() == TokenType.R_BRACE)
         {

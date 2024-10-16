@@ -64,8 +64,11 @@ public class FuncDefNode implements JottTree {
 
     @Override
     public String convertToJott() {
-        String jottString = "Def" + funcName.convertToJott() + "[";
-        jottString+= this.params.convertToJott();
+        String jottString = "Def" + " " + funcName.convertToJott() + "[";
+        if (this.params != null)
+        {
+            jottString+= params.convertToJott();
+        }
         jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
         return jottString;
     }

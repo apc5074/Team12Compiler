@@ -16,7 +16,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
         this.expr = expr;
     }
 
-    private static AsmtNode parse(Stack<Token> tokens) throws Exception
+    public static AsmtNode parse(Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
         {

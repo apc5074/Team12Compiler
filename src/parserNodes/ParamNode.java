@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class ParamNode implements JottTree {
     private final static Exception e = null;
-    private ExprNode exprNode;
+    private ExprNodeInterface exprNode;
     private ArrayList<ParamNodeT> parameters;
     
-    public ParamNode(ExprNode expression, ArrayList<ParamNodeT> paras) {
+    public ParamNode(ExprNodeInterface expression, ArrayList<ParamNodeT> paras) {
         exprNode = expression;
         parameters = paras;
     }
@@ -25,7 +25,7 @@ public class ParamNode implements JottTree {
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
             return new ParamNode();
         }
-        ExprNode toke = ExprNode.parse(tokens);
+        ExprNodeInterface toke = ExprNodeInterface.parse(tokens);
         if (toke == null) {
             throw e;
         }
