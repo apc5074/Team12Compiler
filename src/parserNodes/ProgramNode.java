@@ -23,7 +23,9 @@ public class ProgramNode implements JottTree {
             throw new Exception("Token list is empty.");
         }
         Stack<Token> tokenStack = new Stack<>();
-        tokenStack.addAll(tokens.reversed());
+        // TODO: Figure out if this is supposed to be reversed or not.
+        // I don't think it should be, but it was already reversed here. - Gabe
+        tokenStack.addAll(tokens);
         ArrayList<FuncDefNode> functionDefNodes = new ArrayList<>();
         
         Token curToken = tokenStack.peek();

@@ -24,7 +24,7 @@ public class WhileLoopNode implements JottTree {
             return null;
         }
         tokens.pop();
-        ExprNode exp = ExprNode.parseExprNode(tokens);
+        ExprNode exp = ExprNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACKET) {
             return null;
         }
@@ -33,7 +33,7 @@ public class WhileLoopNode implements JottTree {
             return null;
         }
         tokens.pop();
-        BodyNode bod = BodyNode.parseBodyNode(tokens);
+        BodyNode bod = BodyNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACE) {
             return null;
         }
