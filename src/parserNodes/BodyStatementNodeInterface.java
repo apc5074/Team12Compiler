@@ -27,7 +27,7 @@ public interface BodyStatementNodeInterface extends JottTree{
             }
             else if (curToken.getToken().equals("while"))
             {
-                WhileLoopNode WN = WhileLoopNode.ParseWhileLoopNode(tokens);
+                WhileLoopNode WN = WhileLoopNode.parse(tokens);
                 return WN;
             }
             else {
@@ -35,7 +35,7 @@ public interface BodyStatementNodeInterface extends JottTree{
             }
         }
         else  {
-            FuncCallNode FN = FuncCallNode.parseFunctionCallNode(tokens);
+            FuncCallNode FN = FuncCallNode.parse(tokens);
             return FN
         }
     };
