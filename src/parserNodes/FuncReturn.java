@@ -38,7 +38,7 @@ public class FuncReturn implements JottTree {
         if (voided) {
             return ("Void");
         } else {
-            return type.convertToJott();
+            return toke.getToken();
         }
     }
 

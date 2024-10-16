@@ -10,16 +10,16 @@ public class ParamNodeT implements JottTree {
         exprNode = expression;
     }
 
-    public static ParamNodeT parse(Stack<Token> tokens) {
+    public static ParamNodeT parse(Stack<Token> tokens) throws Exception{
         if (tokens.size() == 0) {
             throw e;
         }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
-            return e;
+            throw e;
         }
 
         if (tokens.peek().getTokenType() != TokenType.COMMA) {
-            return e;
+            throw e;
         }
 
         // removes the comma from the list.

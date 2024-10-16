@@ -2,7 +2,7 @@ package parserNodes;
 import provided.*;
 import java.util.Stack;
 
-public class OperandNode implements JottTree {
+public class OperandNode implements ExprNodeInterface {
     private static final Exception Exception = null;
 
     private Token opToken;
@@ -20,8 +20,11 @@ public class OperandNode implements JottTree {
         }
         Token iToken = tokens.peek();
 
-        if(!(iToken.getTokenType().equals("NUMBER") || iToken.getTokenType().equals("ID_KEYWORD") ||
-        iToken.getToken().equals("-") || iToken.getTokenType().equals("FC_HEADER")))
+        if (token.getTokenType() == TokenType.ID_KEYWORD) {
+            throw Exception;
+        }
+        if(!(iToken.getToken().equals("NUMBER") || iToken.getToken().equals("ID_KEYWORD") ||
+        iToken.getToken().equals("-") || iToken.getToken().equals("FC_HEADER")))
         {
             throw Exception;
         }

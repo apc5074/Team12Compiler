@@ -6,9 +6,9 @@ public class WhileLoopNode implements JottTree {
     private ExprNode expression;
     private BodyNode body;
 
-    public WhileLoopNode(ExprNode exp, ExprNode body) {
+    public WhileLoopNode(ExprNode exp, BodyNode body) {
         expression = exp;
-        body = body;
+        this.body = body;
     }
 
     public static WhileLoopNode ParseWhileLoopNode(Stack<Token> tokens) {
