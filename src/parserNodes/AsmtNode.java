@@ -7,10 +7,10 @@ public class AsmtNode implements JottTree {
     private static final Exception Exception = null;
 
     private Token idToken;
-    private ExprNode expr;
+    private ExprNodeInterface expr;
 
 
-    public AsmtNode (Token idToken, ExprNode expr)
+    public AsmtNode (Token idToken, ExprNodeInterface expr)
     {
         this.idToken = idToken;
         this.expr = expr;
@@ -33,7 +33,7 @@ public class AsmtNode implements JottTree {
             throw Exception;
         }
         tokens.pop();
-        ExprNode expr = ExprNode.parse(tokens);
+        ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
 
         return new AsmtNode(iToken, expr);
     }
