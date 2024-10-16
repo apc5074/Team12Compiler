@@ -18,7 +18,10 @@ public class OpNode implements JottTree {
         }
         Token iToken = tokens.peek();
 
-        if(!(iToken.getTokenType().equals("MATH_OP") || iToken.getTokenType().equals("REL_OP")))
+        if (iToken.getTokenType() != TokenType.ID_KEYWORD) {
+            throw Exception;
+        }
+        if(!(iToken.getToken().equals("MATH_OP") || iToken.getToken().equals("REL_OP")))
         {
             throw Exception;
         }
@@ -34,7 +37,7 @@ public class OpNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // No special validation for just the operator, but can ensure it's valid
+        // TODO No special validation for just the operator, but can ensure it's valid
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
 

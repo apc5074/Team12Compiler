@@ -26,7 +26,7 @@ public class BodyNode implements JottTree{
         this.bodyStatements = bodyStatementNodes;
     }
 
-    public BodyNode parse(Stack<Token> tokens) throws Exception
+    public static BodyNode parse(Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
         {

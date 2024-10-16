@@ -6,7 +6,8 @@ import provided.JottTree;
 import provided.Token;
 
 public class BodyStatementNode implements JottTree{
-
+    // Body statement can be of: If, While, Asmt, or Func_call
+    
     @Override
     public String convertToJott() {
         // TODO Auto-generated method stub

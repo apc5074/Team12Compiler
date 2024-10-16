@@ -38,7 +38,7 @@ public class ElseIfNode implements JottTree {
             // if elseif is called without {
             throw new Exception ("Syntax Error\nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
         }
-        BodyNode e = BodyNode.parse(tokens);
+        BodyNode b = BodyNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACE) {
             // if elseif is called without }

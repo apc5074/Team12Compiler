@@ -4,7 +4,7 @@ import provided.*;
 
 public class TypeNode implements JottTree{
 
-    private static Token typeToken;
+    private Token typeToken;
 
     public TypeNode(Token type) {
         this.typeToken = type;

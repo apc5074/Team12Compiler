@@ -3,8 +3,8 @@ import java.util.Stack;
 import provided.*;
 
 public class VarDec implements JottTree {
-    private static TypeNode typeNode;
-    private static IdNode IDNode;
+    private TypeNode typeNode;
+    private IdNode IDNode;
 
 
     public VarDec(TypeNode typeNode, IdNode IDNode) {
@@ -31,11 +31,12 @@ public class VarDec implements JottTree {
 
     @Override
     public void execute() {
-        // Not Implemented
+        // TODO Not Implemented
     }
 
     @Override
     public String toString() {
+        // TODO Not implemented
         return "Not implemented";
     }
 
