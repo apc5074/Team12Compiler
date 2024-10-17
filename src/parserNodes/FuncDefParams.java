@@ -20,6 +20,7 @@ public class FuncDefParams implements JottTree{
 
      public static FuncDefParams parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty() || tokens.peek().getToken().equals("]")) {
+            // no params
             return null;
         }
     
