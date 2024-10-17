@@ -18,11 +18,7 @@ public class OpNode implements JottTree {
         }
         Token iToken = tokens.peek();
 
-        if (iToken.getTokenType() != TokenType.ID_KEYWORD) {
-            throw Exception;
-        }
-        if(!(iToken.getToken().equals("MATH_OP") || iToken.getToken().equals("REL_OP")))
-        {
+        if (iToken.getTokenType() != TokenType.MATH_OP && iToken.getTokenType() != TokenType.REL_OP) {
             throw Exception;
         }
         tokens.pop();

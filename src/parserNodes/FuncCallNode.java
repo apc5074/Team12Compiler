@@ -46,7 +46,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         toke = tokens.peek();
         if (!toke.getToken().equals(";"))
         {
-            throw Exception;
+            throw new Exception("Syntax Error\nLine does not end in ; at\n" + toke.getLineNum());
         }
         tokens.pop();
         return new FuncCallNode(id, args);

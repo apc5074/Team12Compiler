@@ -20,12 +20,12 @@ public interface BodyStatementNodeInterface extends JottTree{
         TokenType curTokenType = curToken.getTokenType();
         if (curTokenType == TokenType.ID_KEYWORD)
         {
-            if (curToken.getToken().equals("if"))
+            if (curToken.getToken().equals("If"))
             {
                 IfNode IN = IfNode.parse(tokens);
                 return IN;
             }
-            else if (curToken.getToken().equals("while"))
+            else if (curToken.getToken().equals("While"))
             {
                 WhileLoopNode WN = WhileLoopNode.parse(tokens);
                 return WN;

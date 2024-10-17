@@ -41,7 +41,7 @@ public class TypeNode implements JottTree{
     }
 
     private static boolean isValidText(Token type) {
-        return type.getToken().equals("Int") || type.getToken().equals("Double") 
+        return type.getToken().equals("Integer") || type.getToken().equals("Double") 
             || type.getToken().equals("String") || type.getToken().equals("Boolean") || type.getToken().equals("Void");
     }
 

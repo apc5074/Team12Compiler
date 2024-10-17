@@ -11,39 +11,41 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
         this.body = body;
     }
 
-    public static WhileLoopNode parse(Stack<Token> tokens) {
+    public static WhileLoopNode parse(Stack<Token> tokens) throws Exception{
         // i still dont know how to check the whileloopnode
         if (tokens.size() == 0) {
-            return null;
+            throw new Exception("ERROR 0");
         }
         Token well = tokens.peek();
         if (well.getToken() != "while" || well.getTokenType() != TokenType.ID_KEYWORD) {
-            return null;
+            throw new Exception("ERROR 1");
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.L_BRACKET) {
-            return null;
+            throw new Exception("ERROR 2");
         }
         tokens.pop();
         ExprNode exp = ExprNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACKET) {
-            return null;
+            throw new Exception("ERROR 3");
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.L_BRACE) {
-            return null;
+            throw new Exception("ERROR 4");
         }
         tokens.pop();
         BodyNode bod = BodyNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACE) {
-            return null;
+            throw new Exception("ERROR 5");
         }
         tokens.pop();
+
+        return new WhileLoopNode(exp, bod);
     }
 
     @Override
     public String convertToJott() {
-        return ("while[" + expression.convertToJott() + "]{" + body.convertToJott() + "}");
+        return ("while [ " + expression.convertToJott() + " ] { " + body.convertToJott() + " } ");
     }
 
     @Override

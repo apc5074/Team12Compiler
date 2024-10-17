@@ -2,6 +2,7 @@ package parserNodes;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Collections;
 
 import provided.JottTree;
 import provided.Token;
@@ -25,7 +26,8 @@ public class ProgramNode implements JottTree {
         Stack<Token> tokenStack = new Stack<>();
         // TODO: Figure out if this is supposed to be reversed or not.
         // I don't think it should be, but it was already reversed here. - Gabe
-        tokenStack.addAll(tokens.reversed());
+        Collections.reverse(tokens);
+        tokenStack.addAll(tokens);
         ArrayList<FuncDefNode> functionDefNodes = new ArrayList<>();
         
         Token curToken = tokenStack.peek();
