@@ -23,24 +23,24 @@ public class ElseIfNode implements JottTree {
         next = tokens.pop();
         if (next.getTokenType() != TokenType.L_BRACKET) {
             // if elseif is called without [
-            throw new Exception ("Syntax Error\nExpected \"[\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error:\nExpected \"[\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         ExprNode e = ExprNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACKET) {
             // if elseif is called without ]
-            throw new Exception ("Syntax Error\nExpected \"]\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error:\nExpected \"]\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         next = tokens.pop();
         if (next.getTokenType() != TokenType.L_BRACE) {
             // if elseif is called without {
-            throw new Exception ("Syntax Error\nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error:\nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         BodyNode b = BodyNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACE) {
             // if elseif is called without }
-            throw new Exception ("Syntax Error\nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error:\nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         return new ElseIfNode(b, e);
     }
