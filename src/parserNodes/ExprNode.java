@@ -35,7 +35,7 @@ public class ExprNode implements ExprNodeInterface{
             OperandNode r = OperandNode.parse(tokens);
             return new ExprNode(l, opNode, r);
         } catch (Exception e) {
-            throw new Exception("Invalid expression detected.");
+            throw new Exception("Syntax error:\nExpected correct Expression \n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
     }
 
