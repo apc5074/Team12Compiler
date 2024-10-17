@@ -15,7 +15,7 @@ public class BoolNode implements ExprNodeInterface {
     {
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected a boolean but file ended.");
         }
         Token iToken = tokens.peek();
         if (iToken.getTokenType() != TokenType.ID_KEYWORD || iToken.getToken().equals("true") || iToken.getToken().equals("false"))
