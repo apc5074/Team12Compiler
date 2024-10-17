@@ -14,29 +14,29 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
     public static WhileLoopNode parse(Stack<Token> tokens) throws Exception{
         // i still dont know how to check the whileloopnode
         if (tokens.size() == 0) {
-            throw new Exception("ERROR 0");
+            throw new Exception("Syntax error:\nExpected WhileLoopNode but no tokens left");
         }
         Token well = tokens.peek();
         if (!well.getToken().equals("While") || well.getTokenType() != TokenType.ID_KEYWORD) {
-            throw new Exception("ERROR 1");
+            throw new Exception("Syntax error:\nExpected id While but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.L_BRACKET) {
-            throw new Exception("ERROR 2");
+            throw new Exception("Syntax error:\nExpected Left Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         ExprNode exp = ExprNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACKET) {
-            throw new Exception("ERROR 3");
+            throw new Exception("Syntax error:\nExpected Right Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.L_BRACE) {
-            throw new Exception("ERROR 4");
+            throw new Exception("Syntax error:\nExpected Left Brace but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         BodyNode bod = BodyNode.parse(tokens);
         if (tokens.peek().getTokenType() != TokenType.R_BRACE) {
-            throw new Exception("ERROR 5");
+            throw new Exception("Syntax error:\nExpected Right Brace but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
 
