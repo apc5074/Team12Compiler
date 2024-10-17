@@ -28,6 +28,7 @@ public class OperandNode implements ExprNodeInterface {
     {
         if (tokens.empty())
         {
+
             throw new Exception("Syntax error:\nExpected WhileLoopNode but no tokens left");
         }
         Token iToken = tokens.peek();
