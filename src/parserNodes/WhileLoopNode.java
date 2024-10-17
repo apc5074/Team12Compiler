@@ -17,7 +17,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
             throw new Exception("ERROR 0");
         }
         Token well = tokens.peek();
-        if (well.getToken() != "while" || well.getTokenType() != TokenType.ID_KEYWORD) {
+        if (!well.getToken().equals("While") || well.getTokenType() != TokenType.ID_KEYWORD) {
             throw new Exception("ERROR 1");
         }
         tokens.pop();
@@ -45,7 +45,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
 
     @Override
     public String convertToJott() {
-        return ("while [ " + expression.convertToJott() + " ] { " + body.convertToJott() + " } ");
+        return ("While [ " + expression.convertToJott() + " ] { " + body.convertToJott() + " } ");
     }
 
     @Override

@@ -41,8 +41,9 @@ public class TypeNode implements JottTree{
     }
 
     private static boolean isValidText(Token type) {
+        // Void is not a type; it's its own special unique thing
         return type.getToken().equals("Integer") || type.getToken().equals("Double") 
-            || type.getToken().equals("String") || type.getToken().equals("Boolean") || type.getToken().equals("Void");
+            || type.getToken().equals("String") || type.getToken().equals("Boolean");
     }
 
     @Override

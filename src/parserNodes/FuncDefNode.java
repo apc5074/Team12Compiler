@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import provided.JottTree;
 import provided.Token;
+import provided.TokenType;
 
 public class FuncDefNode implements JottTree {
 
@@ -12,6 +13,7 @@ public class FuncDefNode implements JottTree {
     private IdNode funcName;
     private FuncDefParams params;
     private TypeNode returnType;
+    private boolean isVoid;
     private FuncBodyNode body;
 
     public FuncDefNode(IdNode name, FuncDefParams params, TypeNode returnType, FuncBodyNode body)
@@ -19,6 +21,15 @@ public class FuncDefNode implements JottTree {
         this.funcName = name;
         this.params = params;
         this.returnType = returnType;
+        this.body = body;
+        this.isVoid = false;
+    }
+
+    public FuncDefNode(IdNode name, FuncDefParams params, FuncBodyNode body)
+    {
+        this.funcName = name;
+        this.params = params;
+        this.isVoid = true;
         this.body = body;
     }
 
@@ -46,8 +57,14 @@ public class FuncDefNode implements JottTree {
         if(!tokens.peek().getToken().equals(":"))
             throw Exception;
         tokens.pop();
-
-        TypeNode returnType = TypeNode.parse(tokens);
+        TypeNode returnType = null;
+        boolean isVoid = false;
+        if (tokens.peek().getTokenType() == TokenType.ID_KEYWORD && tokens.peek().getToken().equals("Void")) {
+            isVoid = true;
+            tokens.pop();
+        } else {
+            returnType = TypeNode.parse(tokens);
+        }
 
         if(!tokens.peek().getToken().equals("{"))
             throw Exception;
@@ -57,8 +74,11 @@ public class FuncDefNode implements JottTree {
         if (!tokens.peek().getToken().equals("}"))
             throw Exception;
         tokens.pop();
-
-        return new FuncDefNode(name, params, returnType, body);
+        if (isVoid) {
+            return new FuncDefNode(name, params, body);
+        } else {
+            return new FuncDefNode(name, params, returnType, body);
+        }
     }
 
     @Override
@@ -68,7 +88,11 @@ public class FuncDefNode implements JottTree {
         {
             jottString+= params.convertToJott();
         }
-        jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
+        if (isVoid) {
+            jottString +=  "]" + ": Void {" + body.convertToJott() + "}";   
+        } else {
+            jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
+        }
         return jottString;
     }
 
