@@ -12,17 +12,20 @@ public class TypeNode implements JottTree{
 
     public static TypeNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
-            throw new Exception();
+            throw new Exception("Syntax Error:\n" + 
+                                "Expected token 'Def'\n" +
+                                tokens.peek().getLineNum());  
         }
 
         Token currentToken = tokens.peek(); //dont pop yet
         
         if (!isValidType(currentToken)) {
-            throw new Exception("Syntax Error: Invalid type '" + currentToken.getToken() + "' at line " 
+            throw new Exception("Syntax Error:\n" + 
+                                "Invalid type '" + currentToken.getToken() + "' at line " 
                                  + currentToken.getLineNum() + " in " + currentToken.getFilename());
         }
         if (!isValidText(currentToken)) {
-            throw new Exception("Syntax Error: Invalid text '" + currentToken.getToken() + "' at line " 
+            throw new Exception("Syntax Error:\n" +  "Invalid text '" + currentToken.getToken() + "' at line " 
                                  + currentToken.getLineNum() + " in " + currentToken.getFilename());
         }
 

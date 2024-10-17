@@ -1,9 +1,8 @@
 package parserNodes;
 
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.Collections;
-
+import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
