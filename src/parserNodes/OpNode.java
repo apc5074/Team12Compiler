@@ -14,12 +14,12 @@ public class OpNode implements JottTree {
     {
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
         Token iToken = tokens.peek();
 
         if (iToken.getTokenType() != TokenType.MATH_OP && iToken.getTokenType() != TokenType.REL_OP) {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected math or relational op but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
 
