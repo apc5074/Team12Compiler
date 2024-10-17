@@ -19,7 +19,7 @@ public class ReturnStmtNode implements JottTree{
     public static ReturnStmtNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty())
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected ReturnStmtNode but no tokens left");
         }
         Token curToken = tokens.peek();
         if (curToken.getToken().equals("Return"))
@@ -28,7 +28,7 @@ public class ReturnStmtNode implements JottTree{
         }
         else
         {
-            throw new Exception("Syntax Error\nReturn expected at line\n" + curToken.getLineNum());
+            throw new Exception("Syntax error:\nExpected Return but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         ExprNodeInterface expression = ExprNodeInterface.parse(tokens);
         if (tokens.peek().getToken().equals(";"))
@@ -37,7 +37,7 @@ public class ReturnStmtNode implements JottTree{
         }
         else
         {
-            throw new Exception("Missing semicolong at line\n"+tokens.peek().getLineNum());
+            throw new Exception("Syntax error:\nMissing semi colon \n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         return new ReturnStmtNode(expression);
 
