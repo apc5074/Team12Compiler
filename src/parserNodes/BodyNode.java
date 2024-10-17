@@ -8,7 +8,6 @@ import provided.TokenType;
 
 public class BodyNode implements JottTree{
 
-    private static final BodyNode Exception = null;
 
     ArrayList<BodyStatementNodeInterface> bodyStatements;
     ReturnStmtNode returnStmt;
@@ -30,7 +29,7 @@ public class BodyNode implements JottTree{
     {
         if (tokens.empty())
         {
-            return Exception;
+            throw new Exception ("Syntax Error \n Expected a function body but file ended.");
         }
         ArrayList<BodyStatementNodeInterface> bodyStatements = new ArrayList<BodyStatementNodeInterface>();
         Token curToken = tokens.peek();
@@ -61,7 +60,7 @@ public class BodyNode implements JottTree{
             body += BSN.convertToJott();
             // if it's a funccallnode, we need to add ; at the end.
             if (BSN.convertToJott().startsWith("::")) {
-                body += " ; "; 
+                body += ";"; 
             }
         }
         if (returnStmt != null)
