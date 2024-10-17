@@ -8,12 +8,10 @@ import provided.TokenType;
 
 public interface BodyStatementNodeInterface extends JottTree{
 
-    Exception Exception = null;
-
     public static BodyStatementNodeInterface parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected BodyStatementNode but no tokens left");
         }
 
         Token curToken = tokens.peek();
@@ -41,7 +39,7 @@ public interface BodyStatementNodeInterface extends JottTree{
                 tokens.pop();
                 return FN;
             } else {
-                throw new Exception ("Missing semicolon at line\n" + tokens.peek().getLineNum());
+                throw new Exception ("Syntax Error: \n Missing semicolon at line\n" + tokens.peek().getLineNum());
             }
         }
     };
