@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 
 public class AsmtNode implements BodyStatementNodeInterface {
@@ -30,7 +30,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
-            throw new Exception("Syntax error:\nUnexpected token "+tokens.peek().getTokenType() + " at " + tokens.peek().getLineNum());
+            throw new Exception("Syntax Error:\n" + 
+                                "Unexpected token " + tokens.peek().getTokenType() + " at line\n " + 
+                                tokens.peek().getLineNum());
         }
         tokens.pop();
         ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
@@ -38,7 +40,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
             tokens.pop();
             return new AsmtNode(iToken, expr);
         } else {
-            throw new Exception("Line does not end with semicolon at line\n" + tokens.peek().getLineNum());
+            throw new Exception("Syntax Error:\n " + 
+                                "Line does not end with semicolon at line\n" + 
+                                tokens.peek().getLineNum());
         }
     }
 
