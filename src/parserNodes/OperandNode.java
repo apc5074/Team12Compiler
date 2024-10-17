@@ -28,7 +28,9 @@ public class OperandNode implements ExprNodeInterface {
     {
         if (tokens.empty())
         {
-            throw new Exception("The stack is empty.");
+            throw new Exception("Syntax Error\n" + 
+                                "Token list is empty.\n" +
+                                tokens.peek().getLineNum());
         }
         Token iToken = tokens.peek();
 
@@ -45,7 +47,9 @@ public class OperandNode implements ExprNodeInterface {
         } else if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
             return new OperandNode(tokens.pop());
         }
-        throw new Exception("Uh oh bad type for an operandnode.");
+        throw new Exception("Syntax Error\n" + 
+                            "Unexpected type for an operandnode\n" +
+                            tokens.peek().getLineNum());
     }
 
     @Override

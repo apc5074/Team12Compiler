@@ -1,9 +1,8 @@
 package parserNodes;
 
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.Collections;
-
+import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -21,7 +20,9 @@ public class ProgramNode implements JottTree {
 
     public static ProgramNode parse(ArrayList<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
-            throw new Exception("Token list is empty.");
+            throw new Exception("Syntax Error\n" + 
+                                "Token list is empty.\n" +
+                                tokens.get(1).getLineNum());
         }
         Stack<Token> tokenStack = new Stack<>();
         // TODO: Figure out if this is supposed to be reversed or not.
@@ -43,7 +44,9 @@ public class ProgramNode implements JottTree {
         if (tokenStack.isEmpty()) {
             return new ProgramNode(functionDefNodes);
         } else {
-            throw new Exception("Tokens remaining after parsing functions.");
+            throw new Exception("Syntax Error\n" + 
+                                "Tokens remaining after parsing functions.\n" +
+                                tokens.get(1).getLineNum());
         }
     }
     

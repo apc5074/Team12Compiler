@@ -17,7 +17,9 @@ public class FuncDefParams_t implements JottTree {
     public static FuncDefParams_t parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty() ) {
             // No more parameters
-            throw new Exception("Syntax Error: Null");
+            throw new Exception("Syntax Error\n" + 
+                                "Expected a token but tokens list is null.\n" +
+                                tokens.peek().getLineNum());            
         }
         tokens.pop();
 
@@ -26,7 +28,9 @@ public class FuncDefParams_t implements JottTree {
 
         // Expect ':'
         if (tokens.isEmpty() || !tokens.peek().getToken().equals(":")) {
-            throw new Exception("Syntax Error: Expected ':' after parameter identifier");
+            throw new Exception("Syntax Error\n" + 
+                                "Expected ':' after parameter identifier.\n" +
+                                tokens.peek().getLineNum());
         }
         tokens.pop();
 
