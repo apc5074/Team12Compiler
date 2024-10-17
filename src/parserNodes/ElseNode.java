@@ -26,13 +26,13 @@ public class ElseNode implements JottTree {
         next = tokens.pop();
         if (next.getTokenType() != TokenType.L_BRACE) {
             // if else is called without {
-            throw new Exception ("Syntax Error\nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error: \nExpected \"{\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         BodyNode b = BodyNode.parse(tokens);
         next = tokens.pop();
         if (next.getTokenType() != TokenType.R_BRACE) {
             // if else is called without }
-            throw new Exception ("Syntax Error\nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
+            throw new Exception ("Syntax Error: \nExpected \"}\"\n"+next.getFilename()+":"+next.getLineNum());
         }
         return new ElseNode(b);
     }
