@@ -27,10 +27,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
         {
             throw Exception;
         }
-        System.out.println("ASMTNODE: " + tokens.pop().getToken());
+        tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
-            System.out.println(tokens.peek().getToken());
             throw new Exception("Syntax error:\nUnexpected token "+tokens.peek().getTokenType() + " at " + tokens.peek().getLineNum());
         }
         tokens.pop();

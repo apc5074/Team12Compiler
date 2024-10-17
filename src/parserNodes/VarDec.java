@@ -17,10 +17,8 @@ public class VarDec implements JottTree {
         TypeNode typeNode = TypeNode.parse(tokens);
         IdNode idNode = IdNode.parse(tokens);
 
-        System.out.println("VARDEC: queued for Semicolon.");
         if (tokens.peek().getTokenType() == TokenType.SEMICOLON) {
             tokens.pop();
-            System.out.println("VARDEC: Semicolon trimmed.");
             return new VarDec(typeNode, idNode);
         } else {
             throw new Exception("Semicolon expected at line\n" + tokens.peek().getLineNum());

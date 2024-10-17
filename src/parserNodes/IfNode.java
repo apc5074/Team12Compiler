@@ -63,7 +63,6 @@ public class IfNode implements BodyStatementNodeInterface {
         ElseNode els = null;
         // a single else condition.
         toke = tokens.peek();
-        System.out.println("ELSE IN IFNODE: " + toke.getToken().equals("Else"));
         if (toke.getTokenType() == TokenType.ID_KEYWORD && toke.getToken().equals("Else")) {
             els = ElseNode.parse(tokens);
         }
