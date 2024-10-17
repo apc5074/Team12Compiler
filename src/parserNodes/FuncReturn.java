@@ -3,7 +3,6 @@ import provided.*;
 import java.util.Stack;
 
 public class FuncReturn implements JottTree {
-    private static final Exception Exception = null;
     Token toke;
     boolean voided;
 
