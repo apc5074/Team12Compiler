@@ -4,8 +4,8 @@ import java.util.Stack;
 import provided.*;
 
 public class ElseNode implements JottTree {
-    BodyNode body;
-    Boolean isNull;
+    private BodyNode body;
+    private Boolean isNull;
 
     public ElseNode(BodyNode b) {
         isNull = false;
