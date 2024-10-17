@@ -9,8 +9,6 @@ import provided.TokenType;
 
 public class ProgramNode implements JottTree {
 
-    private static final Exception Exception = null;
-
     private ArrayList<FuncDefNode> functionDefNodes;
 
     private ProgramNode(ArrayList<FuncDefNode> funcDefNodes)
