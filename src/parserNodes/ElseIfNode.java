@@ -1,7 +1,5 @@
 package parserNodes;
-import java.util.ArrayList;
 import java.util.Stack;
-
 import provided.*;
 
 public class ElseIfNode implements JottTree {

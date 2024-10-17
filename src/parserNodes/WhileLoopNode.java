@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class WhileLoopNode implements BodyStatementNodeInterface {
     private ExprNode expression;

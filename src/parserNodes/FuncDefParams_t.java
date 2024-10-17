@@ -38,7 +38,7 @@ public class FuncDefParams_t implements JottTree {
 
     @Override
     public String convertToJott() {
-      return "," + id.convertToJott() + ":" + type.convertToJott();
+      return ", " + id.convertToJott() + " : " + type.convertToJott();
     }
     @Override
     public boolean validateTree() {

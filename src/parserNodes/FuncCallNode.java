@@ -55,7 +55,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
     @Override
     public String convertToJott() {
-        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]");
+        return ("::" + id.convertToJott() + " [ " + args.convertToJott() + " ]");
     }
     
     @Override

@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class ExprNode implements ExprNodeInterface{
     private OperandNode left;;
@@ -25,7 +25,7 @@ public class ExprNode implements ExprNodeInterface{
             tokens.pop();
             return new ExprNode(toke);
         }
-        if (toke.getTokenType() == TokenType.ID_KEYWORD && (toke.getToken() == "True" || toke.getToken() == "False")) {
+        if (toke.getTokenType() == TokenType.ID_KEYWORD && (toke.getToken().equals("True") || toke.getToken().equals("False"))) {
             tokens.pop();
             return new ExprNode(toke);
         }
@@ -53,7 +53,7 @@ public class ExprNode implements ExprNodeInterface{
 
     @Override
     public String convertToJott() {
-        return left.convertToJott() + op.convertToJott() + right.convertToJott();
+        return left.convertToJott() + " " + op.convertToJott() + " " + right.convertToJott();
     }
     
 }

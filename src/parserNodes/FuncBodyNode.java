@@ -1,9 +1,9 @@
 package parserNodes;
 
+import java.util.ArrayList;
 import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
-import java.util.ArrayList;
 
 public class FuncBodyNode implements JottTree {
 
@@ -40,7 +40,7 @@ public class FuncBodyNode implements JottTree {
         String fbodyString = "";
         for (VarDec vardecs: varDec)
         {
-            fbodyString += vardecs.convertToJott();
+            fbodyString += vardecs.convertToJott() + " ";
         }
         fbodyString += body.convertToJott();
         return fbodyString;

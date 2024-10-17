@@ -61,7 +61,7 @@ public class BodyNode implements JottTree{
             body += BSN.convertToJott();
             // if it's a funccallnode, we need to add ; at the end.
             if (BSN.convertToJott().startsWith("::")) {
-                body += ";"; 
+                body += " ; "; 
             }
         }
         if (returnStmt != null)

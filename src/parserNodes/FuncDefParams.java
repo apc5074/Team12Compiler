@@ -53,7 +53,7 @@ public class FuncDefParams implements JottTree{
 
     @Override
     public String convertToJott() {
-        String convertedToJott = id.convertToJott() + ":" + type.convertToJott();
+        String convertedToJott = id.convertToJott() + " : " + type.convertToJott();
         if (funcDefParams_t == null) {
             return convertedToJott;
         }

@@ -1,8 +1,6 @@
 package parserNodes;
 
-import java.util.ArrayList;
 import java.util.Stack;
-
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -83,15 +81,15 @@ public class FuncDefNode implements JottTree {
 
     @Override
     public String convertToJott() {
-        String jottString = "Def" + " " + funcName.convertToJott() + "[";
+        String jottString = "Def" + " " + funcName.convertToJott() + " [ ";
         if (this.params != null)
         {
             jottString+= params.convertToJott();
         }
         if (isVoid) {
-            jottString +=  "]" + ": Void {" + body.convertToJott() + "}";   
+            jottString +=  " ]" + " : Void { " + body.convertToJott() + " } ";   
         } else {
-            jottString +=  "]" + ":" + returnType.convertToJott() + "{" + body.convertToJott() + "}";
+            jottString +=  " ]" + " : " + returnType.convertToJott() + " { " + body.convertToJott() + " } ";
         }
         return jottString;
     }

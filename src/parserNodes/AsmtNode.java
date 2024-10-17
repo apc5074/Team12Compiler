@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 
 public class AsmtNode implements BodyStatementNodeInterface {
@@ -44,7 +44,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
     @Override
     public String convertToJott() {
-        return idToken.getToken() + " = " + expr.convertToJott() + ";";
+        return idToken.getToken() + " = " + expr.convertToJott() + " ; ";
     }
 
     @Override

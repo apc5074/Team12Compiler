@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class ParamNodeT implements JottTree {
     private final static Exception e = null;
@@ -34,7 +34,7 @@ public class ParamNodeT implements JottTree {
 
     @Override
     public String convertToJott() {
-        return ("," + exprNode.convertToJott());
+        return (", " + exprNode.convertToJott());
     }
 
     @Override
