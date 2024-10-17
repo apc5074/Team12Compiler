@@ -15,11 +15,10 @@ public class FuncDefParams_t implements JottTree {
     }
 
     public static FuncDefParams_t parse(Stack<Token> tokens) throws Exception {
-        if (tokens.isEmpty() ) {
+        if (tokens.isEmpty()) {
             // No more parameters
             throw new Exception("Syntax Error\n" + 
-                                "Expected a token but tokens list is null.\n" +
-                                tokens.peek().getLineNum());            
+                                "Expected a token but tokens list is null.\n");            
         }
         tokens.pop();
 

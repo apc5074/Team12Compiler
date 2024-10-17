@@ -29,8 +29,7 @@ public class OperandNode implements ExprNodeInterface {
         if (tokens.empty())
         {
             throw new Exception("Syntax Error\n" + 
-                                "Token list is empty.\n" +
-                                tokens.peek().getLineNum());
+                                "Token list is empty.\n");
         }
         Token iToken = tokens.peek();
 

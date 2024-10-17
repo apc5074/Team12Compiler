@@ -20,18 +20,20 @@ public class AsmtNode implements BodyStatementNodeInterface {
     {
         if (tokens.empty())
         {
-            throw Exception;
-        }
+            throw new Exception("Syntax Error\n" + 
+                                "Token list is empty.\n");        }
         Token iToken = tokens.peek();
         if (iToken.getTokenType() != TokenType.ID_KEYWORD)
         {
-            throw Exception;
+            throw new Exception("Syntax Error\n" + 
+                                "Expected ID Keyword token but got\n" +
+                                tokens.peek().getLineNum());
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
             throw new Exception("Syntax Error:\n" + 
-                                "Unexpected token " + tokens.peek().getTokenType() + " at line\n " + 
+                                "Expected Assign Type token but got\n " + 
                                 tokens.peek().getLineNum());
         }
         tokens.pop();
