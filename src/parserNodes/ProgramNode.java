@@ -20,9 +20,7 @@ public class ProgramNode implements JottTree {
 
     public static ProgramNode parse(ArrayList<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
-            throw new Exception("Syntax Error\n" + 
-                                "Token list is empty.\n" +
-                                tokens.get(1).getLineNum());
+            throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
         Stack<Token> tokenStack = new Stack<>();
         // TODO: Figure out if this is supposed to be reversed or not.
@@ -44,9 +42,7 @@ public class ProgramNode implements JottTree {
         if (tokenStack.isEmpty()) {
             return new ProgramNode(functionDefNodes);
         } else {
-            throw new Exception("Syntax Error\n" + 
-                                "Tokens remaining after parsing functions.\n" +
-                                tokens.get(1).getLineNum());
+            throw new Exception("Syntax error:\nExpected end of file but got "+tokenStack.peek().getTokenType() + "\n" + tokenStack.peek().getFilename() + ".jott:" + tokenStack.peek().getLineNum());
         }
     }
     

@@ -17,11 +17,11 @@ public class StringLiteralNode implements ExprNodeInterface{
     public static StringLiteralNode parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected StringLiteralNode but no tokens left");
         }
         if (tokens.peek().getTokenType() != TokenType.STRING)
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected String but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         Token curToken = tokens.pop();
 
