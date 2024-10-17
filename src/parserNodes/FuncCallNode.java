@@ -4,8 +4,6 @@ import provided.*;
 
 public class FuncCallNode implements BodyStatementNodeInterface {
 
-    private static final Exception Exception = null;
-
     private IdNode id;
     private ParamNode args;
 
