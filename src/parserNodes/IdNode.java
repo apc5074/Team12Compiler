@@ -18,12 +18,12 @@ public class IdNode implements JottTree{
     public static IdNode parse(Stack<Token> tokens) throws Exception {    
         if (tokens.empty())
         {
-            throw new Exception("Unexpected EOF");
+            throw new Exception("Syntax error:\nExpected IdNode but got End of File");
         }    
         Token idToken = tokens.peek();
         if (idToken.getTokenType() != TokenType.ID_KEYWORD)
         {
-            throw new Exception("Syntax error\nInvalid token type at\n"  + idToken.getLineNum());
+            throw new Exception("Syntax error:\nExpected id but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }    
         return new IdNode(tokens.pop());
     }
