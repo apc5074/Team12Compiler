@@ -22,13 +22,13 @@ public class FuncReturn implements JottTree {
             if (t == "Double" || t == "Integer" || t == "String" || t == "Boolean") {
                 return new FuncReturn(tokens.pop());
             } else {
-                throw Exception;
+                throw new Exception("Syntax error:\nExpected correct type but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
             }
         } else {
             if (tokens.size() == 0 && tokens.peek().getTokenType() != TokenType.L_BRACE) {
                 return new FuncReturn();
             } else {
-                throw Exception;
+                throw new Exception("Syntax error:\nExpected no tokens \n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
             }
         }
     }
