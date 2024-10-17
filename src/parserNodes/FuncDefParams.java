@@ -20,8 +20,7 @@ public class FuncDefParams implements JottTree{
 
      public static FuncDefParams parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty() || tokens.peek().getToken().equals("]")) {
-            // No parameters
-            return null;
+            throw new Exception("Syntax error:\nExpected FuncDefParams but no tokens left");
         }
     
         // Parse <id>
