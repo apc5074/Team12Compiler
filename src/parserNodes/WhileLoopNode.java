@@ -12,6 +12,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
     }
 
     public static WhileLoopNode parse(Stack<Token> tokens) {
+        // i still dont know how to check the whileloopnode
         if (tokens.size() == 0) {
             return null;
         }
