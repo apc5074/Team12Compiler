@@ -3,8 +3,6 @@ import provided.*;
 import java.util.Stack;
 
 public class BodyStmtNode implements BodyStatementNodeInterface {
-    private static final Exception Exception = null;
-
     private BodyStatementNodeInterface bn;
 
     public BodyStmtNode(BodyStatementNodeInterface bn)
