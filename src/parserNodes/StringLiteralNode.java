@@ -19,7 +19,7 @@ public class StringLiteralNode implements ExprNodeInterface{
         {
             throw Exception;
         }
-        if (tokens.get(0).getTokenType() != TokenType.STRING)
+        if (tokens.peek().getTokenType() != TokenType.STRING)
         {
             throw Exception;
         }

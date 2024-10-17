@@ -15,7 +15,7 @@ public class TypeNode implements JottTree{
             throw new Exception();
         }
 
-        Token currentToken = tokens.firstElement(); //dont pop yet
+        Token currentToken = tokens.peek(); //dont pop yet
         
         if (!isValidType(currentToken)) {
             throw new Exception("Syntax Error: Invalid type '" + currentToken.getToken() + "' at line " 
@@ -42,7 +42,7 @@ public class TypeNode implements JottTree{
 
     private static boolean isValidText(Token type) {
         return type.getToken().equals("Int") || type.getToken().equals("Double") 
-            || type.getToken().equals("String") || type.getToken().equals("Boolean");
+            || type.getToken().equals("String") || type.getToken().equals("Boolean") || type.getToken().equals("Void");
     }
 
     @Override

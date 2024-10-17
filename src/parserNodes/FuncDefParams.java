@@ -53,7 +53,6 @@ public class FuncDefParams implements JottTree{
 
     @Override
     public String convertToJott() {
-        //TODO
         String convertedToJott = id.convertToJott() + ":" + type.convertToJott();
         for (FuncDefParams_t params: funcDefParams_t)
         {

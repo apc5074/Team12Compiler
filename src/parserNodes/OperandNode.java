@@ -23,12 +23,12 @@ public class OperandNode implements ExprNodeInterface {
         if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
             throw Exception;
         }
-        if(!(iToken.getToken().equals("NUMBER") || iToken.getToken().equals("ID_KEYWORD") ||
-        iToken.getToken().equals("-") || iToken.getToken().equals("FC_HEADER")))
+        if(!(iToken.getTokenType() == TokenType.NUMBER|| iToken.getTokenType() == TokenType.ID_KEYWORD ||
+        iToken.getTokenType() == TokenType.FC_HEADER))
         {
             throw Exception;
         }
-
+        tokens.pop();
         return new OperandNode(iToken);
     }
 

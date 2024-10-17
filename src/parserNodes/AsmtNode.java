@@ -7,16 +7,16 @@ public class AsmtNode implements BodyStatementNodeInterface {
     private static final Exception Exception = null;
 
     private Token idToken;
-    private ExprNode expr;
+    private ExprNodeInterface expr;
 
 
-    public AsmtNode (Token idToken, ExprNode expr)
+    public AsmtNode (Token idToken, ExprNodeInterface expr)
     {
         this.idToken = idToken;
         this.expr = expr;
     }
 
-    private static AsmtNode parse(Stack<Token> tokens) throws Exception
+    public static AsmtNode parse(Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
         {
@@ -33,7 +33,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
             throw Exception;
         }
         tokens.pop();
-        ExprNode expr = ExprNode.parse(tokens);
+        ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
 
         return new AsmtNode(iToken, expr);
     }
