@@ -21,8 +21,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         }
         Token toke = tokens.peek();
         if (toke.getTokenType() != TokenType.FC_HEADER) {
-            System.err.println("Expected colon, got " + toke.getTokenType());
-            throw Exception;
+            throw new Exception("Expected ::, got " + toke.getToken() + "\n"+ toke.getLineNum());
         }
         tokens.pop();
 
@@ -33,7 +32,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
             System.err.println("Expected left bracket, got " + toke.getTokenType());
-            throw Exception;
+            throw new Exception("Expected left bracket, got " + toke.getTokenType() +"\n at line "+ toke.getLineNum());
         }
         tokens.pop();
 

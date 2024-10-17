@@ -27,20 +27,25 @@ public class AsmtNode implements BodyStatementNodeInterface {
         {
             throw Exception;
         }
-        tokens.pop();
+        System.out.println("ASMTNODE: " + tokens.pop().getToken());
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
+            System.out.println(tokens.peek().getToken());
             throw new Exception("Syntax error:\nUnexpected token "+tokens.peek().getTokenType() + " at " + tokens.peek().getLineNum());
         }
         tokens.pop();
         ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
-
-        return new AsmtNode(iToken, expr);
+        if (tokens.peek().getTokenType() == TokenType.SEMICOLON) {
+            tokens.pop();
+            return new AsmtNode(iToken, expr);
+        } else {
+            throw new Exception("Line does not end with semicolon at line\n" + tokens.peek().getLineNum());
+        }
     }
 
     @Override
     public String convertToJott() {
-        return idToken + " = " + expr;
+        return idToken.getToken() + " = " + expr.convertToJott() + ";";
     }
 
     @Override

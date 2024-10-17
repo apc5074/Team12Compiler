@@ -15,15 +15,21 @@ public class VarDec implements JottTree {
     public static VarDec parse(Stack<Token> tokens) throws Exception {
         
         TypeNode typeNode = TypeNode.parse(tokens);
-        System.out.println("ok with typing");
         IdNode idNode = IdNode.parse(tokens);
 
-        return new VarDec(typeNode, idNode);
+        System.out.println("VARDEC: queued for Semicolon.");
+        if (tokens.peek().getTokenType() == TokenType.SEMICOLON) {
+            tokens.pop();
+            System.out.println("VARDEC: Semicolon trimmed.");
+            return new VarDec(typeNode, idNode);
+        } else {
+            throw new Exception("Semicolon expected at line\n" + tokens.peek().getLineNum());
+        }
     }
 
     @Override
     public String convertToJott() {
-        return typeNode.convertToJott() + " " +  IDNode.convertToJott();
+        return typeNode.convertToJott() + " " +  IDNode.convertToJott() +" ;";
     }
 
     @Override

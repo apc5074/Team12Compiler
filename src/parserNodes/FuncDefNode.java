@@ -52,7 +52,6 @@ public class FuncDefNode implements JottTree {
         if(!tokens.peek().getToken().equals("{"))
             throw Exception;
         tokens.pop();
-
         FuncBodyNode body = FuncBodyNode.parse(tokens);
         
         if (!tokens.peek().getToken().equals("}"))

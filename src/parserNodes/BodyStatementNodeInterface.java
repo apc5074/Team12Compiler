@@ -41,8 +41,7 @@ public interface BodyStatementNodeInterface extends JottTree{
                 tokens.pop();
                 return FN;
             } else {
-                //throw new Error ("Missing semicolon at line\n" + tokens.peek().getLineNum());
-                return null;
+                throw new Error ("Missing semicolon at line\n" + tokens.peek().getLineNum());
             }
         }
     };
