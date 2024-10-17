@@ -3,8 +3,8 @@ import java.util.Stack;
 import provided.*;
 
 public class ElseIfNode implements JottTree {
-    BodyNode body;
-    ExprNode expr;
+    private BodyNode body;
+    private ExprNode expr;
 
     public ElseIfNode(BodyNode b, ExprNode e) {
         body = b;
