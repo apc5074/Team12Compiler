@@ -25,7 +25,7 @@ public class IfNode implements BodyStatementNodeInterface {
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
-            throw new Exception("Syntax error\n\"[\" expected at line " + toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected Left Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         
@@ -33,13 +33,13 @@ public class IfNode implements BodyStatementNodeInterface {
         
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
-            throw new Exception("Syntax error\n\"]\" expected at line " + toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected Right Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACE) {
-            throw new Exception("Syntax error\n\"{\" expected at line " + toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected left brace but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         
@@ -47,7 +47,7 @@ public class IfNode implements BodyStatementNodeInterface {
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACE) {
-            throw new Exception("Syntax error\n\"}\" expected at line " + toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected Right Brace but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         
