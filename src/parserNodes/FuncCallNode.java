@@ -45,18 +45,18 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             throw new Exception("Syntax Error:\nExpected right bracket at line, got " + toke.getToken() + "\n" + toke.getLineNum());
         }
         tokens.pop();
-        toke = tokens.peek();
+        /*toke = tokens.peek();
         if (!toke.getToken().equals(";"))
         {
             throw new Exception("Syntax Error\nLine does not end in ; at\n" + toke.getLineNum());
         }
-        tokens.pop();
+        tokens.pop();*/
         return new FuncCallNode(id, args);
     }
 
     @Override
     public String convertToJott() {
-        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]" + ";");
+        return ("::" + id.convertToJott() +"[" + args.convertToJott() + "]");
     }
     
     @Override

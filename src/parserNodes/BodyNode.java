@@ -60,6 +60,10 @@ public class BodyNode implements JottTree{
         for (BodyStatementNodeInterface BSN: bodyStatements)
         {
             body += BSN.convertToJott();
+            // if it's a funccallnode, we need to add ; at the end.
+            if (BSN.convertToJott().startsWith("::")) {
+                body += ";"; 
+            }
         }
         if (returnStmt != null)
         {

@@ -37,7 +37,13 @@ public interface BodyStatementNodeInterface extends JottTree{
         }
         else  {
             FuncCallNode FN = FuncCallNode.parse(tokens);
-            return FN;
+            if (tokens.peek().getTokenType() == TokenType.SEMICOLON) {
+                tokens.pop();
+                return FN;
+            } else {
+                //throw new Error ("Missing semicolon at line\n" + tokens.peek().getLineNum());
+                return null;
+            }
         }
     };
 

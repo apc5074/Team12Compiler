@@ -5,11 +5,23 @@ import provided.*;
 public class OperandNode implements ExprNodeInterface {
     private static final Exception Exception = null;
 
-    private Token opToken;
+    private Token numToken;
+    private Token idToken;
+    private Boolean neg;
+    private FuncCallNode funcCall;
 
-    public OperandNode(Token opToken)
-    {
-        this.opToken = opToken;
+    public OperandNode(FuncCallNode t) {
+        funcCall = t;
+    }
+
+    public OperandNode(Token id) {
+        idToken = id;
+    }
+
+
+    public OperandNode(boolean t, Token numToken) {
+        neg = t;
+        this.numToken = numToken;
     }
 
     public static OperandNode parse(Stack<Token> tokens) throws Exception
@@ -20,22 +32,35 @@ public class OperandNode implements ExprNodeInterface {
         }
         Token iToken = tokens.peek();
 
-        /*if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
-            throw new Exception("Invalid Token Type (Expected ID_KEYWORD), at line " + iToken.getLineNum() + iToken.getToken());
-        }*/
-        if(!(iToken.getTokenType() == TokenType.NUMBER|| iToken.getTokenType() == TokenType.ID_KEYWORD ||
-        iToken.getTokenType() == TokenType.FC_HEADER || iToken.getTokenType() == TokenType.ID_KEYWORD))
-        {
-            throw new Exception("Invalid Token Type (Expected FC_HEADER, NUMBER, ID_KEYWORD), got "+iToken.getTokenType());
+        if (iToken.getTokenType() == TokenType.FC_HEADER) {
+            FuncCallNode node = FuncCallNode.parse(tokens);
+            return new OperandNode(node);
+        } else if (iToken.getTokenType() == TokenType.MATH_OP && iToken.getToken().equals("-")) {
+            tokens.pop();
+            if (tokens.peek().getTokenType() == TokenType.NUMBER) {
+                return new OperandNode(true, tokens.pop());
+            }
+        } else if (iToken.getTokenType() == TokenType.NUMBER) {
+            return new OperandNode(false, tokens.pop());
+        } else if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
+            return new OperandNode(tokens.pop());
         }
-        tokens.pop();
-        return new OperandNode(iToken);
+        throw new Exception("Uh oh bad type for an operandnode.");
     }
 
     @Override
     public String convertToJott() {
         // TODO Auto-generated method stub
-        return opToken.getToken();
+        if (neg != null) {
+            if (neg) {
+                return "- " + numToken.getToken();
+            }
+            return numToken.getToken();
+        }
+        if (funcCall != null) {
+            return funcCall.convertToJott();
+        }
+        return idToken.getToken();
     }
 
     @Override
