@@ -18,7 +18,7 @@ public class FuncBodyNode implements JottTree {
     public static FuncBodyNode parse(Stack<Token> tokens) throws Exception {
         
         if (tokens.isEmpty()) {
-            throw new Exception("Unexpected end of input while parsing function body.");
+            throw new Exception("Syntax error:\nExpected FuncBodyNode but no tokens left");
         }
         Token curToken = tokens.peek();
         ArrayList<VarDec> vars = new ArrayList<>();
