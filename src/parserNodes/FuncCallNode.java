@@ -16,12 +16,11 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
     public static FuncCallNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
-            System.err.println("Expected function call, got EOF.");
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected FuncCallNode but no tokens left");
         }
         Token toke = tokens.peek();
         if (toke.getTokenType() != TokenType.FC_HEADER) {
-            throw new Exception("Expected ::, got " + toke.getToken() + "\n"+ toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected :: but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
 
@@ -31,8 +30,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         // checks for L_bracket (parameters begin after)
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
-            System.err.println("Expected left bracket, got " + toke.getTokenType());
-            throw new Exception("Expected left bracket, got " + toke.getTokenType() +"\n at line "+ toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected Left Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
 
@@ -41,7 +39,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
-            throw new Exception("Syntax Error:\nExpected right bracket at line, got " + toke.getToken() + "\n" + toke.getLineNum());
+            throw new Exception("Syntax error:\nExpected Right Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
         tokens.pop();
         /*toke = tokens.peek();
