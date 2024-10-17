@@ -13,7 +13,7 @@ public interface ExprNodeInterface extends JottTree{
     public static ExprNodeInterface parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("Syntax error:\nExpected ExprNode but no tokens left");
         }
 
         Token curToken = tokens.peek();
