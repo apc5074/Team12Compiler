@@ -3,7 +3,6 @@ import java.util.Stack;
 import provided.*;
 
 public class ParamNodeT implements JottTree {
-    private final static Exception e = null;
     private ExprNode exprNode;
     
     public ParamNodeT(ExprNode expression) {
@@ -12,14 +11,14 @@ public class ParamNodeT implements JottTree {
 
     public static ParamNodeT parse(Stack<Token> tokens) throws Exception{
         if (tokens.size() == 0) {
-            throw e;
+            throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
-            throw e;
+            throw new Exception("Syntax error:\nExpected Right Bracket but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
 
         if (tokens.peek().getTokenType() != TokenType.COMMA) {
-            throw e;
+            throw new Exception("Syntax error:\nExpected comma but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
 
         // removes the comma from the list.

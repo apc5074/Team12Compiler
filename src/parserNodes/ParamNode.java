@@ -4,7 +4,6 @@ import java.util.Stack;
 import java.util.ArrayList;
 
 public class ParamNode implements JottTree {
-    private final static Exception e = null;
     private ExprNodeInterface exprNode;
     private ArrayList<ParamNodeT> parameters;
     
@@ -20,14 +19,14 @@ public class ParamNode implements JottTree {
 
     public static ParamNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.size() == 0){
-            throw e;
+            throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
         if (tokens.peek().getTokenType() == TokenType.R_BRACKET) {
             return new ParamNode();
         }
         ExprNodeInterface toke = ExprNodeInterface.parse(tokens);
         if (toke == null) {
-            throw e;
+            throw new Exception("Syntax error:\nExpected valid ExprNode but got invalid expression");
         }
         
         ArrayList<ParamNodeT> pramters = new ArrayList<ParamNodeT>();

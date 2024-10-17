@@ -28,7 +28,8 @@ public class OperandNode implements ExprNodeInterface {
     {
         if (tokens.empty())
         {
-            throw new Exception("The stack is empty.");
+
+            throw new Exception("Syntax error:\nExpected WhileLoopNode but no tokens left");
         }
         Token iToken = tokens.peek();
 
@@ -45,7 +46,7 @@ public class OperandNode implements ExprNodeInterface {
         } else if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
             return new OperandNode(tokens.pop());
         }
-        throw new Exception("Uh oh bad type for an operandnode.");
+        throw new Exception("Syntax error:\nExpected correct operand type but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
     }
 
     @Override

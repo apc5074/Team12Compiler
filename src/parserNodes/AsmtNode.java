@@ -20,17 +20,21 @@ public class AsmtNode implements BodyStatementNodeInterface {
     {
         if (tokens.empty())
         {
-            throw Exception;
-        }
+            throw new Exception("Syntax Error\n" + 
+                                "Token list is empty.\n");        }
         Token iToken = tokens.peek();
         if (iToken.getTokenType() != TokenType.ID_KEYWORD)
         {
-            throw Exception;
+            throw new Exception("Syntax Error\n" + 
+                                "Expected ID Keyword token but got\n" +
+                                tokens.peek().getLineNum());
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
-            throw new Exception("Syntax error:\nUnexpected token "+tokens.peek().getTokenType() + " at " + tokens.peek().getLineNum());
+            throw new Exception("Syntax Error:\n" + 
+                                "Expected Assign Type token but got\n " + 
+                                tokens.peek().getLineNum());
         }
         tokens.pop();
         ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
@@ -38,7 +42,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
             tokens.pop();
             return new AsmtNode(iToken, expr);
         } else {
-            throw new Exception("Line does not end with semicolon at line\n" + tokens.peek().getLineNum());
+            throw new Exception("Syntax Error:\n " + 
+                                "Line does not end with semicolon at line\n" + 
+                                tokens.peek().getLineNum());
         }
     }
 

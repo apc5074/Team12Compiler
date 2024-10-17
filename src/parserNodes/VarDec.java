@@ -21,7 +21,9 @@ public class VarDec implements JottTree {
             tokens.pop();
             return new VarDec(typeNode, idNode);
         } else {
-            throw new Exception("Semicolon expected at line\n" + tokens.peek().getLineNum());
+            throw new Exception("Syntax Error:\n" + 
+                                "Semicolon expected at line\n" + 
+                                tokens.peek().getLineNum());
         }
     }
 

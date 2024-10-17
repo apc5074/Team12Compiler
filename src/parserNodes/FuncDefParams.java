@@ -29,7 +29,9 @@ public class FuncDefParams implements JottTree{
     
         // Expect ':'
         if (!tokens.peek().getToken().equals(":")) {
-            throw new Exception("Syntax Error: Expected ':' after parameter identifier");
+            throw new Exception("Syntax Error\n" + 
+                                "Syntax Error: Expected ':' after parameter identifier.\n" +
+                                tokens.peek().getLineNum());
         }
         tokens.pop(); // Remove ':'
     
