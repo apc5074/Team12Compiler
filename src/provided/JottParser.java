@@ -21,12 +21,13 @@ public class JottParser {
      * @throws Exception 
      */
     public static JottTree parse(ArrayList<Token> tokens) throws Exception{
-      try {
+      return ProgramNode.parse(tokens);
+      /*try {
         return ProgramNode.parse(tokens);
       } catch (Exception e) {
-        System.err.println(e);
+        System.out.println(e);
         return null;
-      }
+      }*/
     }
 
 }

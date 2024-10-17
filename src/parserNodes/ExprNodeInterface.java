@@ -10,7 +10,7 @@ public interface ExprNodeInterface extends JottTree{
 
     Exception Exception = null;
 
-    public static ExprNodeInterface parse(Stack<Token> tokens) throws java.lang.Exception{
+    public static ExprNodeInterface parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
             throw Exception;
@@ -37,7 +37,7 @@ public interface ExprNodeInterface extends JottTree{
         {
             return left;
         }
-        OpNode op = new OpNode(curToken);
+        OpNode op = OpNode.parse(tokens);
         OperandNode right = OperandNode.parse(tokens);
         return new ExprNode(left, op, right);
     };

@@ -18,7 +18,7 @@ public class ElseNode implements JottTree {
 
     public static ElseNode parse(Stack<Token> tokens) throws Exception {
         Token next = tokens.peek();
-        if (next.getTokenType() != TokenType.ID_KEYWORD | next.getToken() != "Else") {
+        if (next.getTokenType() != TokenType.ID_KEYWORD | !next.getToken().equals("Else")) {
             return new ElseNode();
         }
         // undeclared else - the next keyword is Else and an ID.

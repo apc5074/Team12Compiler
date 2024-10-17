@@ -16,17 +16,17 @@ public class OperandNode implements ExprNodeInterface {
     {
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("The stack is empty.");
         }
         Token iToken = tokens.peek();
 
-        if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
-            throw Exception;
-        }
+        /*if (iToken.getTokenType() == TokenType.ID_KEYWORD) {
+            throw new Exception("Invalid Token Type (Expected ID_KEYWORD), at line " + iToken.getLineNum() + iToken.getToken());
+        }*/
         if(!(iToken.getTokenType() == TokenType.NUMBER|| iToken.getTokenType() == TokenType.ID_KEYWORD ||
-        iToken.getTokenType() == TokenType.FC_HEADER))
+        iToken.getTokenType() == TokenType.FC_HEADER || iToken.getTokenType() == TokenType.ID_KEYWORD))
         {
-            throw Exception;
+            throw new Exception("Invalid Token Type (Expected FC_HEADER, NUMBER, ID_KEYWORD), got "+iToken.getTokenType());
         }
         tokens.pop();
         return new OperandNode(iToken);

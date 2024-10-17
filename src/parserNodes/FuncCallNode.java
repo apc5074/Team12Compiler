@@ -26,8 +26,10 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         }
         tokens.pop();
 
+        // parses the function name
         IdNode id = IdNode.parse(tokens);
 
+        // checks for L_bracket (parameters begin after)
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.L_BRACKET) {
             System.err.println("Expected left bracket, got " + toke.getTokenType());
@@ -35,12 +37,12 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         }
         tokens.pop();
 
+        // loads a list of parameters.
         ParamNode args = ParamNode.parse(tokens);
 
         toke = tokens.peek();
         if (toke.getTokenType() != TokenType.R_BRACKET) {
-            System.err.println("Expected right bracket, got " + toke.getTokenType());
-            throw Exception;
+            throw new Exception("Syntax Error:\nExpected right bracket at line, got " + toke.getToken() + "\n" + toke.getLineNum());
         }
         tokens.pop();
         toke = tokens.peek();

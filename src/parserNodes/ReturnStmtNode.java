@@ -21,23 +21,23 @@ public class ReturnStmtNode implements JottTree{
         {
             throw Exception;
         }
-        Token curToken = tokens.get(0);
-        if (curToken.getToken() == "Return")
+        Token curToken = tokens.peek();
+        if (curToken.getToken().equals("Return"))
         {
             tokens.pop();
         }
         else
         {
-            return null;
+            throw new Exception("Syntax Error\nReturn expected at line\n" + curToken.getLineNum());
         }
         ExprNodeInterface expression = ExprNodeInterface.parse(tokens);
-        if (tokens.peek().getToken() == ";")
+        if (tokens.peek().getToken().equals(";"))
         {
             tokens.pop();
         }
         else
         {
-            throw Exception;
+            throw new Exception("Missing semicolong at line\n"+tokens.peek().getLineNum());
         }
         return new ReturnStmtNode(expression);
 

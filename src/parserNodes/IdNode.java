@@ -8,8 +8,6 @@ import provided.TokenType;
 
 public class IdNode implements JottTree{
 
-    private static final Exception Exception = null;
-
     private Token idToken;
 
     public IdNode(Token idToken)
@@ -20,12 +18,12 @@ public class IdNode implements JottTree{
     public static IdNode parse(Stack<Token> tokens) throws Exception {    
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception("Unexpected EOF");
         }    
         Token idToken = tokens.peek();
         if (idToken.getTokenType() != TokenType.ID_KEYWORD)
         {
-            throw Exception;
+            throw new Exception("Syntax error\nInvalid token type at\n"  + idToken.getLineNum());
         }    
         return new IdNode(tokens.pop());
     }

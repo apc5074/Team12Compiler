@@ -13,8 +13,10 @@ public class VarDec implements JottTree {
     }
 
     public static VarDec parse(Stack<Token> tokens) throws Exception {
-        IdNode idNode = IdNode.parse(tokens);
+        
         TypeNode typeNode = TypeNode.parse(tokens);
+        System.out.println("ok with typing");
+        IdNode idNode = IdNode.parse(tokens);
 
         return new VarDec(typeNode, idNode);
     }

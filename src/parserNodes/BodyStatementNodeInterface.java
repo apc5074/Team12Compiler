@@ -10,7 +10,7 @@ public interface BodyStatementNodeInterface extends JottTree{
 
     Exception Exception = null;
 
-    public static BodyStatementNodeInterface parse(Stack<Token> tokens) throws java.lang.Exception{
+    public static BodyStatementNodeInterface parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
             throw Exception;

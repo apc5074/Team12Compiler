@@ -10,7 +10,7 @@ public class NumberNode implements JottTree {
         this.token = number;
     }
 
-    public static NumberNode parse(Stack<Token> tokens) {
+    public static NumberNode parse(Stack<Token> tokens) throws Exception{
         if (tokens.size() == 0) {
             System.err.println("Expected number token, got end of file.");
             return null;
