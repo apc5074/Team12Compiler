@@ -34,26 +34,26 @@ public class FuncDefNode implements JottTree {
     public static FuncDefNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.empty())
         {
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected a function definition but file ended.");
         }
 
         if(!tokens.peek().getToken().equals("Def"))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \"Def\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
 
         IdNode name = IdNode.parse(tokens);
 
         if(!(tokens.peek().getToken().equals("[")))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \"[\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
         FuncDefParams params = FuncDefParams.parse(tokens);
 
         if(!tokens.peek().getToken().equals("]"))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \"]\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
         
         if(!tokens.peek().getToken().equals(":"))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \":\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
         TypeNode returnType = null;
         boolean isVoid = false;
@@ -65,12 +65,12 @@ public class FuncDefNode implements JottTree {
         }
 
         if(!tokens.peek().getToken().equals("{"))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \"{\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
         FuncBodyNode body = FuncBodyNode.parse(tokens);
         
         if (!tokens.peek().getToken().equals("}"))
-            throw Exception;
+            throw new Exception ("Syntax Error \n Expected \"}\" Got \"" + tokens.peek().getToken() + "\" at " + tokens.peek().getFilename() + ":" + tokens.peek().getLineNum());
         tokens.pop();
         if (isVoid) {
             return new FuncDefNode(name, params, body);
@@ -107,3 +107,4 @@ public class FuncDefNode implements JottTree {
     }
 
 }
+
