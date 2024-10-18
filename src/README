@@ -1,6 +1,14 @@
+Phase 1:
 This file contains provided code, testers, and test cases.
 
 provided should be a top level package in your src directory
 JottParserTester and JottTokenizerTester classes should be in a package call testers.
 
 the testCases directories should be in the working directory of your project. 
+
+Phase 2:
+The folder parserNodes has all the provided nodes required by the parser. 
+
+Based on previous feedback, we have now submitted only the source files
+as requested on the project outline document. 
+
