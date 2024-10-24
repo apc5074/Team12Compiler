@@ -29,7 +29,7 @@ public class BodyNode implements JottTree{
     {
         if (tokens.empty())
         {
-            throw new Exception ("Syntax Error \n Expected a function body but file ended.");
+            throw new Exception ("Syntax Error: \n Expected a function body but file ended.");
         }
         ArrayList<BodyStatementNodeInterface> bodyStatements = new ArrayList<BodyStatementNodeInterface>();
         Token curToken = tokens.peek();

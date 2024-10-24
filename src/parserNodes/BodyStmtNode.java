@@ -1,7 +1,6 @@
 package parserNodes;
 
 public class BodyStmtNode implements BodyStatementNodeInterface {
-
     private BodyStatementNodeInterface bn;
 
     public BodyStmtNode(BodyStatementNodeInterface bn)

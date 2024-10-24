@@ -4,8 +4,6 @@ import provided.*;
 
 
 public class AsmtNode implements BodyStatementNodeInterface {
-    private static final Exception Exception = null;
-
     private Token idToken;
     private ExprNodeInterface expr;
 

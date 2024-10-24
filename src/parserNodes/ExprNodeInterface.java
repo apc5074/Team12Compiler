@@ -8,8 +8,6 @@ import provided.TokenType;
 
 public interface ExprNodeInterface extends JottTree{
 
-    Exception Exception = null;
-
     public static ExprNodeInterface parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {

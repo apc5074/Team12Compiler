@@ -3,7 +3,7 @@ import java.util.Stack;
 import provided.*;
 
 public class ExprNode implements ExprNodeInterface{
-    private OperandNode left;;
+    private OperandNode left;
     private OpNode op;
     private OperandNode right;
     private Token toke;
