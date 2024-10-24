@@ -22,10 +22,10 @@ public class SemanticException extends Exception {
     public String toString() {
         if(fileName == null)
         {
-            return "Semantic Error:/n"+ reason + "/n";
+            return "Semantic Error:\n"+ reason + "\n";
         }
         else {
-            return "Semantic Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+            return "Semantic Error:\n"+ reason + "\n" + fileName +".jott:"+lineNumber;
         }
     }
 }

@@ -21,10 +21,10 @@ public class SyntaxException extends Exception {
     public String toString() {
         if(fileName == null)
         {
-            return "Syntax Error:/n"+ reason + "/n";
+            return "Syntax Error:\n"+ reason + "\n";
         }
         else {
-            return "Syntax Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+            return "Syntax Error:\n"+ reason + "\n" + fileName +".jott:"+lineNumber;
         }
     }
 }
