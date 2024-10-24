@@ -33,8 +33,7 @@ public class OpNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO No special validation for just the operator, but can ensure it's valid
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        return true;
     }
 
     @Override
