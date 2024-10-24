@@ -9,13 +9,18 @@ public class FuncDefParams implements JottTree{
 
     private TypeNode type;
     private IdNode id;
-    private static ArrayList<FuncDefParams_t> funcDefParams_t;
+    private ArrayList<FuncDefParams_t> funcDefParams_t;
 
     // Constructor to initialize a FuncDefParam with type and identifier
     public FuncDefParams(IdNode id, TypeNode type, ArrayList<FuncDefParams_t> funcDefParams_t) {
         this.id = id;
         this.type = type;
         this.funcDefParams_t = funcDefParams_t; 
+    }
+    public FuncDefParams(IdNode id, TypeNode type) {
+        this.id = id;
+        this.type = type;
+        this.funcDefParams_t = null;
     }
 
      public static FuncDefParams parse(Stack<Token> tokens) throws Exception {
@@ -46,16 +51,19 @@ public class FuncDefParams implements JottTree{
                 arrayfuncDefParams_t.add(FuncDefParams_t.parse(tokens));
                 curToken = tokens.peek();
             }
-            return new FuncDefParams(idNode, typeNode, funcDefParams_t);
+            return new FuncDefParams(idNode, typeNode, arrayfuncDefParams_t);
 
         }
     
-        return new FuncDefParams(idNode, typeNode, funcDefParams_t);
+        return new FuncDefParams(idNode, typeNode);
     }
 
     @Override
     public String convertToJott() {
         String convertedToJott = id.convertToJott() + " : " + type.convertToJott();
+        if (funcDefParams_t == null) {
+            return convertedToJott;
+        }
         if (funcDefParams_t == null) {
             return convertedToJott;
         }

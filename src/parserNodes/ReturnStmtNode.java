@@ -6,8 +6,6 @@ import provided.Token;
 
 public class ReturnStmtNode implements JottTree{
 
-    private static final Exception Exception = null;
-
     private ExprNodeInterface expressionNode;
 
     public ReturnStmtNode(ExprNodeInterface exrpessionNode)

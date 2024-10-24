@@ -47,7 +47,7 @@ public class ElseIfNode implements JottTree {
 
     @Override
     public String convertToJott() {
-        return "Else { " + body.convertToJott() + " }";
+        return "Elseif [" + expr.convertToJott() + "]{ " + body.convertToJott() + " }";
     }
 
     @Override
