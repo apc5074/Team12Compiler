@@ -13,6 +13,7 @@ public class ExprNode implements ExprNodeInterface{
         this.left = left;
         this.op = op;
         this.right = right;
+        toke = null;
     }
 
     public ExprNode (Token toke) {
@@ -53,6 +54,9 @@ public class ExprNode implements ExprNodeInterface{
 
     @Override
     public String convertToJott() {
+        if (toke != null) {
+            return toke.getToken();
+        }
         return left.convertToJott() + " " + op.convertToJott() + " " + right.convertToJott();
     }
     

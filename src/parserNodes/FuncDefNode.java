@@ -6,8 +6,6 @@ import provided.Token;
 import provided.TokenType;
 
 public class FuncDefNode implements JottTree {
-
-    private static final Exception Exception = null;
     private IdNode funcName;
     private FuncDefParams params;
     private TypeNode returnType;

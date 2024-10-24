@@ -3,7 +3,6 @@ import provided.*;
 import java.util.Stack;
 
 public class OpNode implements JottTree {
-    private static final Exception Exception = null;
     private Token opToken;
 
     public OpNode(Token opToken) {

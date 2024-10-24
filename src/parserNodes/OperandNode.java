@@ -3,7 +3,6 @@ import java.util.Stack;
 import provided.*;
 
 public class OperandNode implements ExprNodeInterface {
-    private static final Exception Exception = null;
 
     private Token numToken;
     private Token idToken;

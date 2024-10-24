@@ -174,6 +174,7 @@ public class JottParserTester {
         System.out.println("Running Test: " + test.testName);
         String orginalJottCode;
         try {
+            System.out.println(Paths.get("parserTestCases/" + test.fileName));
             orginalJottCode = new String(
                     Files.readAllBytes(Paths.get("parserTestCases/" + test.fileName)));
         } catch (IOException e) {

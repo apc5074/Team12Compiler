@@ -21,8 +21,6 @@ public class ProgramNode implements JottTree {
             throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
         Stack<Token> tokenStack = new Stack<>();
-        // TODO: Figure out if this is supposed to be reversed or not.
-        // I don't think it should be, but it was already reversed here. - Gabe
         Collections.reverse(tokens);
         tokenStack.addAll(tokens);
         ArrayList<FuncDefNode> functionDefNodes = new ArrayList<>();
