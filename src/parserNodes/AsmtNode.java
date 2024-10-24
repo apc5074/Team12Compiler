@@ -1,5 +1,7 @@
 package parserNodes;
 import java.util.Stack;
+
+import helpers.SyntaxException;
 import provided.*;
 
 
@@ -18,21 +20,18 @@ public class AsmtNode implements BodyStatementNodeInterface {
     {
         if (tokens.empty())
         {
-            throw new Exception("Syntax Error\n" + 
-                                "Token list is empty.\n");        }
+            throw new SyntaxException("Token list is empty.");      
+        }
         Token iToken = tokens.peek();
         if (iToken.getTokenType() != TokenType.ID_KEYWORD)
         {
-            throw new Exception("Syntax Error\n" + 
-                                "Expected ID Keyword token but got\n" +
-                                tokens.peek().getLineNum());
+
+            throw new SyntaxException(tokens.peek().getLineNum(),tokens.peek().getFilename(),"Expected ID Keyword token but got " + tokens.peek().getTokenType());
         }
         tokens.pop();
         if (tokens.peek().getTokenType() != TokenType.ASSIGN)
         {
-            throw new Exception("Syntax Error:\n" + 
-                                "Expected Assign Type token but got\n " + 
-                                tokens.peek().getLineNum());
+            throw new SyntaxException(tokens.peek().getLineNum(),tokens.peek().getFilename(),"Expected Assign Type token but got " + tokens.peek().getTokenType());
         }
         tokens.pop();
         ExprNodeInterface expr = ExprNodeInterface.parse(tokens);
@@ -40,9 +39,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
             tokens.pop();
             return new AsmtNode(iToken, expr);
         } else {
-            throw new Exception("Syntax Error:\n " + 
-                                "Line does not end with semicolon at line\n" + 
-                                tokens.peek().getLineNum());
+            throw new SyntaxException(tokens.peek().getLineNum(),tokens.peek().getFilename(),"Line does not end with semicolon.");
         }
     }
 
