@@ -12,10 +12,21 @@ public class SemanticException extends Exception {
         this.reason = reason;
     }
 
+    public SemanticException(String reason)
+    {
+        this.reason = reason;
+    }
+
     // Override toString to provide a detailed error message
     @Override
     public String toString() {
-        return "Semantic Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+        if(fileName == null)
+        {
+            return "Semantic Error:/n"+ reason + "/n";
+        }
+        else {
+            return "Semantic Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+        }
     }
 }
 

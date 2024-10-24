@@ -12,10 +12,20 @@ public class SyntaxException extends Exception {
         this.reason = reason;
     }
 
+    public SyntaxException(String reason) {
+        this.reason = reason;
+    }
+
     // Override toString to provide a detailed error message
     @Override
     public String toString() {
-        return "Syntax Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+        if(fileName == null)
+        {
+            return "Syntax Error:/n"+ reason + "/n";
+        }
+        else {
+            return "Syntax Error:/n"+ reason + "/n" + fileName +".jott:"+lineNumber;
+        }
     }
 }
 
