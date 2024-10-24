@@ -31,7 +31,7 @@ public class BoolNode implements ExprNodeInterface {
 
     @Override
     public boolean validateTree() {
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        return true;
     }
 
     @Override
