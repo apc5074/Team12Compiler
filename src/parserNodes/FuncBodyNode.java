@@ -48,8 +48,12 @@ public class FuncBodyNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        for (VarDec v: varDec) {
+            if (v.validateTree() == false) {
+                return false;
+            }
+        }
+        return body.validateTree();
     }
 
     @Override
