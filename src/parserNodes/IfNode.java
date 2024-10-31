@@ -86,7 +86,18 @@ public class IfNode implements BodyStatementNodeInterface {
     @Override
     public boolean validateTree() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        for (ElseIfNode i: elifList) {
+            if (i.validateTree() == false) {
+                return false;
+            }
+        }
+        if (content.validateTree() == false) {
+            return false;
+        }
+        if (elseNode.validateTree() == false) {
+            return false;
+        }
+        return true;
     }
 
     @Override
