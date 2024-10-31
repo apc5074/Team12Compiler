@@ -44,8 +44,7 @@ public class ElseNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        return body.validateTree();
     }
 
     @Override
