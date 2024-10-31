@@ -56,8 +56,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        return (id.validateTree() && args.validateTree());
     }
 
     @Override
