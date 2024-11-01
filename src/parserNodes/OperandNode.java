@@ -7,7 +7,7 @@ public class OperandNode implements ExprNodeInterface {
     private Token numToken;
     private Token idToken;
     private Boolean neg;
-    private FuncCallNode funcCall;
+    private FuncCallNode funcCall = null;
 
     public OperandNode(FuncCallNode t) {
         funcCall = t;
@@ -66,7 +66,13 @@ public class OperandNode implements ExprNodeInterface {
     @Override
     public boolean validateTree() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        if (funcCall != null) {
+            // funcCall must be found in symtab if exists.
+            throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        } else {
+            // if funcCall does not exist, it is always true.
+            return true;
+        }
     }
 
     @Override
