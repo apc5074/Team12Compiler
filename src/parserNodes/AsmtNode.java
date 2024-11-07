@@ -50,8 +50,13 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        boolean validate = true;
+
+        if(validateTree(idToken) && validateTree(expr))
+        {
+            if(idToken.getToken().getClass().getSimpleName().equals())
+        }
+
     }
 
     @Override
