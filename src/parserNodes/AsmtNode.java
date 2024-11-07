@@ -52,9 +52,12 @@ public class AsmtNode implements BodyStatementNodeInterface {
     public boolean validateTree() {
         boolean validate = true;
 
-        if(validateTree(idToken) && validateTree(expr))
+        if(idToken.validateTree() && expr.validateTree())
         {
-            if(idToken.getToken().getClass().getSimpleName().equals())
+            if(Double.parseDouble(idToken.getToken()) % 1 == 0 && ) // checks if int if 0
+            {
+
+            }
         }
 
     }
