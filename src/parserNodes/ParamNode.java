@@ -55,7 +55,16 @@ public class ParamNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        SymbolTable.addVar(, null)
+        boolean validParams = true;
+        for (ParamNodeT prm: parameters)
+        {
+            if (!prm.validateTree())
+            {
+                validParams = false;
+                break;
+            }
+        }
+        return exprNode.validateTree() && validParams;
     }
 
     @Override
