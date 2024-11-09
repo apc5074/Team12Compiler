@@ -36,7 +36,7 @@ public class VarDec implements JottTree {
 
     @Override
     public boolean validateTree() {
-        
+        SymbolTable.
         return IDNode.validateTree() && typeNode.validateTree();
     }
 
