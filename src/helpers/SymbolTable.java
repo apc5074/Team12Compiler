@@ -18,7 +18,7 @@ public class SymbolTable {
 
 
 
-    public boolean addFunction(String fName, List<TypeNode> types)
+    public static boolean addFunction(String fName, List<TypeNode> types)
     {
         if (!(SymTbl.get(scope).fSymTabl.get(fName) == null))
         {
@@ -31,7 +31,7 @@ public class SymbolTable {
         }
     }
 
-    public boolean addVar(String vName, TypeNode type)
+    public static boolean addVar(String vName, TypeNode type)
     {
         if (!(SymTbl.get(scope).vSymTabl.get(vName) == null))
         {
@@ -44,23 +44,23 @@ public class SymbolTable {
         }
     }
 
-    public TypeNode getFuncReturnType(String fName)
+    public static TypeNode getFuncReturnType(String fName)
     {
         List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
         return args.get(args.size()-1);
     }
 
-    public List<TypeNode> getFuncArgTypes(String fName) {
+    public static List<TypeNode> getFuncArgTypes(String fName) {
         List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
         return args.subList(0, args.size() - 1);
     }
 
-    public TypeNode getVarType(String vName)
+    public static TypeNode getVarType(String vName)
     {
         return SymTbl.get(scope).vSymTabl.get(vName);
     }
 
-    public void setScope(String scope)
+    public static void setScope(String scope)
     {
         SymbolTable.scope = scope;
     }
