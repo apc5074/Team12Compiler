@@ -42,4 +42,6 @@ public interface ExprNodeInterface extends JottTree{
 
     public String convertToJott();
 
+    public String getExprType();
+
 }

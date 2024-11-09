@@ -12,6 +12,11 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         args = params;
     }
 
+    public String getFuncName()
+    {
+        return id.convertToJott();
+    }
+
     public static FuncCallNode parse(Stack<Token> tokens) throws Exception {
         if (tokens.isEmpty()) {
             throw new Exception("Syntax error:\nExpected FuncCallNode but no tokens left");
