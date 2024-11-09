@@ -46,7 +46,8 @@ public class SymbolTable {
 
     public TypeNode getFuncReturnType(String fName)
     {
-        return SymTbl.get(scope).fSymTabl.get(fName).getLast();
+        List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
+        return args.get(args.size()-1);
     }
 
     public List<TypeNode> getFuncArgTypes(String fName) {
