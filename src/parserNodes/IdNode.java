@@ -28,6 +28,10 @@ public class IdNode implements JottTree{
         return new IdNode(tokens.pop());
     }
 
+    public Token getIdToken() {
+        return idToken;
+    }
+
     @Override
     public String convertToJott() {
         return this.idToken.getToken();

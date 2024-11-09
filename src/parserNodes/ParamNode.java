@@ -1,6 +1,9 @@
 package parserNodes;
 import provided.*;
 import java.util.Stack;
+
+import helpers.SymbolTable;
+
 import java.util.ArrayList;
 
 public class ParamNode implements JottTree {
@@ -52,8 +55,16 @@ public class ParamNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        boolean validParams = true;
+        for (ParamNodeT prm: parameters)
+        {
+            if (!prm.validateTree())
+            {
+                validParams = false;
+                break;
+            }
+        }
+        return exprNode.validateTree() && validParams;
     }
 
     @Override

@@ -44,6 +44,16 @@ public class SymbolTable {
         }
     }
 
+    public static boolean varDefined(String vName)
+    {
+        return SymTbl.get(scope).vSymTabl.get(vName) != null;
+    }
+
+    public static boolean funcDefined(String fName)
+    {
+        return SymTbl.get(scope).fSymTabl.get(fName) != null;
+    }
+
     public static TypeNode getFuncReturnType(String fName)
     {
         List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
