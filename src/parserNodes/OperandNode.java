@@ -67,12 +67,9 @@ public class OperandNode implements ExprNodeInterface {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
         if (funcCall != null) {
-            // funcCall must be found in symtab if exists.
             throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
         } else {
-            // if funcCall does not exist, it is always true.
             return true;
         }
     }

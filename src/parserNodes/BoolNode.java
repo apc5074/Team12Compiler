@@ -39,4 +39,9 @@ public class BoolNode implements ExprNodeInterface {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+
+    @Override
+    public String getExprType() {
+        return "Boolean";
+    }
 }

@@ -54,21 +54,24 @@ public class ExprNode implements ExprNodeInterface{
             return true;
         }
         else {
-            if((left.getExprType().equals("Double") && (right.getExprType().equals("Integer")|| right.getExprType().equals("Double")))
-            || (right.getExprType().equals("Double") && (left.getExprType().equals("Integer")|| left.getExprType().equals("Double"))))
+            if(left.validateTree() && right.validateTree())
             {
-                type = "Double";
-                return true;
-            }
-            else if (left.getExprType().equals("Integer") && right.getExprType().equals("Integer"))
-            {
-                type = "Integer";
-                return true;
-            }
-            else if(left.getExprType().equals("String") && right.getExprType().equals("String"))
-            {
-                type = "String";
-                return true;
+                if((left.getExprType().equals("Double") && (right.getExprType().equals("Integer")|| right.getExprType().equals("Double")))
+                || (right.getExprType().equals("Double") && (left.getExprType().equals("Integer")|| left.getExprType().equals("Double"))))
+                {
+                    type = "Double";
+                    return true;
+                }
+                else if (left.getExprType().equals("Integer") && right.getExprType().equals("Integer"))
+                {
+                    type = "Integer";
+                    return true;
+                }
+                else if(left.getExprType().equals("String") && right.getExprType().equals("String"))
+                {
+                    type = "String";
+                    return true;
+                }
             }
 
             return false;

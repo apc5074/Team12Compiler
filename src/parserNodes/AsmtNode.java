@@ -51,9 +51,8 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
-        boolean validate = true;
 
-        if(idToken.validateTree() && expr.validateTree())
+        if(expr.validateTree()) // and idToken exists in symboltable
         {
             if(SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("Integer") &&  expr.getExprType().equals("Integer"))
             {
@@ -71,6 +70,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
             return false;
         }
 
+        return false;
     }
 
     @Override
