@@ -54,12 +54,13 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
         if(idToken.validateTree() && expr.validateTree())
         {
-            if(Double.parseDouble(idToken.getToken()) % 1 == 0 && ) // checks if int if 0
+            if(symtable.getType(idToken).equals(symtable.getType(expr))) // checks if int if 0
             {
-
+                return true;
             }
         }
 
+        return false;
     }
 
     @Override
