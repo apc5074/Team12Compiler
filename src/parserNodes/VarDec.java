@@ -1,5 +1,7 @@
 package parserNodes;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.*;
 
 public class VarDec implements JottTree {
@@ -34,7 +36,8 @@ public class VarDec implements JottTree {
 
     @Override
     public boolean validateTree() {
-        return true;
+        
+        return IDNode.validateTree() && typeNode.validateTree();
     }
 
     @Override

@@ -1,10 +1,8 @@
 package helpers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.w3c.dom.Node;
 
 import parserNodes.TypeNode;
 
