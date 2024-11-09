@@ -12,37 +12,58 @@ public class SymbolTable {
 
     public class SymTabs {
         public HashMap<String,TypeNode>  vSymTabl;
-        public HashMap<String,List<TypeNode>> fSymTabl;
-
+        public HashMap<String,List<TypeNode>> fSymTabl; 
     }
 
     public static HashMap<String, SymTabs> SymTbl = new HashMap<>();
+    public static String scope;
 
 
 
     public boolean addFunction(String fName, List<TypeNode> types)
     {
-        return false;
+        if (!(SymTbl.get(scope).fSymTabl.get(fName) == null))
+        {
+            return false;
+        }
+        else
+        {
+            SymTbl.get(scope).fSymTabl.put(fName, types);
+            return true;
+        }
     }
 
     public boolean addVar(String vName, TypeNode type)
     {
-        return true;
+        if (!(SymTbl.get(scope).vSymTabl.get(vName) == null))
+        {
+            return false;
+        }
+        else
+        {
+            SymTbl.get(scope).vSymTabl.put(vName, type);
+            return true;
+        }
     }
 
     public TypeNode getFuncReturnType(String fName)
     {
-        return null;
+        return SymTbl.get(scope).fSymTabl.get(fName).getLast();
     }
 
-    public List<TypeNode> getFuncArgTypes(String fName)
-    {
-        return null;
+    public List<TypeNode> getFuncArgTypes(String fName) {
+        List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
+        return args.subList(0, args.size() - 1);
     }
 
     public TypeNode getVarType(String vName)
     {
-        return null;
+        return SymTbl.get(scope).vSymTabl.get(vName);
+    }
+
+    public void setScope(String scope)
+    {
+        SymbolTable.scope = scope;
     }
 
 }
