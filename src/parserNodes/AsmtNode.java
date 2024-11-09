@@ -1,6 +1,7 @@
 package parserNodes;
 import java.util.Stack;
 
+import helpers.SymbolTable;
 import helpers.SyntaxException;
 import provided.*;
 
@@ -50,13 +51,26 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
-        boolean validate = true;
 
-        if(validateTree(idToken) && validateTree(expr))
+        if(expr.validateTree()) // and idToken exists in symboltable
         {
-            if(idToken.getToken().getClass().getSimpleName().equals())
+            if(SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("Integer") &&  expr.getExprType().equals("Integer"))
+            {
+                return true;
+            }
+            else if (SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("Double") &&  (expr.getExprType().equals("Integer") || expr.getExprType().equals("Double")))
+            {
+                return true;
+            }
+            else if(SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("String") &&  expr.getExprType().equals("String"))
+            {
+                return true;
+            }
+
+            return false;
         }
 
+        return false;
     }
 
     @Override

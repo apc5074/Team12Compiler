@@ -1,5 +1,7 @@
 package parserNodes;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.*;
 
 public class ExprNode implements ExprNodeInterface{
@@ -7,6 +9,8 @@ public class ExprNode implements ExprNodeInterface{
     private OpNode op;
     private OperandNode right;
     private Token toke;
+    private boolean onlyID;
+    private String type;
 
     public ExprNode(OperandNode left, OpNode op, OperandNode right)
     {
@@ -14,10 +18,12 @@ public class ExprNode implements ExprNodeInterface{
         this.op = op;
         this.right = right;
         toke = null;
+        onlyID = false;
     }
 
     public ExprNode (Token toke) {
         this.toke = toke;
+        onlyID = true;
     }
 
     public static ExprNode parse(Stack<Token> tokens) throws Exception {
@@ -42,8 +48,34 @@ public class ExprNode implements ExprNodeInterface{
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        if(onlyID)
+        {
+            type = SymbolTable.getVarType(toke.getToken()).getTypeName();
+            return true;
+        }
+        else {
+            if(left.validateTree() && right.validateTree())
+            {
+                if((left.getExprType().equals("Double") && (right.getExprType().equals("Integer")|| right.getExprType().equals("Double")))
+                || (right.getExprType().equals("Double") && (left.getExprType().equals("Integer")|| left.getExprType().equals("Double"))))
+                {
+                    type = "Double";
+                    return true;
+                }
+                else if (left.getExprType().equals("Integer") && right.getExprType().equals("Integer"))
+                {
+                    type = "Integer";
+                    return true;
+                }
+                else if(left.getExprType().equals("String") && right.getExprType().equals("String"))
+                {
+                    type = "String";
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     @Override
@@ -58,6 +90,13 @@ public class ExprNode implements ExprNodeInterface{
             return toke.getToken();
         }
         return left.convertToJott() + " " + op.convertToJott() + " " + right.convertToJott();
+    }
+
+
+    @Override
+    public String getExprType()
+    {
+        return type;
     }
     
 }
