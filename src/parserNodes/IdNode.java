@@ -1,7 +1,6 @@
 package parserNodes;
 
 import java.util.Stack;
-
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -26,6 +25,10 @@ public class IdNode implements JottTree{
             throw new Exception("Syntax error:\nExpected id but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }    
         return new IdNode(tokens.pop());
+    }
+
+    public Token getIdToken() {
+        return idToken;
     }
 
     @Override
