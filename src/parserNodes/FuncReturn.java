@@ -43,13 +43,7 @@ public class FuncReturn implements JottTree {
 
     @Override
     public boolean validateTree() {
-        if(voided)
-        {
-            
-        }
-        else {
-
-        }
+        return true;
     }
 
     @Override
