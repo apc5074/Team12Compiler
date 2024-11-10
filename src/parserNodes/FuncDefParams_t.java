@@ -54,4 +54,9 @@ public class FuncDefParams_t implements JottTree {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+
+    public TypeNode getType()
+    {
+        return type;
+    }
 }
