@@ -1,5 +1,6 @@
 package parserNodes;
 
+import helpers.SymbolTable;
 import java.util.ArrayList;
 import java.util.Stack;
 import provided.JottTree;
@@ -10,7 +11,7 @@ public class FuncDefParams implements JottTree{
     private TypeNode type;
     private IdNode id;
     private ArrayList<FuncDefParams_t> funcDefParams_t;
-
+    
     // Constructor to initialize a FuncDefParam with type and identifier
     public FuncDefParams(IdNode id, TypeNode type, ArrayList<FuncDefParams_t> funcDefParams_t) {
         this.id = id;
