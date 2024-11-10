@@ -67,10 +67,18 @@ public class OperandNode implements ExprNodeInterface {
 
     @Override
     public boolean validateTree() {
-        if (funcCall != null) {
-            throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
-        } else {
+        if(idToken != null)
+        {
+            return SymbolTable.varDefined(idToken.getToken());
+        }
+        else if (funcCall != null) {
+            return SymbolTable.funcDefined(funcCall.getFuncName());
+        }
+        else if (neg){
             return true;
+        } 
+        else {
+            return false;
         }
     }
 
