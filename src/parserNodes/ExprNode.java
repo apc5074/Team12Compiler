@@ -48,7 +48,7 @@ public class ExprNode implements ExprNodeInterface{
 
     @Override
     public boolean validateTree() {
-        if(onlyID)
+        if(onlyID && SymbolTable.varDefined(toke.getToken()))
         {
             type = SymbolTable.getVarType(toke.getToken()).getTypeName();
             return true;

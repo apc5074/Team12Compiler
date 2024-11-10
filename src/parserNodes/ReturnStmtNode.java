@@ -1,6 +1,8 @@
 package parserNodes;
 
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 
@@ -48,8 +50,15 @@ public class ReturnStmtNode implements JottTree{
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        if(expressionNode.validateTree())
+        {
+            if(SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName().equals(expressionNode.getExprType()))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
