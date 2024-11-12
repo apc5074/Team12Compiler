@@ -2,7 +2,7 @@ package helpers;
 
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Stack;
 
 import parserNodes.TypeNode;
 
@@ -13,6 +13,7 @@ public class SymbolTable {
     public static HashMap<String, HashMap<String,TypeNode>> vSymTbl = new HashMap<>();
     public static HashMap<String,List<TypeNode>> fSymTbl = new HashMap<>();
     public static String scope;
+    public static Stack<String> scopeStack = new Stack<>();
 
 
 
@@ -80,6 +81,13 @@ public class SymbolTable {
 
     public static void setScope(String scope)
     {
+        SymbolTable.scope = scope;
+        scopeStack.add(scope);
+    }
+
+    public static void exitScope()
+    {
+        String scope = scopeStack.pop();
         SymbolTable.scope = scope;
     }
 
