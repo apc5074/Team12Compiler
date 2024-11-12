@@ -1,6 +1,5 @@
 package parserNodes;
 import java.util.Stack;
-
 import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.*;

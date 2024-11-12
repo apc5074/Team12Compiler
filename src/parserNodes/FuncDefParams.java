@@ -1,6 +1,8 @@
 package parserNodes;
 
+import helpers.SymbolTable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
@@ -10,7 +12,8 @@ public class FuncDefParams implements JottTree{
     private TypeNode type;
     private IdNode id;
     private ArrayList<FuncDefParams_t> funcDefParams_t;
-
+    private List<TypeNode> types;
+    
     // Constructor to initialize a FuncDefParam with type and identifier
     public FuncDefParams(IdNode id, TypeNode type, ArrayList<FuncDefParams_t> funcDefParams_t) {
         this.id = id;
@@ -54,7 +57,7 @@ public class FuncDefParams implements JottTree{
             return new FuncDefParams(idNode, typeNode, arrayfuncDefParams_t);
 
         }
-    
+
         return new FuncDefParams(idNode, typeNode);
     }
 
@@ -84,6 +87,16 @@ public class FuncDefParams implements JottTree{
     public void execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    }
+
+    public List<TypeNode> getList()
+    {
+        for(int i = 0; i < funcDefParams_t.size(); i++)
+        {
+            types.add(funcDefParams_t.get(i).getType());
+        }
+
+        return types;
     }
 
 }
