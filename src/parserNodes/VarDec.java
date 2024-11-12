@@ -1,6 +1,9 @@
 package parserNodes;
 import java.util.Stack;
+import helpers.SemanticException;
+import helpers.SymbolTable;
 import provided.*;
+
 public class VarDec implements JottTree {
     private TypeNode typeNode;
     private IdNode IDNode;

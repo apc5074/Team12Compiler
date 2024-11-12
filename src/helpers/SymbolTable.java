@@ -16,6 +16,16 @@ public class SymbolTable {
 
 
 
+    public static boolean addScope(String name)
+    {
+        if (vSymTbl.get(name)!= null)
+        {
+            return false;
+        }
+        vSymTbl.put(name, new HashMap<>());
+        return true;
+    }
+    
     public static boolean addFunction(String fName, List<TypeNode> types)
     {
         if (!(fSymTbl.get(fName) == null))
