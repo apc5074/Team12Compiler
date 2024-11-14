@@ -46,7 +46,20 @@ public class FuncDefParams_t implements JottTree {
     @Override
     public boolean validateTree() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        // boolean notDefined = SymbolTable.addVar(id.getIdToken().getToken(), type);
+
+
+        // return id.validateTree() && type.validateTree() && notDefined;
+        // String typeName = type.getToken();
+
+        // if (!isValidTypeName(typeName)) {
+        //     throw new Exception(
+        //         "Semantic Error:\n" +
+        //         "Invalid type '" + typeName + "'\n" +
+        //         typeToken.getFilename() + ":" + typeToken.getLineNum()
+        //     );
+        // }
+        return true;
     }
 
     @Override

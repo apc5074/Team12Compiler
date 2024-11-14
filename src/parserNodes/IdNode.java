@@ -1,7 +1,6 @@
 package parserNodes;
 
 import java.util.Stack;
-
 import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
