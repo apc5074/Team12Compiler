@@ -9,8 +9,9 @@ import parserNodes.TypeNode;
 public class SymbolTable {
 
 
-
+    // stored as a dict in a dict: (fname, (vname, type)
     public static HashMap<String, HashMap<String,TypeNode>> vSymTbl = new HashMap<>();
+    // stored as a single dict: (fname, [param1, param2, ..., parami, return])
     public static HashMap<String,List<TypeNode>> fSymTbl = new HashMap<>();
     public static String scope;
     public static Stack<String> scopeStack = new Stack<>();
