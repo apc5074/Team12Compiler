@@ -72,4 +72,16 @@ public class ParamNode implements JottTree {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
+
+    public ArrayList<String> getArgTypes()
+    {
+        ArrayList<String> argTypes = new ArrayList<>();
+        argTypes.add(exprNode.getExprType());
+        for (ParamNodeT arg: parameters)
+        {
+            argTypes.add(arg.getExprNode().getExprType());
+        }
+        return argTypes;
+
+    }
 }
