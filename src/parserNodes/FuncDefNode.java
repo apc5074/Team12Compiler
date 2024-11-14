@@ -1,5 +1,6 @@
 package parserNodes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -98,12 +99,12 @@ public class FuncDefNode implements JottTree {
     @Override
     public boolean validateTree() {
         SymbolTable.addScope(funcName.getIdToken().getToken());
-
-        List<TypeNode> funcParams = params.getList();
+        List<TypeNode> funcParams = new ArrayList<>();
+        if (params != null) {
+            funcParams = params.getList();
+        }
         funcParams.add(returnType);
-
         SymbolTable.addFunction(funcName.getIdToken().getToken(), funcParams);
-
         return funcName.validateTree() && params.validateTree() && body.validateTree();
     }
 

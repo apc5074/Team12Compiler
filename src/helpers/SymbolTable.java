@@ -56,12 +56,12 @@ public class SymbolTable {
 
     public static boolean varDefined(String vName)
     {
-        return vSymTbl.get(scope).get(vName) != null;
+        return vSymTbl.containsKey(scope);
     }
 
     public static boolean funcDefined(String fName)
     {
-        return fSymTbl.get(fName) != null;
+        return fSymTbl.containsKey(scope);
     }
 
     public static TypeNode getFuncReturnType(String fName)
