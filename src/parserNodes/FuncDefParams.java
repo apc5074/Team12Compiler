@@ -78,7 +78,7 @@ public class FuncDefParams implements JottTree{
     }
 
     @Override
-    public boolean validateTree() throws Exception {
+    public boolean validateTree() {
         // TODO Auto-generated method stub
         boolean notDefined = SymbolTable.addVar(id.getIdToken().getToken(), type);
         if (funcDefParams_t != null) {
