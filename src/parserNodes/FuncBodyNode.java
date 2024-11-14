@@ -50,6 +50,8 @@ public class FuncBodyNode implements JottTree {
     public boolean validateTree() {
         for (VarDec v: varDec) {
             if (v.validateTree() == false) {
+                System.out.println("vardec failed validation?!?");
+                System.out.println(v.convertToJott());
                 return false;
             }
         }

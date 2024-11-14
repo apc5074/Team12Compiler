@@ -37,6 +37,9 @@ public class VarDec implements JottTree {
     @Override
     public boolean validateTree() {
         boolean notDefined = SymbolTable.addVar(IDNode.getIdToken().getToken(),typeNode);
+        if (!IDNode.validateTree()) {
+            System.out.println("LOOOOSER");
+        }
         return IDNode.validateTree() && typeNode.validateTree() && notDefined;
     }
 

@@ -43,12 +43,15 @@ public class SymbolTable {
 
     public static boolean addVar(String vName, TypeNode type)
     {
-        if (!(vSymTbl.get(scope).get(vName) == null))
+        if (vSymTbl.containsKey(scope) && vSymTbl.get(scope).containsKey(vName))
         {
             return false;
         }
         else
         {
+            if (!vSymTbl.containsKey(scope)) {
+                return false;
+            }
             vSymTbl.get(scope).put(vName, type);
             return true;
         }

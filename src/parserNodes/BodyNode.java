@@ -73,6 +73,7 @@ public class BodyNode implements JottTree{
 
     @Override
     public boolean validateTree() {
+        System.out.println("Hey! Look! Listen!");
         for (BodyStatementNodeInterface i: bodyStatements) {
             if (i.validateTree() == false) {
                 return false;

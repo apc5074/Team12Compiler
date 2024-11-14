@@ -52,6 +52,8 @@ public class ReturnStmtNode implements JottTree{
     public boolean validateTree() {
         if(expressionNode.validateTree())
         {
+            System.out.println(SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName());
+            System.out.println(expressionNode.getExprType());
             if(SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName().equals(expressionNode.getExprType()))
             {
                 return true;
