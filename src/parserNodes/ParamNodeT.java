@@ -9,6 +9,10 @@ public class ParamNodeT implements JottTree {
         exprNode = expression;
     }
 
+    public ExprNode getExprNode() {
+        return exprNode;
+    }
+
     public static ParamNodeT parse(Stack<Token> tokens) throws Exception{
         if (tokens.size() == 0) {
             throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
