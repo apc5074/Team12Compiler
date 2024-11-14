@@ -1,5 +1,8 @@
 package parserNodes;
+import java.util.ArrayList;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.*;
 
 public class FuncCallNode implements BodyStatementNodeInterface {
@@ -61,7 +64,16 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     
     @Override
     public boolean validateTree() {
-        return (id.validateTree() && args.validateTree());
+        if(SymbolTable.funcDefined(id.getIdToken().getToken()))
+        {
+            ArrayList<String> types = args.getTypes();
+            if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
+            {
+                return (id.validateTree() && args.validateTree());
+            }
+        }
+
+        return false;
     }
 
     @Override
