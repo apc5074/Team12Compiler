@@ -1,6 +1,9 @@
 package parserNodes;
 import java.util.Stack;
+import helpers.SemanticException;
+import helpers.SymbolTable;
 import provided.*;
+
 public class VarDec implements JottTree {
     private TypeNode typeNode;
     private IdNode IDNode;
@@ -33,8 +36,8 @@ public class VarDec implements JottTree {
 
     @Override
     public boolean validateTree() {
-        SymbolTable.
-        return IDNode.validateTree() && typeNode.validateTree();
+        boolean notDefined = SymbolTable.addVar(IDNode.getIdToken().getToken(),typeNode);
+        return IDNode.validateTree() && typeNode.validateTree() && notDefined;
     }
 
     @Override

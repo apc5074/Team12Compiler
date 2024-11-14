@@ -1,5 +1,7 @@
 package parserNodes;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.*;
 
 public class OperandNode implements ExprNodeInterface {
@@ -65,13 +67,18 @@ public class OperandNode implements ExprNodeInterface {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        if (funcCall != null) {
-            // funcCall must be found in symtab if exists.
-            throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
-        } else {
-            // if funcCall does not exist, it is always true.
+        if(idToken != null)
+        {
+            return SymbolTable.varDefined(idToken.getToken());
+        }
+        else if (funcCall != null) {
+            return SymbolTable.funcDefined(funcCall.getFuncName());
+        }
+        else if (neg){
             return true;
+        } 
+        else {
+            return false;
         }
     }
 
@@ -79,5 +86,27 @@ public class OperandNode implements ExprNodeInterface {
     public void execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    }
+
+    @Override
+    public String getExprType()
+    {
+        if(idToken != null)
+        {
+            return SymbolTable.getVarType(idToken.getToken()).getTypeName();
+        }
+        else if (numToken != null)
+        {
+            if(Integer.parseInt(numToken.getToken()) % 1 != 0)
+            {
+                return "Double";
+            }
+            else {
+                return "Integer";
+            }
+        }
+        else {
+            return SymbolTable.getVarType(funcCall.getFuncName()).getTypeName();
+        }
     }
 }

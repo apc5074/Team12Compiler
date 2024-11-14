@@ -1,6 +1,7 @@
 package parserNodes;
 
 import java.util.Stack;
+import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -38,7 +39,12 @@ public class IdNode implements JottTree{
 
     @Override
     public boolean validateTree() {
-        return true;
+        if(SymbolTable.varDefined(idToken.getToken()))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     @Override

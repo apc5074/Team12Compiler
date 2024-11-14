@@ -8,56 +8,75 @@ import parserNodes.TypeNode;
 
 public class SymbolTable {
 
-    public class SymTabs {
-        public HashMap<String,TypeNode>  vSymTabl;
-        public HashMap<String,List<TypeNode>> fSymTabl; 
-    }
 
-    public static HashMap<String, SymTabs> SymTbl = new HashMap<>();
+    // stored as a dict in a dict: (fname, (vname, type)
+    public static HashMap<String, HashMap<String,TypeNode>> vSymTbl = new HashMap<>();
+    // stored as a single dict: (fname, [param1, param2, ..., parami, return])
+    public static HashMap<String,List<TypeNode>> fSymTbl = new HashMap<>();
     public static String scope;
 
 
 
+    public static boolean addScope(String name)
+    {
+        if (vSymTbl.get(name)!= null)
+        {
+            return false;
+        }
+        vSymTbl.put(name, new HashMap<>());
+        return true;
+    }
+    
     public static boolean addFunction(String fName, List<TypeNode> types)
     {
-        if (!(SymTbl.get(scope).fSymTabl.get(fName) == null))
+        if (!(fSymTbl.get(fName) == null))
         {
             return false;
         }
         else
         {
-            SymTbl.get(scope).fSymTabl.put(fName, types);
+            fSymTbl.put(fName,types);
             return true;
         }
     }
 
     public static boolean addVar(String vName, TypeNode type)
     {
-        if (!(SymTbl.get(scope).vSymTabl.get(vName) == null))
+        if (!(vSymTbl.get(scope).get(vName) == null))
         {
             return false;
         }
         else
         {
-            SymTbl.get(scope).vSymTabl.put(vName, type);
+            vSymTbl.get(scope).put(vName, type);
             return true;
         }
     }
 
+    public static boolean varDefined(String vName)
+    {
+        return vSymTbl.get(scope).get(vName) != null;
+    }
+
+    public static boolean funcDefined(String fName)
+    {
+        return fSymTbl.get(fName) != null;
+    }
+
     public static TypeNode getFuncReturnType(String fName)
     {
-        List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
+        List<TypeNode> args = fSymTbl.get(fName);
         return args.get(args.size()-1);
     }
 
     public static List<TypeNode> getFuncArgTypes(String fName) {
-        List<TypeNode> args = SymTbl.get(scope).fSymTabl.get(fName);
+        List<TypeNode> args = fSymTbl.get(fName);
         return args.subList(0, args.size() - 1);
     }
 
     public static TypeNode getVarType(String vName)
     {
-        return SymTbl.get(scope).vSymTabl.get(vName);
+        return vSymTbl.get(scope).get(vName);
     }
 
     public static void setScope(String scope)

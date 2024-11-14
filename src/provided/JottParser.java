@@ -9,9 +9,12 @@ package provided;
 
 import java.util.ArrayList;
 
+import helpers.SymbolTable;
 import parserNodes.ProgramNode;
 
 public class JottParser {
+  SymbolTable symblTab = new SymbolTable();
+
 
     /**
      * Parses an ArrayList of Jotton tokens into a Jott Parse Tree.

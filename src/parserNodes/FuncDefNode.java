@@ -1,6 +1,9 @@
 package parserNodes;
 
+import java.util.List;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -94,8 +97,14 @@ public class FuncDefNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        SymbolTable.addScope(funcName.getIdToken().getToken());
+
+        List<TypeNode> funcParams = params.getList();
+        funcParams.add(returnType);
+
+        SymbolTable.addFunction(funcName.getIdToken().getToken(), funcParams);
+
+        return funcName.validateTree() && params.validateTree() && body.validateTree();
     }
 
     @Override

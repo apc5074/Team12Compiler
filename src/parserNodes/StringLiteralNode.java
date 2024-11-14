@@ -44,4 +44,11 @@ public class StringLiteralNode implements ExprNodeInterface{
         return stringToken.getToken();
     }
 
+    @Override
+    public String getExprType() {
+        return "String";
+    }
+
+    
+
 }
