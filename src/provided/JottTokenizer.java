@@ -298,7 +298,7 @@ public class JottTokenizer {
       scanner.close();
       return tokens;
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      System.out.println("File not found.");
       return null;
     }
   }

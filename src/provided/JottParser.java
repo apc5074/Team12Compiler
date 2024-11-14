@@ -23,7 +23,7 @@ public class JottParser {
      *         or null upon an error in parsing.
      * @throws Exception 
      */
-    public static JottTree parse(ArrayList<Token> tokens) throws Exception{
+    public static JottTree parse(ArrayList<Token> tokens) {
       //return ProgramNode.parse(tokens);
       try {
         return ProgramNode.parse(tokens);
