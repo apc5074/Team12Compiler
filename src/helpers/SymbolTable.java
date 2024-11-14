@@ -20,7 +20,7 @@ public class SymbolTable {
 
     public static boolean addScope(String name)
     {
-        if (vSymTbl.get(name)!= null)
+        if (vSymTbl.containsKey(name))
         {
             return false;
         }
@@ -30,7 +30,7 @@ public class SymbolTable {
     
     public static boolean addFunction(String fName, List<TypeNode> types)
     {
-        if (!(fSymTbl.get(fName) == null))
+        if (fSymTbl.containsKey(fName))
         {
             return false;
         }

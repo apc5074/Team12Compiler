@@ -39,7 +39,12 @@ public class IdNode implements JottTree{
 
     @Override
     public boolean validateTree() {
-        return true;
+        if(SymbolTable.varDefined(idToken.getToken()) || SymbolTable.funcDefined(idToken.getToken()))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
