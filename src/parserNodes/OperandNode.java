@@ -72,13 +72,10 @@ public class OperandNode implements ExprNodeInterface {
             return SymbolTable.varDefined(idToken.getToken());
         }
         else if (funcCall != null) {
-            return SymbolTable.funcDefined(funcCall.getFuncName());
+            return funcCall.validateTree();
         }
-        else if (neg){
-            return true;
-        } 
         else {
-            return false;
+            return true;
         }
     }
 
@@ -97,7 +94,7 @@ public class OperandNode implements ExprNodeInterface {
         }
         else if (numToken != null)
         {
-            if(Integer.parseInt(numToken.getToken()) % 1 != 0)
+            if(Double.parseDouble(numToken.getToken()) % 1 != 0)
             {
                 return "Double";
             }

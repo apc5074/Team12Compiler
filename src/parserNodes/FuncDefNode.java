@@ -99,17 +99,20 @@ public class FuncDefNode implements JottTree {
     @Override
     public boolean validateTree() {
         SymbolTable.addScope(funcName.getIdToken().getToken());
+        SymbolTable.setScope(funcName.getIdToken().getToken());
         List<TypeNode> funcParams = new ArrayList<>();
         if (params != null) {
             funcParams = params.getList();
         }
         funcParams.add(returnType);
         SymbolTable.addFunction(funcName.getIdToken().getToken(), funcParams);
-        
-        if (!(params != null && params.validateTree())) {
-            return false;
+        if (params != null)
+        {
+            if (params.validateTree())
+            {
+                return false;
+            }
         }
-
         return funcName.validateTree() && body.validateTree();
     }
 
