@@ -7,22 +7,30 @@ import provided.*;
 public class OperandNode implements ExprNodeInterface {
 
     private Token numToken;
+    private static int line;
+    private int linePersonal;
     private Token idToken;
     private Boolean neg;
     private FuncCallNode funcCall = null;
 
     public OperandNode(FuncCallNode t) {
         funcCall = t;
+        linePersonal = line;
     }
 
     public OperandNode(Token id) {
         idToken = id;
+        linePersonal = line;
     }
-
 
     public OperandNode(boolean t, Token numToken) {
         neg = t;
         this.numToken = numToken;
+        linePersonal = line;
+    }
+
+    public int getLine() {
+        return linePersonal;
     }
 
     public static OperandNode parse(Stack<Token> tokens) throws Exception
@@ -33,7 +41,7 @@ public class OperandNode implements ExprNodeInterface {
             throw new Exception("Syntax error:\nExpected WhileLoopNode but no tokens left");
         }
         Token iToken = tokens.peek();
-
+        line = tokens.peek().getLineNum();
         if (iToken.getTokenType() == TokenType.FC_HEADER) {
             FuncCallNode node = FuncCallNode.parse(tokens);
             return new OperandNode(node);

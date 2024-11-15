@@ -61,7 +61,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     public String convertToJott() {
         return ("::" + id.convertToJott() + " [ " + args.convertToJott() + " ]");
     }
-    
+
     @Override
     public boolean validateTree() {
         if(SymbolTable.funcDefined(id.getIdToken().getToken()))

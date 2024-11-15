@@ -73,7 +73,7 @@ public class ExprNode implements ExprNodeInterface{
                     return true;
                 }
             }
-
+            System.out.println("Semantic error:\nType mismatch between " + left.getExprType() + " and " + right.getExprType() + "\nLine " + left.getLine());
             return false;
         }
     }
