@@ -66,7 +66,6 @@ public class ProgramNode implements JottTree {
                 exception.toString();
                 return false;
             }
-            SymbolTable.exitScope();
         }
         if (!SymbolTable.funcDefined("main")) {
             System.out.println("Semantic error:\nMain Method not found.");
