@@ -64,6 +64,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
+        SymbolTable.setScope(id.getIdToken().getToken());
         if(SymbolTable.funcDefined(id.getIdToken().getToken()))
         {
             if (id.getIdToken().getToken().equals("print"))

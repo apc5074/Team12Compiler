@@ -57,6 +57,7 @@ public class SymbolTable {
             if (!vSymTbl.containsKey(scope)) {
                 return false;
             }
+            System.out.println("ADDING:" + vName + " in SCOPE:" + scope);
             vSymTbl.get(scope).put(vName, type);
             return true;
         }

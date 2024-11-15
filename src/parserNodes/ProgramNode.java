@@ -65,6 +65,7 @@ public class ProgramNode implements JottTree {
                 exception.toString();
                 return false;
             }
+            SymbolTable.exitScope();
         }
         return true;
     }
