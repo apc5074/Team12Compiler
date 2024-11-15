@@ -122,5 +122,10 @@ public class FuncDefNode implements JottTree {
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
 
+    public Token getToken()
+    {
+        return funcName.getIdToken();
+    }
+
 }
 

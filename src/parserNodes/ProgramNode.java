@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
@@ -60,6 +61,8 @@ public class ProgramNode implements JottTree {
         SymbolTable.addPrimativeFunctions();
         for (FuncDefNode i: functionDefNodes) {
             if (i.validateTree() == false) {
+                SemanticException exception = new SemanticException(i.getToken().getLineNum(), i.getToken().getFilename(), "Function definition not correct.");
+                exception.toString();
                 return false;
             }
         }
