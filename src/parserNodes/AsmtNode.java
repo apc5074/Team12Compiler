@@ -54,18 +54,21 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
         if(expr.validateTree() && SymbolTable.varDefined(idToken.getToken())) // and idToken exists in symboltable
         {
-            if(SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("Integer") &&  expr.getExprType().equals("Integer"))
+            String symtab = SymbolTable.getVarType(idToken.getToken()).getTypeName();
+            if(symtab.equals("Integer") &&  expr.getExprType().equals("Integer"))
             {
                 return true;
             }
-            else if (SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("Double") &&  (expr.getExprType().equals("Integer") || expr.getExprType().equals("Double")))
+            else if (symtab.equals("Double") &&  (expr.getExprType().equals("Integer") || expr.getExprType().equals("Double")))
             {
                 return true;
             }
-            else if(SymbolTable.getVarType(idToken.getToken()).getTypeName().equals("String") &&  expr.getExprType().equals("String"))
+            else if(symtab.equals("String") &&  expr.getExprType().equals("String"))
             {
                 return true;
             }
+            System.out.println("Semantic error:\nFound types " + symtab + " in the symbol table and " + 
+                                expr.getExprType() + " in the expression\nline " + idToken.getLineNum());
             return false;
         }
 
