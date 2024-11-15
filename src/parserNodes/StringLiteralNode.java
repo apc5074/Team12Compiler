@@ -56,12 +56,6 @@ public class StringLiteralNode implements ExprNodeInterface{
     }
 
     @Override
-    public int getLine() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLine'");
-    }
-
-    @Override
     public String getFilename() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getFilename'");
