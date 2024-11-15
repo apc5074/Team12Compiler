@@ -19,12 +19,8 @@ public class Jott {
         if (tree == null) {
             return;
         }
-        if (!tree.validateTree()) {
-            System.out.println("");
-            SymbolTable.printAllFunctions();
-            System.out.println("");
-            System.err.println("Output failed. Terminating...");
-        }
+        boolean valid = tree.validateTree();
+        System.out.println(valid);
         // Yay!!!
 
         // now we need to complete the execute phase and EXECUTE it

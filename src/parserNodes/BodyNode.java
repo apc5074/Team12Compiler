@@ -78,6 +78,7 @@ public class BodyNode implements JottTree{
     public boolean validateTree() {
         for (BodyStatementNodeInterface i: bodyStatements) {
             if (i.validateTree() == false) {
+                // does not need error output.
                 return false;
             }
         }
@@ -91,6 +92,7 @@ public class BodyNode implements JottTree{
         else
         {
             if (returnStmt.validateTree() == false) {
+                // does not need error output.
                 return false;
             }
         }

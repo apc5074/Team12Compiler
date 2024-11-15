@@ -72,7 +72,7 @@ public class ProgramNode implements JottTree {
             System.out.println("Semantic error:\nMain Method not found.");
             return false;
         }
-        if (!SymbolTable.getFuncReturnType("main").equals("Void")) {
+        if (SymbolTable.getFuncReturnType("main") != null) {
             System.out.println("Semantic error:\nMain Method must return int.");
             return false;
         }
