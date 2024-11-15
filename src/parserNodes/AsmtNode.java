@@ -73,8 +73,8 @@ public class AsmtNode implements BodyStatementNodeInterface {
             {
                 return true;
             }
-            SemanticException e = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Found types " +
-            symtab + " in the symbol table and " + expr.getExprType() + " in the expression.");
+            SemanticException e = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Variable previously defined as " +
+            symtab + " but is being assigned to " + expr.getExprType());
             System.out.println(e.toString());
             return false;
         }
