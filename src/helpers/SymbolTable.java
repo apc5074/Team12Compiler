@@ -67,6 +67,13 @@ public class SymbolTable {
     {
         return vSymTbl.containsKey(scope);
     }
+    
+    // testing function
+    public static void printAllFunctions() {
+        for (String i:fSymTbl.keySet()) {
+            System.out.println(i);
+        }
+    }
 
     public static boolean funcDefined(String fName)
     {

@@ -3,12 +3,13 @@ package parserNodes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+import java.util.Map;
+import java.util.List;
 
 import helpers.SemanticException;
 import helpers.SymbolTable;
-import provided.JottTree;
-import provided.Token;
-import provided.TokenType;
+import provided.*;
+import parserNodes.*;
 
 public class ProgramNode implements JottTree {
 
@@ -67,6 +68,15 @@ public class ProgramNode implements JottTree {
             }
             SymbolTable.exitScope();
         }
+        if (!SymbolTable.funcDefined("main")) {
+            System.out.println("Semantic error:\nMain Method not found.");
+            return false;
+        }
+        if (!SymbolTable.getFuncReturnType("main").equals("Void")) {
+            System.out.println("Semantic error:\nMain Method must return int.");
+            return false;
+        }
+        SymbolTable.printAllFunctions();
         return true;
     }
 

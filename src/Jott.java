@@ -2,6 +2,8 @@ import provided.*;
 import parserNodes.*;
 import java.util.ArrayList;
 
+import helpers.SymbolTable;
+
 public class Jott {
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -18,6 +20,9 @@ public class Jott {
             return;
         }
         if (!tree.validateTree()) {
+            System.out.println("");
+            SymbolTable.printAllFunctions();
+            System.out.println("");
             System.err.println("Output failed. Terminating...");
         }
         // Yay!!!
