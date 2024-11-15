@@ -39,6 +39,11 @@ public class OperandNode implements ExprNodeInterface {
         return linePersonal;
     }
 
+    public String getFilename()
+    {
+        return idToken.getFilename();
+    }
+
     public static OperandNode parse(Stack<Token> tokens) throws Exception
     {
         if (tokens.empty())
