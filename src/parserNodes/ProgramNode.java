@@ -3,6 +3,8 @@ package parserNodes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -55,6 +57,7 @@ public class ProgramNode implements JottTree {
 
     @Override
     public boolean validateTree() {
+        SymbolTable.addPrimativeFunctions();
         for (FuncDefNode i: functionDefNodes) {
             if (i.validateTree() == false) {
                 return false;

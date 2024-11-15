@@ -50,8 +50,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        return expression.validateTree() && body.validateTree();
     }
 
     @Override

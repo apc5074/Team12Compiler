@@ -1,10 +1,12 @@
 package helpers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
 import parserNodes.TypeNode;
+import provided.Token;
 
 public class SymbolTable {
 
@@ -16,7 +18,10 @@ public class SymbolTable {
     public static String scope;
     public static Stack<String> scopeStack = new Stack<>();
 
-
+    public static void addPrimativeFunctions()
+    {
+        fSymTbl.put("print", null);
+    }
 
     public static boolean addScope(String name)
     {
@@ -64,7 +69,7 @@ public class SymbolTable {
 
     public static boolean funcDefined(String fName)
     {
-        return fSymTbl.containsKey(scope);
+        return fSymTbl.containsKey(fName);
     }
 
     public static TypeNode getFuncReturnType(String fName)

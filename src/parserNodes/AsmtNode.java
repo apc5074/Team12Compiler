@@ -66,7 +66,6 @@ public class AsmtNode implements BodyStatementNodeInterface {
             {
                 return true;
             }
-
             return false;
         }
 

@@ -66,7 +66,19 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     public boolean validateTree() {
         if(SymbolTable.funcDefined(id.getIdToken().getToken()))
         {
+            if (id.getIdToken().getToken().equals("print"))
+            {
+                return args.validateTree();
+            }
             ArrayList<String> types = args.getArgTypes();
+            if (types.isEmpty()) {
+                if (SymbolTable.getFuncArgTypes(id.getIdToken().getToken()).isEmpty() )
+                {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
             if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
             {
                 return (id.validateTree() && args.validateTree());

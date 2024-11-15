@@ -18,7 +18,7 @@ public class Jott {
             return;
         }
         if (!tree.validateTree()) {
-            return;
+            System.err.println("AHHHHHH");
         }
         // Yay!!!
 

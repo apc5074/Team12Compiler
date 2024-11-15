@@ -1,5 +1,8 @@
 package parserNodes;
 import java.util.Stack;
+
+import helpers.SymbolTable;
+
 import java.util.ArrayList;
 
 import provided.JottTree;
@@ -78,8 +81,18 @@ public class BodyNode implements JottTree{
                 return false;
             }
         }
-        if (returnStmt.validateTree() == false) {
-            return false;
+        if (returnStmt == null)
+        {
+            if (SymbolTable.getFuncReturnType(SymbolTable.scope) == null)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (returnStmt.validateTree() == false) {
+                return false;
+            }
         }
         return true;
     }

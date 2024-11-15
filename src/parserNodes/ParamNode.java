@@ -76,6 +76,7 @@ public class ParamNode implements JottTree {
     public ArrayList<String> getArgTypes()
     {
         ArrayList<String> argTypes = new ArrayList<>();
+        if (exprNode == null) return argTypes;
         argTypes.add(exprNode.getExprType());
         for (ParamNodeT arg: parameters)
         {

@@ -98,12 +98,19 @@ public class FuncDefParams implements JottTree{
 
     public List<TypeNode> getList()
     {
-        for(int i = 0; i < funcDefParams_t.size(); i++)
+        if (funcDefParams_t != null)
         {
-            types.add(funcDefParams_t.get(i).getType());
+            for(int i = 0; i < funcDefParams_t.size(); i++)
+            {
+                types.add(funcDefParams_t.get(i).getType());
+            }
+    
+            return types;
         }
-
-        return types;
+        else
+        {
+            return new ArrayList<>();
+        }
     }
 
 }
