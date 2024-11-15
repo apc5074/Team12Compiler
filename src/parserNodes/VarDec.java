@@ -1,7 +1,7 @@
 package parserNodes;
-import java.util.Stack;
 import helpers.SemanticException;
 import helpers.SymbolTable;
+import java.util.Stack;
 import provided.*;
 
 public class VarDec implements JottTree {
@@ -37,6 +37,12 @@ public class VarDec implements JottTree {
     @Override
     public boolean validateTree() {
 
+        if (!Character.isLowerCase(IDNode.getIdToken().getToken().charAt(0)))
+        {
+            SemanticException exception = new SemanticException(IDNode.getIdToken().getLineNum(), IDNode.getIdToken().getFilename(), "Invalid variable name");
+            System.out.println(exception.toString());
+            return false;
+        }
         boolean notDefined = SymbolTable.addVar(IDNode.getIdToken().getToken(),typeNode);
 
         if(!notDefined)

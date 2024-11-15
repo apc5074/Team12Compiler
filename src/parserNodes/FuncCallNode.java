@@ -1,10 +1,9 @@
 package parserNodes;
+import helpers.SemanticException;
+import helpers.SymbolTable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
-import helpers.SemanticException;
-import helpers.SymbolTable;
 import provided.*;
 
 public class FuncCallNode implements BodyStatementNodeInterface {
@@ -77,7 +76,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     public boolean validateTree() {
         if(SymbolTable.funcDefined(id.getIdToken().getToken()))
         {
-            if (id.getIdToken().getToken().equals("print"))
+            if (id.getIdToken().getToken().equals("print") || id.getIdToken().getToken().equals("concat") || id.getIdToken().getToken().equals("length"))
             {
                 return args.validateTree();
             }
