@@ -98,14 +98,17 @@ public class SymbolTable {
 
     public static void setScope(String scope)
     {
+        System.out.println("SCOPE IS: " + scope);
         SymbolTable.scope = scope;
         scopeStack.add(scope);
     }
 
     public static void exitScope()
     {
-        String scope = scopeStack.pop();
+        scopeStack.pop();
+        String scope = scopeStack.peek();
         SymbolTable.scope = scope;
+        System.out.println("SCOPE IS: " + scope);
     }
 
 }

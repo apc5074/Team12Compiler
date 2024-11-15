@@ -57,8 +57,7 @@ public class StringLiteralNode implements ExprNodeInterface{
 
     @Override
     public String getFilename() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFilename'");
+        return stringToken.getFilename();
     }
 
     
