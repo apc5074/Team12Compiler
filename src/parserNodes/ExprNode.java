@@ -103,5 +103,10 @@ public class ExprNode implements ExprNodeInterface{
     {
         return type;
     }
+
+    @Override
+    public String getFilename() {
+        return left.getFilename();
+    }
     
 }
