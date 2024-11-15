@@ -79,6 +79,11 @@ public class ExprNode implements ExprNodeInterface{
     }
 
     @Override
+    public int getLine() {
+        return left.getLine();
+    }
+
+    @Override
     public void execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
