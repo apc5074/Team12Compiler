@@ -1,9 +1,12 @@
 package helpers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 import parserNodes.TypeNode;
+import provided.Token;
+import provided.TokenType;
 
 public class SymbolTable {
 
@@ -18,8 +21,17 @@ public class SymbolTable {
     public static void addPrimativeFunctions()
     {
         fSymTbl.put("print", null);
-        fSymTbl.put("concat", null);
-        fSymTbl.put("length", null);
+
+        ArrayList<TypeNode> concatTypes = new ArrayList<>();
+        concatTypes.add(new TypeNode(new Token("String", "Built-in", 0, TokenType.STRING)));
+        concatTypes.add(new TypeNode(new Token("String", "Built-in", 0, TokenType.STRING)));
+        concatTypes.add(new TypeNode(new Token("String", "Built-in", 0, TokenType.STRING)));
+        fSymTbl.put("concat", concatTypes);
+
+        ArrayList<TypeNode> lengthTypes = new ArrayList<>();
+        lengthTypes.add(new TypeNode(new Token("String", "Built-in", 0, TokenType.STRING)));
+        lengthTypes.add(new TypeNode(new Token("Integer", "Built-in", 0, TokenType.NUMBER)));
+        fSymTbl.put("length", lengthTypes);
     }
 
     public static boolean addScope(String name)

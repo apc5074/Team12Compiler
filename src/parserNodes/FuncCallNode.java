@@ -76,7 +76,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
     public boolean validateTree() {
         if(SymbolTable.funcDefined(id.getIdToken().getToken()))
         {
-            if (id.getIdToken().getToken().equals("print") || id.getIdToken().getToken().equals("concat") || id.getIdToken().getToken().equals("length"))
+            if (id.getIdToken().getToken().equals("print"))
             {
                 return args.validateTree();
             }
@@ -94,6 +94,12 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                 }
             }
             List<TypeNode> blahblahblah = SymbolTable.getFuncArgTypes(id.getIdToken().getToken());
+            if (blahblahblah.size() != types.size()){
+                SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " +
+                    id.convertToJott() + " called with incorrect number of arguments.");
+                    System.out.println(e.toString());
+                    return false;
+            }
             for (int i = 0; i < types.size(); i++)
             {
                 if (!types.get(i).equals(blahblahblah.get(i).getTypeName()))
@@ -101,6 +107,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " +
                     id.convertToJott() + " called with incorrect variable types.");
                     System.out.println(e.toString());
+                    return false;
                 }
             }
                 boolean ah = (id.validateTree() && args.validateTree());
