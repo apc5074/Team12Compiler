@@ -1,10 +1,9 @@
 package parserNodes;
 
-import java.util.ArrayList;
-import java.util.Stack;
-
 import helpers.SemanticException;
 import helpers.SymbolTable;
+import java.util.ArrayList;
+import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
 
@@ -68,7 +67,7 @@ public class FuncBodyNode implements JottTree {
         if (!body.hasReturn() && SymbolTable.getFuncReturnType(SymbolTable.scope) != null) {
             SemanticException e = new SemanticException(startLine, ProgramNode.filename, "Function " +
             SymbolTable.scope + " missing return.");
-            System.out.println(e.toString());
+            System.err.println(e.toString());
             return false;
         }
         return t_f;

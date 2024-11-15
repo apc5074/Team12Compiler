@@ -1,9 +1,8 @@
 package parserNodes;
 
-import java.util.Stack;
-
 import helpers.SemanticException;
 import helpers.SymbolTable;
+import java.util.Stack;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -50,7 +49,7 @@ public class IdNode implements JottTree{
             return true;
         }
         SemanticException e = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Keyword " + idToken.getToken() + " not recognized.");
-        System.out.println(e.toString());
+        System.err.println(e.toString());
         return false;
     }
 

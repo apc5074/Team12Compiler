@@ -1,8 +1,7 @@
 package parserNodes;
+import helpers.SemanticException;
 import java.util.ArrayList;
 import java.util.Stack;
-
-import helpers.SemanticException;
 import provided.*;
 
 public class IfNode implements BodyStatementNodeInterface {
@@ -110,14 +109,14 @@ public class IfNode implements BodyStatementNodeInterface {
             if (allReturn) {
                 if (!i.hasReturn()) {
                     SemanticException e = new SemanticException(startLine, ProgramNode.filename, "If statement has return, not all elseifs have return.");
-                    System.out.println(e);
+                    System.err.println(e);
                     return false;
                 }
             } else {
                 if (i.hasReturn()) {
                     
                     SemanticException e = new SemanticException(startLine, ProgramNode.filename, "ElseIf statement has return, if does not.");
-                    System.out.println(e);
+                    System.err.println(e);
                     return false;
                 }
             }
@@ -136,12 +135,12 @@ public class IfNode implements BodyStatementNodeInterface {
             }
             if (allReturn && !elseNode.hasReturn()) {
                 SemanticException e = new SemanticException(startLine, ProgramNode.filename, "If statement has return, but else does not.");
-                System.out.println(e);
+                System.err.println(e);
                 return false;
             }
             if (!allReturn && elseNode.hasReturn()) {
                 SemanticException e = new SemanticException(startLine, ProgramNode.filename, "Else statement has return, but if does not.");
-                System.out.println(e);
+                System.err.println(e);
                 return false;
             }
         }

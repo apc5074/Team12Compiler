@@ -7,9 +7,8 @@ package provided;
  * @author
  */
 
-import java.util.ArrayList;
-
 import helpers.SymbolTable;
+import java.util.ArrayList;
 import parserNodes.ProgramNode;
 
 public class JottParser {
@@ -28,7 +27,7 @@ public class JottParser {
       try {
         return ProgramNode.parse(tokens);
       } catch (Exception e) {
-        System.out.println(e);
+        System.err.println(e);
         return null;
       }
     }

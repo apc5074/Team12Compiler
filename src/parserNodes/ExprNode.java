@@ -74,7 +74,7 @@ public class ExprNode implements ExprNodeInterface{
             }
             SemanticException e = new SemanticException(left.getLine(), ProgramNode.filename, "Type mismatch between" +
             left.getExprType() + " and " + right.getExprType());
-            System.out.println(e.toString());
+            System.err.println(e.toString());
             return false;
         }
     }

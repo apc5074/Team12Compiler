@@ -1,15 +1,11 @@
 package parserNodes;
 
+import helpers.SemanticException;
+import helpers.SymbolTable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
-import java.util.Map;
-import java.util.List;
-
-import helpers.SemanticException;
-import helpers.SymbolTable;
 import provided.*;
-import parserNodes.*;
 
 public class ProgramNode implements JottTree {
 
@@ -71,12 +67,12 @@ public class ProgramNode implements JottTree {
         }
         if (!SymbolTable.funcDefined("main")) {
             SemanticException e = new SemanticException(0, filename, "Main method is not defined.");
-            System.out.println(e.toString());
+            System.err.println(e.toString());
             return false;
         }
         if (SymbolTable.getFuncReturnType("main") != null) {
             SemanticException e = new SemanticException(0, filename, "Main method is not void.");
-            System.out.println(e.toString());
+            System.err.println(e.toString());
             return false;
         }
         return true;

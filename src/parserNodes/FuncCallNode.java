@@ -89,7 +89,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     return true;
                 } else {
                     SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function call mismatch.");
-                    System.out.println(e.toString());
+                    System.err.println(e.toString());
                     return false;
                 }
             }
@@ -97,7 +97,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             if (blahblahblah.size() != types.size()){
                 SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " +
                     id.convertToJott() + " called with incorrect number of arguments.");
-                    System.out.println(e.toString());
+                    System.err.println(e.toString());
                     return false;
             }
             for (int i = 0; i < types.size(); i++)
@@ -106,7 +106,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                 {
                     SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " +
                     id.convertToJott() + " called with incorrect variable types.");
-                    System.out.println(e.toString());
+                    System.err.println(e.toString());
                     return false;
                 }
             }
@@ -115,7 +115,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                 return ah;
         }
         SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " + id.convertToJott() + " not declared.");
-        System.out.println(e.toString());
+        System.err.println(e.toString());
         return false;
     }
 
