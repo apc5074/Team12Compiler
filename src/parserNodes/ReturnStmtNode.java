@@ -2,6 +2,7 @@ package parserNodes;
 
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
@@ -55,13 +56,24 @@ public class ReturnStmtNode implements JottTree{
 
             if(SymbolTable.getFuncReturnType(SymbolTable.scope) != null)
             {
-                return SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName().equals(expressionNode.getExprType());
+                if(SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName().equals(expressionNode.getExprType()))
+                {
+                    return true;
+                }
+                else {
+                    SemanticException exception = new SemanticException(expressionNode.getLine(), expressionNode.getFilename(), "Return type is not correct.");
+                    exception.toString();
+                    return false;
+                }
             }
             else
             {
+                SemanticException exception = new SemanticException(expressionNode.getLine(), expressionNode.getFilename(), "Return present in voided method.");
+                exception.toString();
                 return false;
             }
         }
+        
         return false;
     }
 
