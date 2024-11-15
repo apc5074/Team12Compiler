@@ -74,7 +74,6 @@ public class ReturnStmtNode implements JottTree{
             }
         }
         // does not need error output.
-        System.out.println("Error message is needed doogus.");
         return false;
     }
 

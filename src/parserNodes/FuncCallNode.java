@@ -81,11 +81,12 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     return false;
                 }
             }
+            System.out.println(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())));
             if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
             {
                 return (id.validateTree() && args.validateTree());
             } else {
-                System.out.println("Semantic error:\nInvalid function call.");
+                System.out.println("Semantic error:\nInvalid function call.\nLine " + id.getLine());
                 return false;
             }
         }
