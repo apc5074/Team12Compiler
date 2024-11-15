@@ -55,13 +55,22 @@ public class ReturnStmtNode implements JottTree{
 
             if(SymbolTable.getFuncReturnType(SymbolTable.scope) != null)
             {
-                return SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName().equals(expressionNode.getExprType());
+                String a = expressionNode.getExprType();
+                String b = SymbolTable.getFuncReturnType(SymbolTable.scope).getTypeName();
+                if (a.equals(b)) {
+                    return true;
+                } else {
+                    System.out.println("Semantic error:\nMismatch type " + a + " and " + b + ".\n");
+                    // todo: figure out how tf to get the line and file deets
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
         }
+        // this will be called 
         return false;
     }
 

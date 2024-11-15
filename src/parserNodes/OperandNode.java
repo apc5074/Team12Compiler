@@ -9,6 +9,8 @@ public class OperandNode implements ExprNodeInterface {
 
     private Token numToken;
     private static int line;
+    private static String file;
+    private String filePersonal;
     private int linePersonal;
     private Token idToken;
     private Boolean neg;
@@ -17,17 +19,20 @@ public class OperandNode implements ExprNodeInterface {
     public OperandNode(FuncCallNode t) {
         funcCall = t;
         linePersonal = line;
+        filePersonal = file;
     }
 
     public OperandNode(Token id) {
         idToken = id;
         linePersonal = line;
+        filePersonal = file;
     }
 
     public OperandNode(boolean t, Token numToken) {
         neg = t;
         this.numToken = numToken;
         linePersonal = line;
+        filePersonal = file;
     }
 
     public int getLine() {
@@ -43,6 +48,7 @@ public class OperandNode implements ExprNodeInterface {
         }
         Token iToken = tokens.peek();
         line = tokens.peek().getLineNum();
+        file = tokens.peek().getFilename();
         if (iToken.getTokenType() == TokenType.FC_HEADER) {
             FuncCallNode node = FuncCallNode.parse(tokens);
             return new OperandNode(node);
@@ -83,7 +89,7 @@ public class OperandNode implements ExprNodeInterface {
                 return SymbolTable.varDefined(idToken.getToken());
             }
             else {
-                SemanticException exception = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Using undeclared variable.");
+                SemanticException exception = new SemanticException(linePersonal, filePersonal, "Using undeclared variable.");
                 exception.toString();
                 return false;
             }
@@ -94,7 +100,7 @@ public class OperandNode implements ExprNodeInterface {
                 return true;
             }
             else {
-                SemanticException exception = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Function call not valid.");
+                SemanticException exception = new SemanticException(linePersonal, filePersonal, "Function call not valid.");
                 exception.toString();
                 return false;
             }
@@ -119,16 +125,17 @@ public class OperandNode implements ExprNodeInterface {
         }
         else if (numToken != null)
         {
-            if(Double.parseDouble(numToken.getToken()) % 1 != 0)
-            {
+            if (numToken.getToken().contains(".")) {
                 return "Double";
-            }
-            else {
+            } else {
                 return "Integer";
             }
         }
         else {
-            return SymbolTable.getVarType(funcCall.getFuncName()).getTypeName();
+            if (!SymbolTable.funcDefined(funcCall.getFuncName())) {
+                return "undefined function";
+            }
+            return SymbolTable.getFuncReturnType(funcCall.getFuncName()).getTypeName();
         }
     }
 }

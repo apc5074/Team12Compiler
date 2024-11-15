@@ -14,6 +14,11 @@ public class StringLiteralNode implements ExprNodeInterface{
         this.stringToken = str;
     }
 
+    @Override
+    public int getLine() {
+        return stringToken.getLineNum();
+    }
+
     public static StringLiteralNode parse(Stack<Token> tokens) throws Exception{
         if (tokens.empty())
         {
@@ -32,6 +37,7 @@ public class StringLiteralNode implements ExprNodeInterface{
     public boolean validateTree() {
         return true;
     }
+
 
     @Override
     public void execute() {
