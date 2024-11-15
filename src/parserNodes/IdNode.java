@@ -47,7 +47,7 @@ public class IdNode implements JottTree{
         {
             return true;
         }
-
+        System.out.println("Semantic Error:\nKeyword " + idToken.getToken() + " not recognized.\nLine " + idToken.getLineNum());
         return false;
     }
 

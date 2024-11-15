@@ -87,7 +87,7 @@ public class FuncDefParams implements JottTree{
             }
         }
         
-        return id.validateTree() && type.validateTree() && notDefined;
+        return id.validateTree() && notDefined;
     }
 
     @Override
