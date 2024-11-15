@@ -32,6 +32,10 @@ public class IdNode implements JottTree{
         return idToken;
     }
 
+    public int getLine() {
+        return idToken.getLineNum();
+    }
+
     @Override
     public String convertToJott() {
         return this.idToken.getToken();
@@ -43,7 +47,7 @@ public class IdNode implements JottTree{
         {
             return true;
         }
-
+        System.out.println("Semantic Error:\nKeyword " + idToken.getToken() + " not recognized.\nLine " + idToken.getLineNum());
         return false;
     }
 
