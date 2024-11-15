@@ -1,6 +1,7 @@
 package parserNodes;
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.*;
 
@@ -77,10 +78,26 @@ public class OperandNode implements ExprNodeInterface {
     public boolean validateTree() {
         if(idToken != null)
         {
-            return SymbolTable.varDefined(idToken.getToken());
+            if(SymbolTable.varDefined(idToken.getToken()))
+            {
+                return SymbolTable.varDefined(idToken.getToken());
+            }
+            else {
+                SemanticException exception = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Using undeclared variable.");
+                exception.toString();
+                return false;
+            }
         }
         else if (funcCall != null) {
-            return funcCall.validateTree();
+            if(funcCall.validateTree())
+            {
+                return true;
+            }
+            else {
+                SemanticException exception = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Function call not valid.");
+                exception.toString();
+                return false;
+            }
         }
         else {
             return true;
