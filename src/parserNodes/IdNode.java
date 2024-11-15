@@ -32,6 +32,10 @@ public class IdNode implements JottTree{
         return idToken;
     }
 
+    public int getLine() {
+        return idToken.getLineNum();
+    }
+
     @Override
     public String convertToJott() {
         return this.idToken.getToken();

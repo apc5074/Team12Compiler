@@ -76,6 +76,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                 {
                     return true;
                 } else {
+                    System.out.println("Semantic error:\nFunction call mismatch.\nLine " + id.getLine());
                     return false;
                 }
             }
@@ -84,7 +85,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                 return (id.validateTree() && args.validateTree());
             }
         }
-
+        System.out.println("Semantic error:\nFunction " + id.convertToJott() + " not declared\nLine " + id.getLine());
         return false;
     }
 
