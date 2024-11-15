@@ -8,12 +8,24 @@ public class IfNode implements BodyStatementNodeInterface {
     BodyNode content;
     ArrayList<ElseIfNode> elifList;
     ElseNode elseNode;
+    boolean allReturn;
 
     public IfNode(ExprNodeInterface e, BodyNode c, ArrayList<ElseIfNode> el, ElseNode els) {
         condition = e;
         content = c;
         elifList = el;
         elseNode = els;
+        allReturn = false;
+    }
+
+    @Override
+    public boolean isIf() {
+        return true;
+    }
+
+    @Override
+    public boolean ifReturn() {
+        return allReturn;
     }
 
     public static IfNode parse(Stack<Token> tokens) throws Exception {
@@ -85,8 +97,22 @@ public class IfNode implements BodyStatementNodeInterface {
 
     @Override
     public boolean validateTree() {
+        if (content.hasReturn()) {
+            allReturn = true;
+        }
         // TODO Auto-generated method stub
         for (ElseIfNode i: elifList) {
+            if (allReturn) {
+                if (!i.hasReturn()) {
+                    System.out.println("Semantic error:\nIf statement has return, not all else ifs have return.");
+                    return false;
+                }
+            } else {
+                if (i.hasReturn()) {
+                    System.out.println("Semantic error:\nElseif statement ahs return, if does not.");
+                    return false;
+                }
+            }
             if (i.validateTree() == false) {
                 return false;
             }
@@ -95,9 +121,18 @@ public class IfNode implements BodyStatementNodeInterface {
             // does not need error output.
             return false;
         }
-        if (elseNode != null && elseNode.validateTree() == false) {
-            // does not need error output.
-            return false;
+        if (elseNode != null) {
+            if (elseNode.validateTree() == false) {
+                // does not need error output.
+                return false;
+            }
+            if (allReturn && !elseNode.hasReturn()) {
+                System.out.println("Semantic error:\nIf node has return but else node does not.");
+                return false;
+            }
+            if (!allReturn && elseNode.hasReturn()) {
+                System.out.println("Semantic error:\nElse node has return but If node does not.");
+            }
         }
         return true;
     }

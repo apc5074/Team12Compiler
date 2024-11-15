@@ -43,7 +43,8 @@ public interface BodyStatementNodeInterface extends JottTree{
             }
         }
     };
-
+    public boolean isIf();
+    public boolean ifReturn();
     public String convertToJott();
 
 }

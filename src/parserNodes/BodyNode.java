@@ -14,6 +14,7 @@ public class BodyNode implements JottTree{
 
     ArrayList<BodyStatementNodeInterface> bodyStatements;
     ReturnStmtNode returnStmt;
+    boolean oop;
 
 
 
@@ -21,11 +22,17 @@ public class BodyNode implements JottTree{
     {
         this.bodyStatements = bodyStatementNodes;
         this.returnStmt = returnStmtNode;
+        oop = true;
     }
 
     public BodyNode(ArrayList<BodyStatementNodeInterface> bodyStatementNodes)
     {
         this.bodyStatements = bodyStatementNodes;
+        oop = false;
+    }
+
+    public boolean hasReturn() {
+        return oop;
     }
 
     public static BodyNode parse(Stack<Token> tokens) throws Exception
@@ -80,6 +87,11 @@ public class BodyNode implements JottTree{
             if (i.validateTree() == false) {
                 // does not need error output.
                 return false;
+            }
+            if (i.isIf()) {
+                if (i.ifReturn()) {
+                    oop = true;
+                }
             }
         }
         if (returnStmt == null)

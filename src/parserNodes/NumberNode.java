@@ -12,12 +12,12 @@ public class NumberNode implements JottTree {
 
     public static NumberNode parse(Stack<Token> tokens) throws Exception{
         if (tokens.size() == 0) {
-            System.err.println("Expected number token, got end of file.");
+            System.out.println("Semantic error:\nExpected number token, got end of file.");
             return null;
         }
         Token toke = tokens.pop();
         if (tokens.get(0).getTokenType() != TokenType.NUMBER) {
-            System.err.println("Expected number token at line " + toke.getLineNum() + ", got " + toke.getTokenType());
+            System.out.println("Semantic error:\nExpected number token at line " + toke.getLineNum() + ", got " + toke.getTokenType());
             return null;
         }
 

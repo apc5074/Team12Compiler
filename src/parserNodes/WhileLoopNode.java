@@ -49,6 +49,15 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
     }
 
     @Override
+    public boolean isIf() {
+        return false;
+    }
+    @Override
+    public boolean ifReturn() {
+        return false;
+    }
+
+    @Override
     public boolean validateTree() {
         return expression.validateTree() && body.validateTree();
     }

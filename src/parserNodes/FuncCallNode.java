@@ -15,6 +15,15 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         args = params;
     }
 
+    @Override
+    public boolean isIf() {
+        return false;
+    }
+    @Override
+    public boolean ifReturn() {
+        return false;
+    }
+
     public String getFuncName()
     {
         return id.convertToJott();
@@ -81,7 +90,6 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     return false;
                 }
             }
-            System.out.println(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())));
             if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
             {
                 return (id.validateTree() && args.validateTree());

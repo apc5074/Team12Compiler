@@ -42,6 +42,10 @@ public class ElseNode implements JottTree {
         return "Else { " + body.convertToJott() + " }";
     }
 
+    public boolean hasReturn() {
+        return body.hasReturn();
+    }
+
     @Override
     public boolean validateTree() {
         if (isNull) {

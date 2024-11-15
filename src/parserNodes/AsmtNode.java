@@ -79,6 +79,15 @@ public class AsmtNode implements BodyStatementNodeInterface {
     }
 
     @Override
+    public boolean isIf() {
+        return false;
+    }
+    @Override
+    public boolean ifReturn() {
+        return false;
+    }
+
+    @Override
     public void execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");

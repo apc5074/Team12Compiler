@@ -2,6 +2,8 @@ package parserNodes;
 
 import java.util.ArrayList;
 import java.util.Stack;
+
+import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 
@@ -48,13 +50,22 @@ public class FuncBodyNode implements JottTree {
 
     @Override
     public boolean validateTree() {
+        
         for (VarDec v: varDec) {
             if (v.validateTree() == false) {
                 // does not need error output.
                 return false;
             }
         }
-        return body.validateTree();
+        boolean t_f = body.validateTree();
+        if (t_f == false) {
+            return t_f;
+        }
+        if (!body.hasReturn() && SymbolTable.getFuncReturnType(SymbolTable.scope) != null) {
+            System.out.println("Semantic error\nfunction " + SymbolTable.scope + " missing return");
+            return false;
+        }
+        return t_f;
     }
 
     @Override

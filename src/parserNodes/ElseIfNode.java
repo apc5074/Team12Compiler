@@ -50,6 +50,10 @@ public class ElseIfNode implements JottTree {
         return "Elseif [" + expr.convertToJott() + "]{ " + body.convertToJott() + " }";
     }
 
+    public boolean hasReturn() {
+        return body.hasReturn();
+    }
+
     @Override
     public boolean validateTree() {
         return (body.validateTree() && expr.validateTree());
