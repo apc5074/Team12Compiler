@@ -110,6 +110,7 @@ public class FuncDefNode implements JottTree {
         {
             if (!params.validateTree())
             {
+                // does not need error output.
                 return false;
             }
         }

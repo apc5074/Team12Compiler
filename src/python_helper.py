@@ -5,9 +5,7 @@ import os
 from os.path import isfile, join
 import subprocess
 
-path = "C:/Users/gabri/OneDrive/Desktop/Team12Compiler/src"
-
-all_files = [f for f in listdir(path + "/phase3testcases")]
+all_files = [f for f in listdir("./phase3testcases")]
 for f in all_files:
     string = "java Jott.java phase3testcases/" + f
     print (string)

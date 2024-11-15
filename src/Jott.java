@@ -20,9 +20,6 @@ public class Jott {
             return;
         }
         if (!tree.validateTree()) {
-            System.out.println("");
-            SymbolTable.printAllFunctions();
-            System.out.println("");
             System.err.println("Output failed. Terminating...");
         }
         // Yay!!!

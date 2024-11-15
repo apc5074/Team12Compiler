@@ -52,8 +52,11 @@ public class AsmtNode implements BodyStatementNodeInterface {
     @Override
     public boolean validateTree() {
 
-        if(expr.validateTree() && SymbolTable.varDefined(idToken.getToken())) // and idToken exists in symboltable
+        if(expr.validateTree()) // and idToken exists in symboltable
         {
+            if (!SymbolTable.varDefined(idToken.getToken())) {
+                System.out.println("Semantic error:\nvariable " + idToken.getToken() + " is not found.");
+            }
             String symtab = SymbolTable.getVarType(idToken.getToken()).getTypeName();
             if(symtab.equals("Integer") &&  expr.getExprType().equals("Integer"))
             {
@@ -71,7 +74,7 @@ public class AsmtNode implements BodyStatementNodeInterface {
                                 expr.getExprType() + " in the expression\nline " + idToken.getLineNum());
             return false;
         }
-
+        // only returns false if expression returns false.
         return false;
     }
 

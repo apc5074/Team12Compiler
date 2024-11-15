@@ -92,9 +92,11 @@ public class IfNode implements BodyStatementNodeInterface {
             }
         }
         if (content.validateTree() == false) {
+            // does not need error output.
             return false;
         }
-        if (elseNode != null  && elseNode.validateTree() == false) {
+        if (elseNode != null && elseNode.validateTree() == false) {
+            // does not need error output.
             return false;
         }
         return true;
