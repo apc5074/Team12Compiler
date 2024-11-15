@@ -1,7 +1,6 @@
 package parserNodes;
-import java.util.Stack;
-
 import helpers.SymbolTable;
+import java.util.Stack;
 import provided.*;
 
 public class ExprNode implements ExprNodeInterface{
@@ -56,8 +55,7 @@ public class ExprNode implements ExprNodeInterface{
         else {
             if(left.validateTree() && right.validateTree())
             {
-                if((left.getExprType().equals("Double") && (right.getExprType().equals("Integer")|| right.getExprType().equals("Double")))
-                || (right.getExprType().equals("Double") && (left.getExprType().equals("Integer")|| left.getExprType().equals("Double"))))
+                if((left.getExprType().equals("Double") && right.getExprType().equals("Double")))
                 {
                     type = "Double";
                     return true;

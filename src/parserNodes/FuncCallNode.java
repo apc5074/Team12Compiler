@@ -1,5 +1,6 @@
 package parserNodes;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import helpers.SymbolTable;
@@ -79,24 +80,29 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             {
                 return args.validateTree();
             }
-            SymbolTable.setScope(id.getIdToken().getToken());
             ArrayList<String> types = args.getArgTypes();
+            SymbolTable.setScope(id.getIdToken().getToken());
             if (types.isEmpty()) {
                 if (SymbolTable.getFuncArgTypes(id.getIdToken().getToken()).isEmpty() )
                 {
+                    SymbolTable.exitScope();
                     return true;
                 } else {
                     System.out.println("Semantic error:\nFunction call mismatch.\nLine " + id.getLine());
                     return false;
                 }
             }
-            if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
+            List<TypeNode> blahblahblah = SymbolTable.getFuncArgTypes(id.getIdToken().getToken());
+            for (int i = 0; i < types.size(); i++)
             {
-                return (id.validateTree() && args.validateTree());
-            } else {
-                System.out.println("Semantic error:\nInvalid function call.\nLine " + id.getLine());
-                return false;
+                if (!types.get(i).equals(blahblahblah.get(i).getTypeName()))
+                {
+                    System.out.println("Semantic error:\nFunction " + id.convertToJott() + " called with incorrect vairable types.\nLine " + id.getLine());
+                }
             }
+                boolean ah = (id.validateTree() && args.validateTree());
+                SymbolTable.exitScope();
+                return ah;
         }
         System.out.println("Semantic error:\nFunction " + id.convertToJott() + " not declared\nLine " + id.getLine());
         return false;

@@ -57,7 +57,6 @@ public class SymbolTable {
             if (!vSymTbl.containsKey(scope)) {
                 return false;
             }
-            System.out.println("ADDING:" + vName + " in SCOPE:" + scope);
             vSymTbl.get(scope).put(vName, type);
             return true;
         }
@@ -104,7 +103,8 @@ public class SymbolTable {
 
     public static void exitScope()
     {
-        String scope = scopeStack.pop();
+        scopeStack.pop();
+        String scope = scopeStack.peek();
         SymbolTable.scope = scope;
     }
 
