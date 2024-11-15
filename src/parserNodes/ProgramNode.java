@@ -75,7 +75,6 @@ public class ProgramNode implements JottTree {
             System.out.println("Semantic error:\nMain Method must return int.");
             return false;
         }
-        SymbolTable.printAllFunctions();
         return true;
     }
 
