@@ -36,7 +36,15 @@ public class VarDec implements JottTree {
 
     @Override
     public boolean validateTree() {
+
         boolean notDefined = SymbolTable.addVar(IDNode.getIdToken().getToken(),typeNode);
+
+        if(!notDefined)
+        {
+            SemanticException exception = new SemanticException(IDNode.getIdToken().getLineNum(), IDNode.getIdToken().getFilename(), "Variable already defined.");
+            exception.toString();
+            return false;
+        }
         
         return IDNode.validateTree() && typeNode.validateTree() && notDefined;
     }
