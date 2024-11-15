@@ -3,13 +3,13 @@ import java.util.Stack;
 import provided.*;
 
 public class ParamNodeT implements JottTree {
-    private ExprNode exprNode;
+    private ExprNodeInterface exprNode;
     
-    public ParamNodeT(ExprNode expression) {
+    public ParamNodeT(ExprNodeInterface expression) {
         exprNode = expression;
     }
 
-    public ExprNode getExprNode() {
+    public ExprNodeInterface getExprNode() {
         return exprNode;
     }
 
@@ -27,7 +27,7 @@ public class ParamNodeT implements JottTree {
 
         // removes the comma from the list.
         tokens.pop();
-        ExprNode toke = ExprNode.parse(tokens);
+        ExprNodeInterface toke = ExprNodeInterface.parse(tokens);
         if (toke == null) {
             return null;
         }
