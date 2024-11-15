@@ -84,6 +84,9 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             if(types.equals(SymbolTable.getFuncArgTypes(id.getIdToken().getToken())))
             {
                 return (id.validateTree() && args.validateTree());
+            } else {
+                System.out.println("Semantic error:\nInvalid function call.");
+                return false;
             }
         }
         System.out.println("Semantic error:\nFunction " + id.convertToJott() + " not declared\nLine " + id.getLine());
