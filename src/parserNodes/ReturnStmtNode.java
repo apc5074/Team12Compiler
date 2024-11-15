@@ -62,14 +62,14 @@ public class ReturnStmtNode implements JottTree{
                 }
                 else {
                     SemanticException exception = new SemanticException(expressionNode.getLine(), expressionNode.getFilename(), "Return type is not correct.");
-                    exception.toString();
+                    System.out.println(exception.toString());
                     return false;
                 }
             }
             else
             {
                 SemanticException exception = new SemanticException(expressionNode.getLine(), expressionNode.getFilename(), "Return present in voided method.");
-                exception.toString();
+                System.out.println(exception.toString());
                 return false;
             }
         }

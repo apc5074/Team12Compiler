@@ -20,7 +20,6 @@ public class Jott {
             return;
         }
         boolean valid = tree.validateTree();
-        System.out.println(valid);
         // Yay!!!
 
         // now we need to complete the execute phase and EXECUTE it

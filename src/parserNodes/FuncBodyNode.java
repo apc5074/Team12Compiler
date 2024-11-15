@@ -3,6 +3,7 @@ package parserNodes;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
@@ -11,10 +12,12 @@ public class FuncBodyNode implements JottTree {
 
     private ArrayList<VarDec> varDec; 
     private BodyNode body; 
+    private int startLine;
 
-    public FuncBodyNode(ArrayList<VarDec> varDec, BodyNode body) {
+    public FuncBodyNode(ArrayList<VarDec> varDec, BodyNode body, int stt) {
         this.varDec = varDec;
         this.body = body;
+        startLine = stt;
     }
 
     public static FuncBodyNode parse(Stack<Token> tokens) throws Exception {
@@ -23,6 +26,7 @@ public class FuncBodyNode implements JottTree {
             throw new Exception("Syntax error:\nExpected FuncBodyNode but no tokens left");
         }
         Token curToken = tokens.peek();
+        int stt = curToken.getLineNum();
         ArrayList<VarDec> vars = new ArrayList<>();
         while (isValidText(curToken))
         {
@@ -31,7 +35,7 @@ public class FuncBodyNode implements JottTree {
             curToken = tokens.peek();
         }
         BodyNode bodyStatementNode = BodyNode.parse(tokens);
-        return new FuncBodyNode(vars, bodyStatementNode);
+        return new FuncBodyNode(vars, bodyStatementNode, stt);
     }
     private static boolean isValidText(Token type) {
         return type.getToken().equals("Integer") || type.getToken().equals("Double") 
@@ -62,7 +66,9 @@ public class FuncBodyNode implements JottTree {
             return t_f;
         }
         if (!body.hasReturn() && SymbolTable.getFuncReturnType(SymbolTable.scope) != null) {
-            System.out.println("Semantic error\nfunction " + SymbolTable.scope + " missing return");
+            SemanticException e = new SemanticException(startLine, ProgramNode.filename, "Function " +
+            SymbolTable.scope + " missing return.");
+            System.out.println(e.toString());
             return false;
         }
         return t_f;

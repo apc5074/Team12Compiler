@@ -25,7 +25,7 @@ public class SemanticException extends Exception {
             return "Semantic Error:\n"+ reason + "\n";
         }
         else {
-            return "Semantic Error:\n"+ reason + "\n" + fileName +".jott:"+lineNumber;
+            return "Semantic Error:\n"+ reason + "\n" + fileName +":"+lineNumber;
         }
     }
 }

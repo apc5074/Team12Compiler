@@ -24,7 +24,7 @@ public class SyntaxException extends Exception {
             return "Syntax Error:\n"+ reason + "\n";
         }
         else {
-            return "Syntax Error:\n"+ reason + "\n" + fileName +".jott:"+lineNumber;
+            return "Syntax Error:\n"+ reason + "\n" + fileName +":"+lineNumber;
         }
     }
 }

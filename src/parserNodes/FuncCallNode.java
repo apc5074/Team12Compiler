@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import provided.*;
 
@@ -88,7 +89,8 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     SymbolTable.exitScope();
                     return true;
                 } else {
-                    System.out.println("Semantic error:\nFunction call mismatch.\nLine " + id.getLine());
+                    SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function call mismatch.");
+                    System.out.println(e.toString());
                     return false;
                 }
             }
@@ -97,14 +99,17 @@ public class FuncCallNode implements BodyStatementNodeInterface {
             {
                 if (!types.get(i).equals(blahblahblah.get(i).getTypeName()))
                 {
-                    System.out.println("Semantic error:\nFunction " + id.convertToJott() + " called with incorrect vairable types.\nLine " + id.getLine());
+                    SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " +
+                    id.convertToJott() + " called with incorrect variable types.");
+                    System.out.println(e.toString());
                 }
             }
                 boolean ah = (id.validateTree() && args.validateTree());
                 SymbolTable.exitScope();
                 return ah;
         }
-        System.out.println("Semantic error:\nFunction " + id.convertToJott() + " not declared\nLine " + id.getLine());
+        SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " + id.convertToJott() + " not declared.");
+        System.out.println(e.toString());
         return false;
     }
 

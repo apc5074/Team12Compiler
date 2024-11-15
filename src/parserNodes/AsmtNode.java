@@ -1,6 +1,7 @@
 package parserNodes;
 import java.util.Stack;
 
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import helpers.SyntaxException;
 import provided.*;
@@ -55,7 +56,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
         if(expr.validateTree()) // and idToken exists in symboltable
         {
             if (!SymbolTable.varDefined(idToken.getToken())) {
-                System.out.println("Semantic error:\nvariable " + idToken.getToken() + " is not found.");
+                SemanticException e = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Variable " + idToken.getToken() + " is not found.");
+                System.out.println(e.toString());
+                return false;
             }
             String symtab = SymbolTable.getVarType(idToken.getToken()).getTypeName();
             if(symtab.equals("Integer") &&  expr.getExprType().equals("Integer"))
@@ -70,8 +73,9 @@ public class AsmtNode implements BodyStatementNodeInterface {
             {
                 return true;
             }
-            System.out.println("Semantic error:\nFound types " + symtab + " in the symbol table and " + 
-                                expr.getExprType() + " in the expression\nline " + idToken.getLineNum());
+            SemanticException e = new SemanticException(idToken.getLineNum(), idToken.getFilename(), "Found types " +
+            symtab + " in the symbol table and " + expr.getExprType() + " in the expression.");
+            System.out.println(e.toString());
             return false;
         }
         // only returns false if expression returns false.

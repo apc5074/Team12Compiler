@@ -1,4 +1,5 @@
 package parserNodes;
+import helpers.SemanticException;
 import helpers.SymbolTable;
 import java.util.Stack;
 import provided.*;
@@ -71,7 +72,9 @@ public class ExprNode implements ExprNodeInterface{
                     return true;
                 }
             }
-            System.out.println("Semantic error:\nType mismatch between " + left.getExprType() + " and " + right.getExprType() + "\nLine " + left.getLine());
+            SemanticException e = new SemanticException(left.getLine(), ProgramNode.filename, "Type mismatch between" +
+            left.getExprType() + " and " + right.getExprType());
+            System.out.println(e.toString());
             return false;
         }
     }

@@ -14,6 +14,7 @@ import parserNodes.*;
 public class ProgramNode implements JottTree {
 
     private ArrayList<FuncDefNode> functionDefNodes;
+    public static String filename;
 
     private ProgramNode(ArrayList<FuncDefNode> funcDefNodes)
     {
@@ -21,6 +22,7 @@ public class ProgramNode implements JottTree {
     }
 
     public static ProgramNode parse(ArrayList<Token> tokens) throws Exception {
+        filename = tokens.get(0).getFilename();
         if (tokens.isEmpty()) {
             throw new Exception("Syntax error:\nExpected ProgramNode but no tokens left");
         }
@@ -68,11 +70,13 @@ public class ProgramNode implements JottTree {
             }
         }
         if (!SymbolTable.funcDefined("main")) {
-            System.out.println("Semantic error:\nMain Method not found.");
+            SemanticException e = new SemanticException(0, filename, "Main method is not defined.");
+            System.out.println(e.toString());
             return false;
         }
         if (SymbolTable.getFuncReturnType("main") != null) {
-            System.out.println("Semantic error:\nMain Method must return int.");
+            SemanticException e = new SemanticException(0, filename, "Main method is not void.");
+            System.out.println(e.toString());
             return false;
         }
         return true;

@@ -1,6 +1,8 @@
 package parserNodes;
 import java.util.ArrayList;
 import java.util.Stack;
+
+import helpers.SemanticException;
 import provided.*;
 
 public class IfNode implements BodyStatementNodeInterface {
@@ -9,13 +11,15 @@ public class IfNode implements BodyStatementNodeInterface {
     ArrayList<ElseIfNode> elifList;
     ElseNode elseNode;
     boolean allReturn;
+    int startLine;
 
-    public IfNode(ExprNodeInterface e, BodyNode c, ArrayList<ElseIfNode> el, ElseNode els) {
+    public IfNode(ExprNodeInterface e, BodyNode c, ArrayList<ElseIfNode> el, ElseNode els, int stt) {
         condition = e;
         content = c;
         elifList = el;
         elseNode = els;
         allReturn = false;
+        startLine = stt;
     }
 
     @Override
@@ -33,6 +37,7 @@ public class IfNode implements BodyStatementNodeInterface {
         if (toke.getTokenType() != TokenType.ID_KEYWORD || !toke.getToken().equals("If")) {
             throw new Exception("Syntax error\nIf expected at line " + toke.getLineNum());
         }
+        int stt = toke.getLineNum();
         tokens.pop();
 
         toke = tokens.peek();
@@ -79,7 +84,7 @@ public class IfNode implements BodyStatementNodeInterface {
             els = ElseNode.parse(tokens);
         }
 
-        return new IfNode(e, b, el, els);
+        return new IfNode(e, b, el, els, stt);
     }
 
     @Override
@@ -104,12 +109,15 @@ public class IfNode implements BodyStatementNodeInterface {
         for (ElseIfNode i: elifList) {
             if (allReturn) {
                 if (!i.hasReturn()) {
-                    System.out.println("Semantic error:\nIf statement has return, not all else ifs have return.");
+                    SemanticException e = new SemanticException(startLine, ProgramNode.filename, "If statement has return, not all elseifs have return.");
+                    System.out.println(e);
                     return false;
                 }
             } else {
                 if (i.hasReturn()) {
-                    System.out.println("Semantic error:\nElseif statement ahs return, if does not.");
+                    
+                    SemanticException e = new SemanticException(startLine, ProgramNode.filename, "ElseIf statement has return, if does not.");
+                    System.out.println(e);
                     return false;
                 }
             }
@@ -127,11 +135,14 @@ public class IfNode implements BodyStatementNodeInterface {
                 return false;
             }
             if (allReturn && !elseNode.hasReturn()) {
-                System.out.println("Semantic error:\nIf node has return but else node does not.");
+                SemanticException e = new SemanticException(startLine, ProgramNode.filename, "If statement has return, but else does not.");
+                System.out.println(e);
                 return false;
             }
             if (!allReturn && elseNode.hasReturn()) {
-                System.out.println("Semantic error:\nElse node has return but If node does not.");
+                SemanticException e = new SemanticException(startLine, ProgramNode.filename, "Else statement has return, but if does not.");
+                System.out.println(e);
+                return false;
             }
         }
         return true;
