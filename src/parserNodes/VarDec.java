@@ -57,7 +57,7 @@ public class VarDec implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Not Implemented
+        return;
     }
 
     @Override
