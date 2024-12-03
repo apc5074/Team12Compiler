@@ -1,18 +1,36 @@
 package helpers;
+import parserNodes.TypeNode;
 
 public class FunctionVariable {
     private int type;
     private String stringVal;
     private Integer intVal;
-    private Float floatVal;
+    private Double floatVal;
     private Boolean boolVal;
 
-    public FunctionVariable(int i) {
-        type = i;
+    // 1 = int, 2 = double, 3 = bool, 4 = string.
+    public FunctionVariable(TypeNode alp) {
+        if (alp.getTypeName().equals("Integer")) {
+            type = 1;
+            return;
+        }
+        if (alp.getTypeName().equals("Double")) {
+            type = 2;
+            return;
+        }
+        if (alp.getTypeName().equals("Boolean")) {
+            type = 3;
+            return;
+        }
+        if (alp.getTypeName().equals("String")) {
+            type = 4;
+            return;
+        }
+
     }
     
 
-    // 1 = int, 2 = float, 3 = bool, 4 = string.
+    // 1 = int, 2 = double, 3 = bool, 4 = string.
     public int getType() {
         return type;
     }
@@ -43,15 +61,15 @@ public class FunctionVariable {
         }
         return stringVal;
     }
-    public void update(float i) {
+    public void update(double i) {
         if (type != 2) {
-            System.err.println("Invalid type - float unexpected.");
+            System.err.println("Invalid type - double unexpected.");
         }
         floatVal = i;
     }
-    public float getFloat() {
+    public double getDouble() {
         if (type != 2) {
-            System.err.println("Flaot was requested, variable is not float.");
+            System.err.println("Double was requested, variable is not double.");
             System.exit(0);
         }
         return floatVal;
