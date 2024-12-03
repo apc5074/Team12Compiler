@@ -36,6 +36,10 @@ public class SymbolTable {
         fSymTbl.put("length", lengthTypes);
     }
 
+    public static String getScope() {
+        return scope;
+    }
+    
     // adds a new function to vSymTbl and vValTable.
     public static boolean addScope(String name)
     {
@@ -145,35 +149,36 @@ public class SymbolTable {
             return false;
         }
 
+        // attempts to see if it's an integer
         try {
             int k = Integer.parseInt(value);
             if (vValTable.get(scope).get(vName).update(k)) {
                 return true;
             }
-        } catch (NumberFormatException e) {
-            try {
-                double k = Double.parseDouble(value);
-                if (vValTable.get(scope).get(vName).update(k)) {
-                    return true;
-                }
-            } catch (NumberFormatException f) {
-                boolean k = false;
-                if (value.equals("False")) {
-                    if (vValTable.get(scope).get(vName).update(k)) {
-                        return true;
-                    }
-                }
-                if (value.equals("True")) {
-                    k = true;
-                    if (vValTable.get(scope).get(vName).update(k)) {
-                        return true;
-                    }
-                }
-                // if it's True or False, and it isn't a boolean, it's time to try and see if it's a string that reads "True" / "False".
-                return vValTable.get(scope).get(vName).update(value);
-                
+        } catch (NumberFormatException e) {}
+        // now it's trying to see if it's a double
+        try {
+            double k = Double.parseDouble(value);
+            if (vValTable.get(scope).get(vName).update(k)) {
+                return true;
+            }
+        } catch (NumberFormatException f) {}
+        // and now we're checking if it's a boolean
+        boolean k = false;
+        if (value.equals("False")) {
+            if (vValTable.get(scope).get(vName).update(k)) {
+                return true;
             }
         }
+        if (value.equals("True")) {
+            k = true;
+            if (vValTable.get(scope).get(vName).update(k)) {
+                return true;
+            }
+        }
+        // anything which is a int, bool, or float could also be a string, given how the information is handled.
+        // this checks if it's a string after we're all said & done.
+        return vValTable.get(scope).get(vName).update(value);
     }
 
     // returns the function variable associated with the name and current scope.
