@@ -36,6 +36,7 @@ public class SymbolTable {
         fSymTbl.put("length", lengthTypes);
     }
 
+    // adds a new function to vSymTbl and vValTable.
     public static boolean addScope(String name)
     {
         if (vSymTbl.containsKey(name))
@@ -43,6 +44,7 @@ public class SymbolTable {
             return false;
         }
         vSymTbl.put(name, new HashMap<>());
+        vValTable.put(name, new HashMap<>());
         return true;
     }
     
@@ -119,6 +121,70 @@ public class SymbolTable {
         scopeStack.pop();
         String scope = scopeStack.peek();
         SymbolTable.scope = scope;
+    }
+
+    // inserts a new variable in the current scope.
+    // value is, by default, null. Variables are identified by their type.
+    public static boolean addVarVal(String vName, TypeNode type) {
+        if (vValTable.containsKey(scope) && vValTable.get(scope).containsKey(vName))
+        {
+            return false;
+        }
+        if (!vSymTbl.containsKey(scope)) {
+            return false;
+        }
+        vValTable.get(scope).put(vName, new FunctionVariable(type));
+        return true;
+    }
+
+    public static boolean updateVarVal(String vName, String value) {
+        if (!vValTable.containsKey(scope)) {
+            return false;
+        }
+        if (!vValTable.get(scope).containsKey(vName)) {
+            return false;
+        }
+
+        try {
+            int k = Integer.parseInt(value);
+            if (vValTable.get(scope).get(vName).update(k)) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            try {
+                double k = Double.parseDouble(value);
+                if (vValTable.get(scope).get(vName).update(k)) {
+                    return true;
+                }
+            } catch (NumberFormatException f) {
+                boolean k = false;
+                if (value.equals("False")) {
+                    if (vValTable.get(scope).get(vName).update(k)) {
+                        return true;
+                    }
+                }
+                if (value.equals("True")) {
+                    k = true;
+                    if (vValTable.get(scope).get(vName).update(k)) {
+                        return true;
+                    }
+                }
+                // if it's True or False, and it isn't a boolean, it's time to try and see if it's a string that reads "True" / "False".
+                return vValTable.get(scope).get(vName).update(value);
+                
+            }
+        }
+    }
+
+    // returns the function variable associated with the name and current scope.
+    public static FunctionVariable getVarVal(String vName) {
+        if (!vValTable.containsKey(scope)) {
+            return null;
+        }
+        if (!vValTable.get(scope).containsKey(vName)) {
+            return null;
+        }
+        return vValTable.get(scope).get(vName);
     }
 
 }

@@ -35,11 +35,12 @@ public class FunctionVariable {
         return type;
     }
 
-    public void update(int i) {
+    public boolean update(int i) {
         if (type != 1) {
-            System.err.println("Invalid type - int unexpected.");
+            return false;
         }
         intVal = i;
+        return true;
     }
     public int getInt() {
         if (type != 1) {
@@ -48,11 +49,12 @@ public class FunctionVariable {
         }
         return intVal;
     }
-    public void update (String i) {
+    public boolean update (String i) {
         if (type != 4) {
-            System.err.println("Invalid type - String unexpected.");
+            return false;
         }
         stringVal = i;
+        return true;
     }
     public String getString() {
         if (type != 4) {
@@ -61,11 +63,12 @@ public class FunctionVariable {
         }
         return stringVal;
     }
-    public void update(double i) {
+    public boolean update(double i) {
         if (type != 2) {
-            System.err.println("Invalid type - double unexpected.");
+            return false;
         }
         floatVal = i;
+        return true;
     }
     public double getDouble() {
         if (type != 2) {
@@ -74,11 +77,12 @@ public class FunctionVariable {
         }
         return floatVal;
     }
-    public void update (boolean i) {
+    public boolean update (boolean i) {
         if (type != 3) {
-            System.err.println("Invalid type - boolean unexpected.");
+            return false;
         }
         boolVal = i;
+        return true;
     }
     public boolean getBoolean() {
         if (type != 3) {
