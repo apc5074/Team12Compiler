@@ -119,7 +119,16 @@ public class FuncDefNode implements JottTree {
 
     @Override
     public void execute() {
-        String scope = SymbolTable.getScope();
+        // here's what I'm thinking.
+        // when a function is called in another function, the PARAMETER variables are defined within that function.
+        // when a function is called in another function, the INBODY variables are defined here.
+        // theoretically, there shouldn't be an Execute() function for func_def_params, true?
+        // also, funcCallNode needs to save the scope and update it ONLY after the function is finished executing.
+        // this is just to reset the scope.
+        SymbolTable.scope = funcName.getIdToken().getToken();
+        this.body.execute();
+        // now the final variable in the vValTable should be updated to be the return value.
+        // so, in the parent function, before we reset the scope, we grab the -1 index of the vValTable, correct?
     }
 
     public Token getToken()
