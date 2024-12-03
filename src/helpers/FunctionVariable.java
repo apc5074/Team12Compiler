@@ -8,20 +8,7 @@ public class FunctionVariable {
     private Boolean boolVal;
 
     public FunctionVariable(int i) {
-        type = 1;
-        intVal = i;
-    }
-    public FunctionVariable(float i) {
-        type = 2;
-        floatVal = i;
-    }
-    public FunctionVariable(boolean i) {
-        type = 3;
-        boolVal = i;
-    }
-    public FunctionVariable(String i) {
-        type = 4;
-        stringVal = i;
+        type = i;
     }
     
 
