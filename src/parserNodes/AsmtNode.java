@@ -93,8 +93,8 @@ public class AsmtNode implements BodyStatementNodeInterface {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        expr.execute();
+        SymbolTable.addVarVal(idToken.getToken(), expr.getValue());
     }
     
 }
