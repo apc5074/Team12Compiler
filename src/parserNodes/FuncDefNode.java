@@ -1,10 +1,9 @@
 package parserNodes;
 
+import helpers.SymbolTable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
-import helpers.SymbolTable;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -114,7 +113,15 @@ public class FuncDefNode implements JottTree {
                 return false;
             }
         }
-        return funcName.validateTree() && body.validateTree();
+
+        boolean returnValue = funcName.validateTree() && body.validateTree();
+
+        if (returnValue) 
+        {
+            SymbolTable.storefuncDef(funcName.getIdToken().getToken(), this);
+        }
+        
+        return returnValue;
     }
 
     @Override
