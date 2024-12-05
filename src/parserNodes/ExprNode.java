@@ -80,6 +80,11 @@ public class ExprNode implements ExprNodeInterface{
         }
     }
 
+    public boolean getValue()
+    {
+        return true; // NEED TO CHANGE THIS LATER
+    }
+
     @Override
     public int getLine() {
         return left.getLine();

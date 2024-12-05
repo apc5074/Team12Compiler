@@ -56,8 +56,9 @@ public class ElseNode implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        if (!isNull) {
+            body.execute();
+        }
     }
     
 }

@@ -149,8 +149,29 @@ public class IfNode implements BodyStatementNodeInterface {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        condition.execute();
+        if (condition.getValue())
+        {
+            condition.execute();
+        }
+        else
+        {
+            if (elifList != null)
+            {
+                for (ElseIfNode node: elifList)
+                {
+                    if (node.checkCondtion())
+                    {
+                        node.execute();
+                        break;
+                    }
+                }
+            }
+            else if (elseNode != null)
+            {
+                elseNode.execute();
+            }
+        }
     }
     
 }

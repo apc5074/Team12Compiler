@@ -6,6 +6,8 @@ public class ElseIfNode implements JottTree {
     private BodyNode body;
     private ExprNode expr;
 
+    private boolean executed;
+
     public ElseIfNode(BodyNode b, ExprNode e) {
         body = b;
         expr = e;
@@ -45,6 +47,12 @@ public class ElseIfNode implements JottTree {
         return new ElseIfNode(b, e);
     }
 
+    public boolean checkCondtion()
+    {
+        expr.execute();
+        return expr.getValue();
+    }
+
     @Override
     public String convertToJott() {
         return "Elseif [" + expr.convertToJott() + "]{ " + body.convertToJott() + " }";
@@ -61,8 +69,11 @@ public class ElseIfNode implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        expr.execute();
+        if (expr.getValue())
+        {
+            body.execute();
+        }
     }
     
 }
