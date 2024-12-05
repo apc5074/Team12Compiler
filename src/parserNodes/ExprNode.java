@@ -80,11 +80,6 @@ public class ExprNode implements ExprNodeInterface{
         }
     }
 
-     public Object getValue()
-    {
-        return result;
-    }
-
     @Override
     public int getLine() {
         return left.getLine();
@@ -157,6 +152,26 @@ public class ExprNode implements ExprNodeInterface{
     @Override
     public String getFilename() {
         return left.getFilename();
+    }
+
+    @Override
+    public int getInt() {
+        return (int) result;
+    }
+
+    @Override
+    public Double getDoub() {
+        return (double) result;
+    }
+
+    @Override
+    public String getStr() {
+        return (String) result;
+    }
+
+    @Override
+    public boolean getBool() {
+        return (boolean) result;
     }
     
 }
