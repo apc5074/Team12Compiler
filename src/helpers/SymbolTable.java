@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
+
+import parserNodes.FuncDefNode;
 import parserNodes.TypeNode;
 import provided.Token;
 import provided.TokenType;
@@ -17,8 +19,24 @@ public class SymbolTable {
     public static HashMap<String, HashMap<String, FunctionVariable>> vValTable = new HashMap<>();
     // stored as a single dict: (fname, [param1, param2, ..., parami, return])
     public static HashMap<String,List<TypeNode>> fSymTbl = new HashMap<>();
+
+    public static HashMap<String, FuncDefNode> functionExecutionTable = new HashMap<>();
+
     public static String scope;
     public static Stack<String> scopeStack = new Stack<>();
+
+    public static void storefuncDef(String name, FuncDefNode fdn)
+    {
+        functionExecutionTable.put(name, fdn);
+    }
+
+    public static FuncDefNode getfuncDef(String name)
+    {
+        return functionExecutionTable.get(name);
+    }
+
+    
+
 
     public static void addPrimativeFunctions()
     {

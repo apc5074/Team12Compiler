@@ -85,4 +85,23 @@ public class ParamNode implements JottTree {
         return argTypes;
 
     }
+
+    public ArrayList<Object> getArgValues()
+    {
+        ArrayList<Object> argValues = new ArrayList<>();
+        exprNode.execute();
+        String exprType = exprNode.getExprType();
+        switch (exprType)
+        {
+            case "String": argValues.add(exprNode.getStr());
+            case "Boolean": argValues.add(exprNode.getBool());
+            case "Double": argValues.add(exprNode.getDoub());
+            case "Integer": argValues.add(exprNode.getInt());
+        }
+        argValues.addAll(parameters.getArgValues())
+       
+    }
+
+
+    
 }
