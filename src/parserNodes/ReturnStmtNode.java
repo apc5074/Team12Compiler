@@ -9,6 +9,7 @@ import provided.Token;
 public class ReturnStmtNode implements JottTree{
 
     private ExprNodeInterface expressionNode;
+    private Object returnVal;
 
     public ReturnStmtNode(ExprNodeInterface exrpessionNode)
     {
@@ -79,7 +80,12 @@ public class ReturnStmtNode implements JottTree{
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        expressionNode.execute();
+        returnVal = expressionNode.getValue();
+    }
+
+    public Object getReturnStmtVal() {
+        return returnVal;
     }
     
 
