@@ -64,8 +64,12 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        expression.execute();
+        while (expression.getValue())
+        {
+            body.execute();
+            expression.execute();
+        }
     }
 
 }

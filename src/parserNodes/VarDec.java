@@ -57,7 +57,7 @@ public class VarDec implements JottTree {
 
     @Override
     public void execute() {
-        return;
+       SymbolTable.addVarVal(IDNode.getIdToken().getToken(), typeNode);
     }
 
     @Override
