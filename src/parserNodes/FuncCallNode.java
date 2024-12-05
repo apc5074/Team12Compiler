@@ -121,6 +121,11 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
     @Override
     public void execute() {
-        
+        args.execute();
+        switch (id.getIdToken().getToken())
+        {
+            case "print": 
+                System.out.println(args);
+        }
     }
 }
