@@ -75,8 +75,10 @@ public class FuncBodyNode implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        for(VarDec v: varDec) {
+            v.execute();
+        }
+        body.execute()
     }
 
 }

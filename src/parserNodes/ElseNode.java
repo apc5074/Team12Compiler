@@ -56,7 +56,9 @@ public class ElseNode implements JottTree {
 
     @Override
     public void execute() {
-        body.execute();
+        if (!isNull) {
+            body.execute();
+        }
     }
     
 }
