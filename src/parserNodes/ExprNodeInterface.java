@@ -53,5 +53,6 @@ public interface ExprNodeInterface extends JottTree{
     public String getStr();
     public boolean getBool();
 
+    public Object getValue();
 
 }

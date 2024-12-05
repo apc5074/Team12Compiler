@@ -156,4 +156,53 @@ public class OperandNode implements ExprNodeInterface {
 
         return 0;
     }
+
+    @Override
+    public int getInt() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getInt'");
+    }
+
+    @Override
+    public Double getDoub() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDoub'");
+    }
+
+    @Override
+    public String getStr() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getStr'");
+    }
+
+    @Override
+    public boolean getBool() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBool'");
+    }
+
+    @Override
+    public Object getValue() {
+        Object result;
+
+        if(idToken != null)
+        {
+            result = idToken.getToken();
+        }
+        else if (funcCall != null)
+        {
+            // find out what funcCall returns
+            result = 0;
+        }
+        else {
+            if(neg){
+                result = -1*Integer.parseInt(numToken.getToken());
+            }
+            else {
+                result = Integer.parseInt(numToken.getToken());
+            }
+        }
+
+        return result;
+    }
 }

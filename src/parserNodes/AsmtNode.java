@@ -94,22 +94,8 @@ public class AsmtNode implements BodyStatementNodeInterface {
     @Override
     public void execute() {
         expr.execute();
-        String varType = (SymbolTable.getVarType(idToken.getToken())).getTypeName();
-
-        switch(varType) {
-            case "Integer":
-                SymbolTable.updateVarVal(idToken.getToken(), String.valueOf(expr.getInt()));
-                break;
-            case "Double":
-                SymbolTable.updateVarVal(idToken.getToken(), String.valueOf(expr.getDoub()));
-                break;
-            case "String":
-                SymbolTable.updateVarVal(idToken.getToken(), expr.getStr());
-                break;
-            case "Boolean":
-                SymbolTable.updateVarVal(idToken.getToken(), String.valueOf(expr.getBool()));
-                break;
-        }
+        
+        SymbolTable.updateVarVal(idToken.getToken(), String.valueOf(expr.getValue()));
     }
     
 }

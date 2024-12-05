@@ -173,5 +173,10 @@ public class ExprNode implements ExprNodeInterface{
     public boolean getBool() {
         return (boolean) result;
     }
+
+    @Override
+    public Object getValue() {
+        return result;
+    }
     
 }
