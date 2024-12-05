@@ -80,9 +80,9 @@ public class ExprNode implements ExprNodeInterface{
         }
     }
 
-    public boolean getValue()
+     public Object getValue()
     {
-        return true; // NEED TO CHANGE THIS LATER
+        return result;
     }
 
     @Override
