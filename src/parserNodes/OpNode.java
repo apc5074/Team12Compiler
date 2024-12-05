@@ -41,4 +41,8 @@ public class OpNode implements JottTree {
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }
 
+    public String getOp() {
+        return opToken.getToken();
+    }
+
 }
