@@ -114,7 +114,15 @@ public class BodyNode implements JottTree{
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        //throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        for (BodyStatementNodeInterface BSN : bodyStatements) {
+            BSN.execute();
+        }
+
+        // If there's a return statement, execute it as well
+        if (returnStmt != null) {
+            returnStmt.execute();
+        }
     }
     
 }

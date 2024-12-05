@@ -48,7 +48,7 @@ public class FuncBodyNode implements JottTree {
             fbodyString += vardecs.convertToJott() + " ";
         }
         fbodyString += body.convertToJott();
-        return fbodyString;
+        return fbodyString; 
     }
 
     @Override
