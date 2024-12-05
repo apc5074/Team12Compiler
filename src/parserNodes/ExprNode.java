@@ -112,8 +112,11 @@ public class ExprNode implements ExprNodeInterface{
                 result = left.getNum()*right.getNum();
                 break;
             case "/":
-                if(right.getNum() != 0)
+                if(right.getNum() != 0) {
                     result = left.getNum()/right.getNum();
+                } else {
+                    System.err.println("Arithmetic exception\nDivision by zero");
+                }
                 break;
             case "<":
                 result = left.getNum() < right.getNum();
