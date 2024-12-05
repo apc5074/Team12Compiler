@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class OpNode implements JottTree {
     private Token opToken;
@@ -39,6 +39,10 @@ public class OpNode implements JottTree {
     public void execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    }
+
+    public String getOp() {
+        return opToken.getToken();
     }
 
 }

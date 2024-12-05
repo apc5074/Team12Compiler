@@ -1,8 +1,7 @@
 package parserNodes;
-import java.util.Stack;
-
 import helpers.SemanticException;
 import helpers.SymbolTable;
+import java.util.Stack;
 import provided.*;
 
 public class OperandNode implements ExprNodeInterface {
@@ -142,5 +141,19 @@ public class OperandNode implements ExprNodeInterface {
             }
             return SymbolTable.getFuncReturnType(funcCall.getFuncName()).getTypeName();
         }
+    }
+
+    public int getNum() {
+        if(funcCall != null)
+        {
+            // needs to call function and get it 
+            return 0;
+        }
+        else if (idToken != null)
+        {
+            return Integer.parseInt(idToken.getToken());
+        }
+
+        return 0;
     }
 }

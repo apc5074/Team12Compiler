@@ -11,6 +11,7 @@ public class ExprNode implements ExprNodeInterface{
     private Token toke;
     private boolean onlyID;
     private String type;
+    private Object result;
 
     public ExprNode(OperandNode left, OpNode op, OperandNode right)
     {
@@ -86,8 +87,51 @@ public class ExprNode implements ExprNodeInterface{
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        if(onlyID)
+        {
+            if (SymbolTable.varDefined(toke.getToken())) {
+                // Retrieve the value of the variable from the symbol table
+                result = SymbolTable.getVarVal(toke.getToken());
+                return;
+            }
+        }
+
+        switch (op.getOp()) {
+            case "+":
+                result = left.getNum()+right.getNum();
+                break;
+            case "-":
+                result = left.getNum()-right.getNum();
+                break;
+            case "*":
+                result = left.getNum()*right.getNum();
+                break;
+            case "/":
+                if(right.getNum() != 0) {
+                    result = left.getNum()/right.getNum();
+                } else {
+                    System.err.println("Arithmetic exception\nDivision by zero");
+                }
+                break;
+            case "<":
+                result = left.getNum() < right.getNum();
+                break;
+            case "<=":
+                result = left.getNum() <= right.getNum();
+                break;
+            case ">":
+                result = left.getNum() > right.getNum();
+                break;
+            case ">=":
+                result = left.getNum() >= right.getNum();
+                break;
+            case "==":
+                result = left.getNum() == right.getNum();
+                break;
+            case "!=":
+                result = left.getNum() != right.getNum();
+                break;
+        }
     }
 
     @Override
@@ -108,6 +152,31 @@ public class ExprNode implements ExprNodeInterface{
     @Override
     public String getFilename() {
         return left.getFilename();
+    }
+
+    @Override
+    public int getInt() {
+        return (int) result;
+    }
+
+    @Override
+    public Double getDoub() {
+        return (double) result;
+    }
+
+    @Override
+    public String getStr() {
+        return (String) result;
+    }
+
+    @Override
+    public boolean getBool() {
+        return (boolean) result;
+    }
+
+    @Override
+    public Object getValue() {
+        return result;
     }
     
 }

@@ -9,6 +9,7 @@ import provided.Token;
 public class ReturnStmtNode implements JottTree{
 
     private ExprNodeInterface expressionNode;
+    private Object returnVal;
 
     public ReturnStmtNode(ExprNodeInterface exrpessionNode)
     {
@@ -79,16 +80,21 @@ public class ReturnStmtNode implements JottTree{
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        //throw new UnsupportedOperationException("Unimplemented method 'execute'");
         // Evaluate the return expression
-        //Object returnValue = expressionNode.execute();
+        String exprType = expressionNode.getExprType();
 
-        // Set the return value in the SymbolTable for the current scope
-        //SymbolTable.vValTable.get(SymbolTable.scope).put("return", (FunctionVariable) returnValue);
-        //SymbolTable.updateVarVal("return", returnValue);
+        expressionNode.execute();
+
+        returnVal = expressionNode.getValue();
+       
 
         // Mark the function as having returned
         //SymbolTable.exitScope();  // This assumes exiting the function scope is enough to mark completion.
+    }
+
+    public Object getReturnStmtVal() {
+        return returnVal;
     }
     
 

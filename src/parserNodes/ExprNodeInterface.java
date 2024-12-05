@@ -1,7 +1,6 @@
 package parserNodes;
 
 import java.util.Stack;
-
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -47,5 +46,12 @@ public interface ExprNodeInterface extends JottTree{
     public int getLine();
 
     public String getFilename();
+
+    public int getInt();
+    public Double getDoub();
+    public String getStr();
+    public boolean getBool();
+
+    public Object getValue();
 
 }
