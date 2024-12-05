@@ -1,5 +1,5 @@
-import provided.*;
 import java.util.ArrayList;
+import provided.*;
 
 public class Jott {
     public static void main(String[] args) {
@@ -16,11 +16,13 @@ public class Jott {
         if (tree == null) {
             return;
         }
-        tree.validateTree();
+        if(tree.validateTree()) 
+        {
+            tree.execute();
+        }
         // Yay!!!
         // the program exits automatically if it is invalidated so no NEED To check the output!!!
 
         // now we need to complete the execute phase and EXECUTE it
-        tree.execute();
     }
 }
