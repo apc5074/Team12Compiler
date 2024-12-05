@@ -16,10 +16,11 @@ public class Jott {
         if (tree == null) {
             return;
         }
-        boolean valid = tree.validateTree();
+        tree.validateTree();
         // Yay!!!
+        // the program exits automatically if it is invalidated so no NEED To check the output!!!
 
         // now we need to complete the execute phase and EXECUTE it
-        // tree.execute();
+        tree.execute();
     }
 }
