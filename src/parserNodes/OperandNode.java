@@ -72,7 +72,6 @@ public class OperandNode implements ExprNodeInterface {
 
     @Override
     public String convertToJott() {
-        // TODO Auto-generated method stub
         if (neg != null) {
             if (neg) {
                 return "- " + numToken.getToken();

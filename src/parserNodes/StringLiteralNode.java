@@ -41,8 +41,8 @@ public class StringLiteralNode implements ExprNodeInterface{
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        // shouldn't need to be executed at all
+        return;
     }
 
     @Override

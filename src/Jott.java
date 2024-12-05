@@ -1,8 +1,5 @@
 import provided.*;
-import parserNodes.*;
 import java.util.ArrayList;
-
-import helpers.SymbolTable;
 
 public class Jott {
     public static void main(String[] args) {

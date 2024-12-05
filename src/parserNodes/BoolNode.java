@@ -51,7 +51,6 @@ public class BoolNode implements ExprNodeInterface {
 
     @Override
     public String getFilename() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFilename'");
+        return "";
     }
 }

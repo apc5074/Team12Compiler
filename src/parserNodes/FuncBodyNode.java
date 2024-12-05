@@ -78,7 +78,7 @@ public class FuncBodyNode implements JottTree {
         for(VarDec v: varDec) {
             v.execute();
         }
-        body.execute()
+        body.execute();
     }
 
 }

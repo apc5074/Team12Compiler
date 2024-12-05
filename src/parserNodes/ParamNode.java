@@ -3,7 +3,6 @@ import provided.*;
 import java.util.Stack;
 
 import helpers.SemanticException;
-import helpers.SymbolTable;
 
 import java.util.ArrayList;
 

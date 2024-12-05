@@ -6,8 +6,6 @@ public class ElseIfNode implements JottTree {
     private BodyNode body;
     private ExprNode expr;
 
-    private boolean executed;
-
     public ElseIfNode(BodyNode b, ExprNode e) {
         body = b;
         expr = e;

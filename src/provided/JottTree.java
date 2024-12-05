@@ -1,5 +1,4 @@
 package provided;
-import helpers.SymbolTable;
 
 /**
  * Interface for all Jott parse tree nodes
