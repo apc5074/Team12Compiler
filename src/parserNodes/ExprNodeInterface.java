@@ -48,11 +48,6 @@ public interface ExprNodeInterface extends JottTree{
 
     public String getFilename();
 
-    public int getInt();
-    public Double getDoub();
-    public String getStr();
-    public boolean getBool();
-
     public Object getValue();
 
 }

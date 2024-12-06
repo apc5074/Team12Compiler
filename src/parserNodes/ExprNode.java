@@ -155,26 +155,6 @@ public class ExprNode implements ExprNodeInterface{
     }
 
     @Override
-    public int getInt() {
-        return (int) result;
-    }
-
-    @Override
-    public Double getDoub() {
-        return (double) result;
-    }
-
-    @Override
-    public String getStr() {
-        return (String) result;
-    }
-
-    @Override
-    public boolean getBool() {
-        return (boolean) result;
-    }
-
-    @Override
     public Object getValue() {
         return result;
     }

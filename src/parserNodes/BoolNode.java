@@ -55,30 +55,6 @@ public class BoolNode implements ExprNodeInterface {
     }
 
     @Override
-    public int getInt() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInt'");
-    }
-
-    @Override
-    public Double getDoub() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDoub'");
-    }
-
-    @Override
-    public String getStr() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getStr'");
-    }
-
-    @Override
-    public boolean getBool() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBool'");
-    }
-
-    @Override
     public Object getValue() {
         return boolToken.getToken();
     }
