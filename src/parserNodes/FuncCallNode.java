@@ -10,6 +10,7 @@ public class FuncCallNode implements BodyStatementNodeInterface {
 
     private IdNode id;
     private ParamNode args;
+    private Object returnValue;
 
     public FuncCallNode(IdNode idNode, ParamNode params){
         id = idNode;
@@ -119,13 +120,38 @@ public class FuncCallNode implements BodyStatementNodeInterface {
         return false;
     }
 
+    public Object getReturnValue() {
+        return returnValue;
+    }
+
     @Override
     public void execute() {
         args.execute();
+        ArrayList<Object> vals = args.getArgValues();
+        SymbolTable.setScope(getFuncName());
+        FuncDefNode calledFunc = SymbolTable.getfuncDef(this.getFuncName());
+        FuncDefParams prms = calledFunc.getParams();
+        List<TypeNode> tps = prms.getList();
+        ArrayList<String> names = prms.getFuncParamNames();
+        for (int i = 0; i < tps.size(); i++)
+        {
+            SymbolTable.addVarVal(names.get(i), tps.get(i));
+            SymbolTable.updateVarVal(names.get(i), String.valueOf(vals.get(i))); // Aidan may be dumb
+        }
+
         switch (id.getIdToken().getToken())
         {
             case "print": 
-                System.out.println(args);
+                System.out.println(vals.get(0)); break;
+            case "concat":
+                this.returnValue = String.valueOf(vals.get(0)) + String.valueOf(vals.get(1)); break;
+            case "length": 
+                this.returnValue = String.valueOf(vals.get(0)).length(); break;
+            default:
+                calledFunc.execute();
+                this.returnValue = calledFunc.getValue();
+            
         }
+        SymbolTable.exitScope();
     }
 }

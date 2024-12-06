@@ -140,6 +140,9 @@ public class FuncDefNode implements JottTree {
         // so, in the parent function, before we reset the scope, we grab the -1 index of the vValTable, correct?
     }
 
+    public FuncDefParams getParams() {
+        return params;
+    }
     public Token getToken()
     {
         return funcName.getIdToken();

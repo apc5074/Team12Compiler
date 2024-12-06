@@ -65,7 +65,7 @@ public class WhileLoopNode implements BodyStatementNodeInterface {
     @Override
     public void execute() {
         expression.execute();
-        while (expression.getValue())
+        while ((boolean)expression.getValue())
         {
             body.execute();
             expression.execute();

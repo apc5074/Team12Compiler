@@ -58,4 +58,9 @@ public class FuncDefParams_t implements JottTree {
     {
         return type;
     }
+
+    public String getParamName()
+    {
+        return this.id.getIdToken().getToken();
+    }
 }

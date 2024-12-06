@@ -60,6 +60,11 @@ public class StringLiteralNode implements ExprNodeInterface{
         return stringToken.getFilename();
     }
 
+    @Override
+    public Object getValue() {
+        return stringToken.getToken();
+    }
+
     
 
 }
