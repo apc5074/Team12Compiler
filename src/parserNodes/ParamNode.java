@@ -3,6 +3,7 @@ import provided.*;
 import java.util.Stack;
 
 import helpers.SemanticException;
+import helpers.SymbolTable;
 
 import java.util.ArrayList;
 
@@ -90,16 +91,13 @@ public class ParamNode implements JottTree {
     {
         ArrayList<Object> argValues = new ArrayList<>();
         exprNode.execute();
-        String exprType = exprNode.getExprType();
-        switch (exprType)
+        argValues.add(exprNode.getValue());
+        for (ParamNodeT arg: parameters)
         {
-            case "String": argValues.add(exprNode.getStr());
-            case "Boolean": argValues.add(exprNode.getBool());
-            case "Double": argValues.add(exprNode.getDoub());
-            case "Integer": argValues.add(exprNode.getInt());
+            arg.execute();
+            argValues.add(arg.getArgValue());
         }
-        argValues.addAll(parameters.getArgValues())
-       
+        return argValues;
     }
 
 

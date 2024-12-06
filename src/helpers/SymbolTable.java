@@ -127,6 +127,7 @@ public class SymbolTable {
         return args.subList(0, args.size() - 1);
     }
 
+
     public static TypeNode getVarType(String vName)
     {
         return vSymTbl.get(scope).get(vName);

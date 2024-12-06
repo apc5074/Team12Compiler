@@ -150,7 +150,7 @@ public class IfNode implements BodyStatementNodeInterface {
     @Override
     public void execute() {
         condition.execute();
-        if (condition.getValue())
+        if ((boolean)condition.getValue())
         {
             condition.execute();
         }

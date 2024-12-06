@@ -48,7 +48,7 @@ public class ElseIfNode implements JottTree {
     public boolean checkCondtion()
     {
         expr.execute();
-        return expr.getValue();
+        return Boolean.valueOf((boolean) expr.getValue());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ElseIfNode implements JottTree {
     @Override
     public void execute() {
         expr.execute();
-        if (expr.getValue())
+        if ((boolean)expr.getValue())
         {
             body.execute();
         }
