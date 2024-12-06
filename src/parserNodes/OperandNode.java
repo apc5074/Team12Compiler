@@ -191,7 +191,7 @@ public class OperandNode implements ExprNodeInterface {
         }
         else if (funcCall != null)
         {
-            // find out what funcCall returns
+            // result = funcCall.getValue();
             result = 0;
         }
         else {

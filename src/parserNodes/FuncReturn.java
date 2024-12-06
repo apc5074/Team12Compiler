@@ -2,9 +2,12 @@ package parserNodes;
 import provided.*;
 import java.util.Stack;
 
+import helpers.SymbolTable;
+
 public class FuncReturn implements JottTree {
     Token toke;
     boolean voided;
+    Object result;
 
     public FuncReturn() {
         voided = true;
@@ -48,7 +51,11 @@ public class FuncReturn implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        
+    }
+
+    public Object getValue() {
+        result = SymbolTable.getVarVal(toke.getToken());
+        return result;
     }
 }
