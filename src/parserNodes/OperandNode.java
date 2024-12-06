@@ -170,14 +170,29 @@ public class OperandNode implements ExprNodeInterface {
         else if (funcCall != null)
         {
             result = funcCall.getReturnValue();
-            result = 0;
         }
         else {
             if(neg){
-                result = -1*Integer.parseInt(numToken.getToken());
+                if (numToken.getToken().contains("."))
+                {
+                    result = -1*Double.parseDouble(numToken.getToken());
+                }
+                else
+                {
+                    result = -1*Integer.parseInt(numToken.getToken());
+
+                }
             }
             else {
-                result = Integer.parseInt(numToken.getToken());
+                if (numToken.getToken().contains("."))
+                {
+                    result = Double.parseDouble(numToken.getToken());
+                }
+                else
+                {
+                    result = Integer.parseInt(numToken.getToken());
+
+                }            
             }
         }
 

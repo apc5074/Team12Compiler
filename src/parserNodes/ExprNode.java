@@ -1,6 +1,8 @@
 package parserNodes;
 import helpers.SemanticException;
 import helpers.SymbolTable;
+
+import java.lang.reflect.Type;
 import java.util.Stack;
 import provided.*;
 
@@ -96,43 +98,86 @@ public class ExprNode implements ExprNodeInterface{
                 return;
             }
         }
-
-        switch (op.getOp()) {
-            case "+":
-                result = (Integer)left.getValue()+(Integer)right.getValue();
-                break;
-            case "-":
-                result = (Integer)left.getValue()-(Integer)right.getValue();
-                break;
-            case "*":
-                result = (Integer)left.getValue()*(Integer)right.getValue();
-                break;
-            case "/":
-                if((Integer)right.getValue() != 0) {
-                    result = (Integer)left.getValue()/(Integer)right.getValue();
-                } else {
-                    System.err.println("Arithmetic exception\nDivision by zero");
+        String calcType = left.getExprType();
+        switch (calcType)
+        {
+            case "Integer":
+            switch (op.getOp()) {
+                case "+":
+                    result = (Integer)left.getValue()+(Integer)right.getValue();
+                    break;
+                case "-":
+                    result = (Integer)left.getValue()-(Integer)right.getValue();
+                    break;
+                case "*":
+                    result = (Integer)left.getValue()*(Integer)right.getValue();
+                    break;
+                case "/":
+                    if((Integer)right.getValue() != 0) {
+                        result = (Integer)left.getValue()/(Integer)right.getValue();
+                    } else {
+                        System.err.println("Arithmetic exception\nDivision by zero");
+                    }
+                    break;
+                case "<":
+                    result = (Integer)left.getValue() < (Integer)right.getValue();
+                    break;
+                case "<=":
+                    result = (Integer)left.getValue() <= (Integer)right.getValue();
+                    break;
+                case ">":
+                    result = (Integer)left.getValue() > (Integer)right.getValue();
+                    break;
+                case ">=":
+                    result = (Integer)left.getValue() >= (Integer)right.getValue();
+                    break;
+                case "==":
+                    result = (Integer)left.getValue() == (Integer)right.getValue();
+                    break;
+                case "!=":
+                    result = (Integer)left.getValue() != (Integer)right.getValue();
+                    break;
                 }
                 break;
-            case "<":
-                result = (Integer)left.getValue() < (Integer)right.getValue();
-                break;
-            case "<=":
-                result = (Integer)left.getValue() <= (Integer)right.getValue();
-                break;
-            case ">":
-                result = (Integer)left.getValue() > (Integer)right.getValue();
-                break;
-            case ">=":
-                result = (Integer)left.getValue() >= (Integer)right.getValue();
-                break;
-            case "==":
-                result = (Integer)left.getValue() == (Integer)right.getValue();
-                break;
-            case "!=":
-                result = (Integer)left.getValue() != (Integer)right.getValue();
-                break;
+            case "Double":
+            switch (op.getOp()) {
+                case "+":
+                    result = (Double)left.getValue()+(Double)right.getValue();
+                    break;
+                case "-":
+                    result = (Double)left.getValue()-(Double)right.getValue();
+                    break;
+                case "*":
+                    result = (Double)left.getValue()*(Double)right.getValue();
+                    break;
+                case "/":
+                    if((Double)right.getValue() != 0) {
+                        result = (Double)left.getValue()/(Double)right.getValue();
+                    } else {
+                        System.err.println("Arithmetic exception\nDivision by zero");
+                    }
+                    break;
+                case "<":
+                    result = (Double)left.getValue() < (Double)right.getValue();
+                    break;
+                case "<=":
+                    result = (Double)left.getValue() <= (Double)right.getValue();
+                    break;
+                case ">":
+                    result = (Double)left.getValue() > (Double)right.getValue();
+                    break;
+                case ">=":
+                    result = (Double)left.getValue() >= (Double)right.getValue();
+                    break;
+                case "==":
+                    result = (Double)left.getValue() == (Double)right.getValue();
+                    break;
+                case "!=":
+                    result = (Double)left.getValue() != (Double)right.getValue();
+                    break;
+            }
         }
+
     }
 
     @Override
