@@ -1,6 +1,6 @@
 package parserNodes;
-import provided.*;
 import java.util.Stack;
+import provided.*;
 
 public class BoolNode implements ExprNodeInterface {    
     private Token boolToken;
@@ -16,10 +16,11 @@ public class BoolNode implements ExprNodeInterface {
             throw new Exception ("Syntax Error: \n Expected a boolean but file ended.");
         }
         Token iToken = tokens.peek();
-        if (iToken.getTokenType() != TokenType.ID_KEYWORD || iToken.getToken().equals("true") || iToken.getToken().equals("false"))
+        if (iToken.getTokenType() != TokenType.ID_KEYWORD && !iToken.getToken().equals("True") && !iToken.getToken().equals("False"))
         {
             throw new Exception("Syntax error:\nExpected id but got "+tokens.peek().getTokenType() + "\n" + tokens.peek().getFilename() + ".jott:" + tokens.peek().getLineNum());
         }
+        tokens.pop();
 
         return new BoolNode(iToken);
     }

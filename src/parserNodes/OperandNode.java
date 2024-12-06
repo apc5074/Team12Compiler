@@ -1,8 +1,7 @@
 package parserNodes;
-import java.util.Stack;
-
 import helpers.SemanticException;
 import helpers.SymbolTable;
+import java.util.Stack;
 import provided.*;
 
 public class OperandNode implements ExprNodeInterface {
@@ -169,6 +168,7 @@ public class OperandNode implements ExprNodeInterface {
         }
         else if (funcCall != null)
         {
+            this.execute();
             result = funcCall.getReturnValue();
         }
         else {

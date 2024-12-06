@@ -1,6 +1,8 @@
 #this is an example
 Def main[]:Void{
-    ::print[::concat["Fuck", " This"]];
-    ::print[::length["Fuck"]];
+    String fuck;
+    fuck = "Fuck";
+    ::print[::concat[fuck, " This"]];
+    ::print[::length[fuck]];
 
 }

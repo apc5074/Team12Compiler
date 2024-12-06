@@ -152,7 +152,7 @@ public class IfNode implements BodyStatementNodeInterface {
         condition.execute();
         if ((boolean)condition.getValue())
         {
-            condition.execute();
+            content.execute();
         }
         else
         {

@@ -1,7 +1,6 @@
 package parserNodes;
 
 import java.util.Stack;
-
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -23,7 +22,7 @@ public interface ExprNodeInterface extends JottTree{
         }
         if (curTokenType == TokenType.ID_KEYWORD)
         {
-            if (curToken.getToken() == "True" || curToken.getToken() == "False")
+            if (curToken.getToken().equals("True") || curToken.getToken().equals("False"))
             {
                 BoolNode BN = BoolNode.parse(tokens);
                 return BN;

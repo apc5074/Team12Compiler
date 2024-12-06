@@ -46,10 +46,10 @@ public class FuncDefParams implements JottTree{
         // Parse <type>
         TypeNode typeNode = TypeNode.parse(tokens);
     
-        Token curToken = tokens.peek();
+        Token curToken = tokens.peek();     
         if (curToken.getToken().equals(",")) {
             ArrayList<FuncDefParams_t > arrayfuncDefParams_t = new ArrayList<FuncDefParams_t>();
-            while (curToken.getToken() == ",")
+            while (curToken.getToken().equals(","))
             {
                 arrayfuncDefParams_t.add(FuncDefParams_t.parse(tokens));
                 curToken = tokens.peek();

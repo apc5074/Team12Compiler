@@ -25,7 +25,7 @@ Def testIf[ d:Double, x:Integer ]:Void{
     If[d>5.1]{
 	    ::print["Hi"];
 	}
-	ElseIf[d>0.1]{
+	Elseif[d>0.1]{
 	    ::print[x];
 	}
 	Else{

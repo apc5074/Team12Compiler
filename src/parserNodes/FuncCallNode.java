@@ -111,8 +111,9 @@ public class FuncCallNode implements BodyStatementNodeInterface {
                     return false;
                 }
             }
-                boolean ah = (id.validateTree() && args.validateTree());
+                boolean ah = (id.validateTree());
                 SymbolTable.exitScope();
+                ah = ah  && args.validateTree();
                 return ah;
         }
         SemanticException e = new SemanticException(id.getLine(), ProgramNode.filename, "Function " + id.convertToJott() + " not declared.");

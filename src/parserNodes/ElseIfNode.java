@@ -15,7 +15,7 @@ public class ElseIfNode implements JottTree {
         Token next = tokens.peek();
         // if this token is parsed with no elseif there, it returns null. this means
         // the if statement - which is the only one to call it - will be told "hey, there's no more elifs."
-        if (next.getTokenType() != TokenType.ID_KEYWORD | next.getToken() != "Elseif") {
+        if (next.getTokenType() != TokenType.ID_KEYWORD | !next.getToken().equals("Elseif")) {
             return null;
         }
         // undeclared else - the next keyword is Else and an ID.
