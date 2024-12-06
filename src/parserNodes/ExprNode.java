@@ -117,6 +117,7 @@ public class ExprNode implements ExprNodeInterface{
                         result = (Integer)left.getValue()/(Integer)right.getValue();
                     } else {
                         System.err.println("Arithmetic exception\nDivision by zero");
+                        System.exit(0);
                     }
                     break;
                 case "<":
@@ -155,6 +156,7 @@ public class ExprNode implements ExprNodeInterface{
                         result = (Double)left.getValue()/(Double)right.getValue();
                     } else {
                         System.err.println("Arithmetic exception\nDivision by zero");
+                        System.exit(0);
                     }
                     break;
                 case "<":
