@@ -80,8 +80,8 @@ public class ProgramNode implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        FuncDefNode mainFunction = SymbolTable.getfuncDef("main");
+        mainFunction.execute();
     }
     
 }
