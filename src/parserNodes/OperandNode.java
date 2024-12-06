@@ -116,8 +116,10 @@ public class OperandNode implements ExprNodeInterface {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    if (funcCall != null)
+    {
+            funcCall.execute();
+    }
     }
 
     @Override
@@ -163,11 +165,11 @@ public class OperandNode implements ExprNodeInterface {
 
         if(idToken != null)
         {
-            result = idToken.getToken();
+            result = SymbolTable.getVarVal(idToken.getToken()).getValue();
         }
         else if (funcCall != null)
         {
-            // result = funcCall.getValue();
+            result = funcCall.getReturnValue();
             result = 0;
         }
         else {

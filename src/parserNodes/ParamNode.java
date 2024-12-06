@@ -70,8 +70,12 @@ public class ParamNode implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        if (exprNode == null) return;
+        exprNode.execute();
+        for (ParamNodeT prm: parameters)
+        {
+            prm.execute();
+        }
     }
 
     public ArrayList<String> getArgTypes()
@@ -90,6 +94,7 @@ public class ParamNode implements JottTree {
     public ArrayList<Object> getArgValues()
     {
         ArrayList<Object> argValues = new ArrayList<>();
+        if (exprNode == null) return argValues;
         exprNode.execute();
         argValues.add(exprNode.getValue());
         for (ParamNodeT arg: parameters)

@@ -47,8 +47,7 @@ public class ParamNodeT implements JottTree {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        exprNode.execute();
     }
 
     public Object getArgValue()

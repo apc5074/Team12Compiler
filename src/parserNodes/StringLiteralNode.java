@@ -62,7 +62,7 @@ public class StringLiteralNode implements ExprNodeInterface{
 
     @Override
     public Object getValue() {
-        return stringToken.getToken();
+        return stringToken.getToken().substring(1,stringToken.getToken().length()-1);
     }
 
     
