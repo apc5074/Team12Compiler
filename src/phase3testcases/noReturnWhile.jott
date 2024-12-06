@@ -6,8 +6,16 @@ Def foo[]:Integer{
     x = 0;
 	While[x<10]{
 		::print[x];
-		Return x;
+		If[True]{
+            ::print["shi"];
+            Return x;
+        }
+        Else
+        {
+            Return x;
+        }
 	}
+    Return x;
 }
 
 Def main[]:Void{

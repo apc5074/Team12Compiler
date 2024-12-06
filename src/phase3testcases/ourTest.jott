@@ -1,0 +1,6 @@
+#this is an example
+Def main[]:Void{
+    ::print[::concat["Fuck", " This"]];
+    ::print[::length["Fuck"]];
+
+}

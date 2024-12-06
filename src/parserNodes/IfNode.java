@@ -156,7 +156,7 @@ public class IfNode implements BodyStatementNodeInterface {
         }
         else
         {
-            if (elifList != null)
+            if (!elifList.isEmpty())
             {
                 for (ElseIfNode node: elifList)
                 {
