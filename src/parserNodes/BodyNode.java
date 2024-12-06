@@ -15,6 +15,7 @@ public class BodyNode implements JottTree{
     ArrayList<BodyStatementNodeInterface> bodyStatements;
     ReturnStmtNode returnStmt;
     boolean oop;
+    private Object returnValue;
 
 
 
@@ -118,7 +119,13 @@ public class BodyNode implements JottTree{
         }
         if (oop) {
             returnStmt.execute();
+            this.returnValue = returnStmt.getReturnStmtVal();
         }
+    }
+
+    public Object getValue()
+    {
+        return this.returnValue;
     }
     
 }

@@ -12,6 +12,7 @@ public class FuncBodyNode implements JottTree {
     private ArrayList<VarDec> varDec; 
     private BodyNode body; 
     private int startLine;
+    private Object returnValue;
 
     public FuncBodyNode(ArrayList<VarDec> varDec, BodyNode body, int stt) {
         this.varDec = varDec;
@@ -79,6 +80,13 @@ public class FuncBodyNode implements JottTree {
             v.execute();
         }
         body.execute();
+
+        this.returnValue = body.getValue();
+    }
+
+    public Object getValue() 
+    {
+        return this.returnValue;
     }
 
 }

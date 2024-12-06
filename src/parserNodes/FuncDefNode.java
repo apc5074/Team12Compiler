@@ -14,6 +14,7 @@ public class FuncDefNode implements JottTree {
     private TypeNode returnType;
     private boolean isVoid;
     private FuncBodyNode body;
+    private Object returnValue;
 
     public FuncDefNode(IdNode name, FuncDefParams params, TypeNode returnType, FuncBodyNode body)
     {
@@ -114,14 +115,14 @@ public class FuncDefNode implements JottTree {
             }
         }
 
-        boolean returnValue = funcName.validateTree() && body.validateTree();
+        boolean valid = funcName.validateTree() && body.validateTree();
 
-        if (returnValue) 
+        if (valid) 
         {
             SymbolTable.storefuncDef(funcName.getIdToken().getToken(), this);
         }
-        
-        return returnValue;
+
+        return valid;
     }
 
     @Override
@@ -134,6 +135,7 @@ public class FuncDefNode implements JottTree {
         // this is just to reset the scope.
         SymbolTable.scope = funcName.getIdToken().getToken();
         this.body.execute();
+        this.returnValue = body.getValue();
         // now the final variable in the vValTable should be updated to be the return value.
         // so, in the parent function, before we reset the scope, we grab the -1 index of the vValTable, correct?
     }
@@ -141,6 +143,11 @@ public class FuncDefNode implements JottTree {
     public Token getToken()
     {
         return funcName.getIdToken();
+    }
+
+    public Object getValue()
+    {
+        return this.returnValue;
     }
 
 }
