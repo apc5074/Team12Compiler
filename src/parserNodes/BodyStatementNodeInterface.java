@@ -1,7 +1,6 @@
 package parserNodes;
 
 import java.util.Stack;
-
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
@@ -47,4 +46,5 @@ public interface BodyStatementNodeInterface extends JottTree{
     public boolean ifReturn();
     public String convertToJott();
 
+    public void execute();
 }

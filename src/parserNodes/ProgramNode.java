@@ -81,7 +81,27 @@ public class ProgramNode implements JottTree {
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        //throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        FuncDefNode mainFunction = SymbolTable.getfuncDef("main");
+        // for (FuncDefNode funcDef : functionDefNodes) {
+        //     if (funcDef.getFunctionName().equals("main")) {
+        //         mainFunction = funcDef;
+        //         break;
+        //     }
+        // }
+
+        if (mainFunction == null) {
+            System.err.println("Execution Error: Main method not found.");
+            return;
+        }
+
+        // Execute the main function
+        try {
+            mainFunction.execute();
+        } catch (Exception e) {
+            System.err.println("Execution Error: An error occurred while executing the main method.");
+            e.printStackTrace();
+        }
     }
     
 }
