@@ -91,4 +91,21 @@ public class FunctionVariable {
         }
         return boolVal;
     }
+
+    public Object getValue()
+    {
+        if(type == 1){
+            return intVal;
+        }
+        if(type == 2){
+            return floatVal;
+        }
+        if(type == 3){
+            return boolVal;
+        }
+        if(type == 4){
+            return stringVal;
+        }
+        else return "Something is Wrong";
+    }
 }

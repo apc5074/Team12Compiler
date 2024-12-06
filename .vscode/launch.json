@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "Jott",
             "projectName": "Team12Compiler_365ad4db",
-            "args": ["C:\\Users\\shawn\\OneDrive\\Desktop\\Homework\\Semester 5\\PLC\\Team12Compiler\\src\\phase3testcases\\largerValid.jott"]
+            "args": ["C:\\Users\\shawn\\OneDrive\\Desktop\\Homework\\Semester 5\\PLC\\Team12Compiler\\src\\phase3testcases\\ifStmtReturns.jott"]
 
         },
         {

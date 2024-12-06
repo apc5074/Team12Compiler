@@ -89,6 +89,7 @@ public class ExprNode implements ExprNodeInterface{
     public void execute() {
         if(onlyID)
         {
+            
             if (SymbolTable.varDefined(toke.getToken())) {
                 // Retrieve the value of the variable from the symbol table
                 result = SymbolTable.getVarVal(toke.getToken());
@@ -98,38 +99,38 @@ public class ExprNode implements ExprNodeInterface{
 
         switch (op.getOp()) {
             case "+":
-                result = left.getNum()+right.getNum();
+                result = (Integer)left.getValue()+(Integer)right.getValue();
                 break;
             case "-":
-                result = left.getNum()-right.getNum();
+                result = (Integer)left.getValue()-(Integer)right.getValue();
                 break;
             case "*":
-                result = left.getNum()*right.getNum();
+                result = (Integer)left.getValue()*(Integer)right.getValue();
                 break;
             case "/":
-                if(right.getNum() != 0) {
-                    result = left.getNum()/right.getNum();
+                if((Integer)right.getValue() != 0) {
+                    result = (Integer)left.getValue()/(Integer)right.getValue();
                 } else {
                     System.err.println("Arithmetic exception\nDivision by zero");
                 }
                 break;
             case "<":
-                result = left.getNum() < right.getNum();
+                result = (Integer)left.getValue() < (Integer)right.getValue();
                 break;
             case "<=":
-                result = left.getNum() <= right.getNum();
+                result = (Integer)left.getValue() <= (Integer)right.getValue();
                 break;
             case ">":
-                result = left.getNum() > right.getNum();
+                result = (Integer)left.getValue() > (Integer)right.getValue();
                 break;
             case ">=":
-                result = left.getNum() >= right.getNum();
+                result = (Integer)left.getValue() >= (Integer)right.getValue();
                 break;
             case "==":
-                result = left.getNum() == right.getNum();
+                result = (Integer)left.getValue() == (Integer)right.getValue();
                 break;
             case "!=":
-                result = left.getNum() != right.getNum();
+                result = (Integer)left.getValue() != (Integer)right.getValue();
                 break;
         }
     }
